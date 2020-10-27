@@ -8,12 +8,12 @@ const kLightBlue2 = Color(0xFF4E84B3);
 
 const kLoginTextStyle = TextStyle(
   fontFamily: 'Handlee',
-  fontSize: 60.0,
+  fontSize: 70.0,
   fontWeight: FontWeight.w500,
+  color: Colors.white,
 );
 
 const kSignupTextStyle =
     TextStyle(fontSize: 20.0, fontWeight: FontWeight.w400, color: Colors.black);
 const kSigninTextStyle =
     TextStyle(fontSize: 30.0, fontWeight: FontWeight.w700, color: Colors.black);
-
