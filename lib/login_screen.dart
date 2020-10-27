@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'constants.dart';
 import 'custom_containers.dart';
 import 'constants.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -29,6 +30,16 @@ class _LoginScreenState extends State<LoginScreen> {
         child: SafeArea(
           child: Column(
             children: [
+              Container(
+                alignment: Alignment.centerLeft,
+                child: IconButton(
+                    icon: FaIcon(FontAwesomeIcons.chevronLeft),
+                    iconSize: 30.0,
+                    color: Colors.white,
+                    onPressed: () {
+                      Navigator.pop(context);
+                    }),
+              ),
               Expanded(
                 child: Container(
                   margin: EdgeInsets.only(left: 10.0),
@@ -68,7 +79,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           IconButton(
                               icon: FaIcon(FontAwesomeIcons.arrowCircleRight),
                               iconSize: 80.0,
-                              color: Colors.black,
+                              color: kDarkBlue2,
                               onPressed: null),
                         ],
                       ),

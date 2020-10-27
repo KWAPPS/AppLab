@@ -2,12 +2,9 @@ import 'constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:connect_app/constants.dart';
-
 import 'constants.dart';
-import 'constants.dart';
-import 'constants.dart';
-import 'constants.dart';
-import 'constants.dart';
+import 'login_screen.dart';
+import 'login_screen.dart';
 
 class WelcomeScreen extends StatefulWidget {
   @override
@@ -37,7 +34,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                         padding: EdgeInsets.only(top: 60, left: 10.0),
                         child: Text(
                           'Welcome',
-                          style: TextStyle(color: Colors.white, fontSize: 45),
+                          style: kLoginTextStyle,
                         )),
                   ),
                   SizedBox(
@@ -60,6 +57,10 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                           TextStyle(fontSize: 30, fontWeight: FontWeight.w400),
                     ),
                     onPressed: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                        return LoginScreen();
+                      }));
                       print('been pressed');
                     },
                   ),
