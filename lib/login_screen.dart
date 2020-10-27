@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'constants.dart';
 import 'custom_containers.dart';
-import 'constants.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:flutter/services.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -16,6 +16,10 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+      systemNavigationBarColor: kLightCream, // navigation bar color
+      statusBarColor: kLightCream, // status bar color
+    ));
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
@@ -30,16 +34,6 @@ class _LoginScreenState extends State<LoginScreen> {
         child: SafeArea(
           child: Column(
             children: [
-              Container(
-                alignment: Alignment.centerLeft,
-                child: IconButton(
-                    icon: FaIcon(FontAwesomeIcons.chevronLeft),
-                    iconSize: 30.0,
-                    color: Colors.white,
-                    onPressed: () {
-                      Navigator.pop(context);
-                    }),
-              ),
               Expanded(
                 child: Container(
                   margin: EdgeInsets.only(left: 10.0),
@@ -79,7 +73,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           IconButton(
                               icon: FaIcon(FontAwesomeIcons.arrowCircleRight),
                               iconSize: 80.0,
-                              color: kDarkBlue2,
+                              color: Colors.black,
                               onPressed: null),
                         ],
                       ),

@@ -5,6 +5,7 @@ const kDarkBlue = Color(0xFF3F48CC);
 const kVeryLightCream = Color(0xFFFEFDF8);
 const kDarkBlue2 = Color(0xFF07375D);
 const kLightBlue2 = Color(0xFF4E84B3);
+const kLightCream = Color(0xFFD6D6CA);
 
 const kLoginTextStyle = TextStyle(
   fontFamily: 'Handlee',
