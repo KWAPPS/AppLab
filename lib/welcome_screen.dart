@@ -2,12 +2,7 @@ import 'constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:connect_app/constants.dart';
-
-import 'constants.dart';
-import 'constants.dart';
-import 'constants.dart';
-import 'constants.dart';
-import 'constants.dart';
+import 'package:connect_app/custom_containers.dart';
 
 class WelcomeScreen extends StatefulWidget {
   @override
@@ -37,7 +32,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                         padding: EdgeInsets.only(top: 60, left: 10.0),
                         child: Text(
                           'Welcome',
-                          style: TextStyle(color: Colors.white, fontSize: 45),
+                          style: kLoginTextStyle,
                         )),
                   ),
                   SizedBox(
@@ -47,40 +42,16 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               ),
               Column(
                 children: [
-                  RaisedButton(
-                    elevation: 5,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(25)),
-                    padding:
-                        EdgeInsets.symmetric(horizontal: 30.0, vertical: 5),
-                    color: kLightBlue2,
-                    child: Text(
-                      'sign in',
-                      style:
-                          TextStyle(fontSize: 30, fontWeight: FontWeight.w400),
-                    ),
-                    onPressed: () {
-                      print('been pressed');
-                    },
+                  CustomRaisedButton(
+                    buttonText: 'sign in',
+                    buttonColor: kLightBlue2,
                   ),
                   SizedBox(
                     height: 20,
                   ),
-                  RaisedButton(
-                    elevation: 5,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(25)),
-                    padding:
-                        EdgeInsets.symmetric(horizontal: 30.0, vertical: 5),
-                    color: kDarkBlue2,
-                    child: Text(
-                      'sign up',
-                      style:
-                          TextStyle(fontSize: 30, fontWeight: FontWeight.w400),
-                    ),
-                    onPressed: () {
-                      print('been pressed');
-                    },
+                  CustomRaisedButton(
+                    buttonColor: kDarkBlue2,
+                    buttonText: 'sign up',
                   ),
                   SizedBox(
                     height: 100,
