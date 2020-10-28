@@ -2,6 +2,7 @@ import 'constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:connect_app/constants.dart';
+
 import 'package:connect_app/custom_containers.dart';
 
 class WelcomeScreen extends StatefulWidget {
@@ -42,9 +43,13 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               ),
               Column(
                 children: [
+
                   CustomRaisedButton(
                     buttonText: 'sign in',
                     buttonColor: kLightBlue2,
+
+                  
+
                   ),
                   SizedBox(
                     height: 20,
