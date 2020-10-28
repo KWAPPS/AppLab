@@ -26,8 +26,8 @@ class _LoginScreenState extends State<LoginScreen> {
           image: DecorationImage(
             image: AssetImage('images/login.png'),
             fit: BoxFit.cover,
-            colorFilter: ColorFilter.mode(
-                Colors.white.withOpacity(0.8), BlendMode.dstATop),
+            // colorFilter: ColorFilter.mode(
+            //     Colors.white.withOpacity(0.8), BlendMode.dstATop),
           ),
         ),
         constraints: BoxConstraints.expand(),
@@ -61,7 +61,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       LoginBar(barText: 'Password'),
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           FlatButton(
                             onPressed: null,
@@ -70,11 +70,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               style: kSigninTextStyle,
                             ),
                           ),
-                          IconButton(
-                              icon: FaIcon(FontAwesomeIcons.arrowCircleRight),
-                              iconSize: 80.0,
-                              color: Colors.black,
-                              onPressed: null),
+                          RaisedButton()
                         ],
                       ),
                       Container(
@@ -110,11 +106,3 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 }
-//IconButton(
-//icon: FaIcon(
-//FontAwesomeIcons.solidUserCircle,
-//color: Colors.black,
-//),
-//iconSize: 20.0,
-//highlightColor: Colors.redAccent,
-//)
