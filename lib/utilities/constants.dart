@@ -13,7 +13,8 @@ const kLoginTextStyle = TextStyle(
   fontWeight: FontWeight.w500,
   color: Colors.white,
 );
-
+const kRegisterTextStyle =
+    TextStyle(fontSize: 70.0, fontWeight: FontWeight.w300);
 const kSignupTextStyle =
     TextStyle(fontSize: 20.0, fontWeight: FontWeight.w400, color: Colors.black);
 const kSigninTextStyle =

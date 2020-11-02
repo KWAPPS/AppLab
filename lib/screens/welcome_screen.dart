@@ -1,11 +1,13 @@
-import 'constants.dart';
+
+import '../utilities/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:connect_app/constants.dart';
-
+import 'login_screen.dart';
+import 'register_screen.dart';
 import 'package:connect_app/custom_containers.dart';
 
 class WelcomeScreen extends StatefulWidget {
+  static const String id = 'welcome_screen';
   @override
   _WelcomeScreenState createState() => _WelcomeScreenState();
 }
@@ -43,13 +45,12 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               ),
               Column(
                 children: [
-
                   CustomRaisedButton(
                     buttonText: 'sign in',
                     buttonColor: kLightBlue2,
-
-                  
-
+                    onPressed: () {
+                      Navigator.pushNamed(context, LoginScreen.id);
+                    },
                   ),
                   SizedBox(
                     height: 20,
@@ -57,6 +58,9 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   CustomRaisedButton(
                     buttonColor: kDarkBlue2,
                     buttonText: 'sign up',
+                    onPressed: () {
+                      Navigator.pushNamed(context, RegisterScreen.id);
+                    },
                   ),
                   SizedBox(
                     height: 100,

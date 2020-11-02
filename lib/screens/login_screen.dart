@@ -1,12 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'constants.dart';
-import 'custom_containers.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import '../utilities/constants.dart';
+import '../custom_containers.dart';
+
 import 'package:flutter/services.dart';
 
 class LoginScreen extends StatefulWidget {
+  static const String id = 'login_screen';
   @override
   State<StatefulWidget> createState() {
     return _LoginScreenState();
@@ -24,10 +25,8 @@ class _LoginScreenState extends State<LoginScreen> {
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('images/login.png'),
+            image: AssetImage('images/back.jpg'),
             fit: BoxFit.cover,
-            // colorFilter: ColorFilter.mode(
-            //     Colors.white.withOpacity(0.8), BlendMode.dstATop),
           ),
         ),
         constraints: BoxConstraints.expand(),
@@ -70,7 +69,9 @@ class _LoginScreenState extends State<LoginScreen> {
                               style: kSigninTextStyle,
                             ),
                           ),
-                          RaisedButton()
+                          RaisedButton(
+                            onPressed: null,
+                          )
                         ],
                       ),
                       Container(
