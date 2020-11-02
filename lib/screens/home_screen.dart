@@ -66,12 +66,3 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
-
-//IconButton(
-//icon: FaIcon(
-//FontAwesomeIcons.solidUserCircle,
-//color: Colors.black,
-//),
-//iconSize: 20.0,
-//highlightColor: Colors.redAccent,
-//)
