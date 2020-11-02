@@ -30,10 +30,10 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 children: [
                   Flexible(
                     child: Padding(
-                        padding: EdgeInsets.only(top: 60, left: 10.0),
+                        padding: EdgeInsets.only(top: 60, left: 20.0),
                         child: Text(
                           'Welcome',
-                          style: kLoginTextStyle,
+                          style: TextStyle(fontSize: 50),
                         )),
                   ),
                   SizedBox(
@@ -43,13 +43,9 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               ),
               Column(
                 children: [
-
                   CustomRaisedButton(
                     buttonText: 'sign in',
                     buttonColor: kLightBlue2,
-
-                  
-
                   ),
                   SizedBox(
                     height: 20,
