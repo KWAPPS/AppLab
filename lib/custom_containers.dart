@@ -22,10 +22,11 @@ class LoginBar extends StatelessWidget {
 }
 
 class CustomRaisedButton extends StatelessWidget {
-  String buttonText;
-  Color buttonColor;
+  final String buttonText;
+  final Color buttonColor;
+  final Function onPressed;
 
-  CustomRaisedButton({this.buttonColor, this.buttonText});
+  CustomRaisedButton({this.buttonColor, this.buttonText, this.onPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -38,9 +39,7 @@ class CustomRaisedButton extends StatelessWidget {
         buttonText,
         style: TextStyle(fontSize: 30, fontWeight: FontWeight.w400),
       ),
-      onPressed: () {
-        print('been pressed');
-      },
+      onPressed: onPressed,
     );
   }
 }

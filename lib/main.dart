@@ -1,7 +1,8 @@
+import 'file:///C:/Users/Peter%20Oketta/AndroidStudioProjects/AppLab/lib/screens/home_screen.dart';
+import 'file:///C:/Users/Peter%20Oketta/AndroidStudioProjects/AppLab/lib/screens/login_screen.dart';
+import 'file:///C:/Users/Peter%20Oketta/AndroidStudioProjects/AppLab/lib/screens/register_screen.dart';
+import 'file:///C:/Users/Peter%20Oketta/AndroidStudioProjects/AppLab/lib/screens/welcome_screen.dart';
 import 'package:flutter/material.dart';
-import 'home_screen.dart';
-import 'login_screen.dart';
-import 'welcome_screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -10,11 +11,13 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData.dark(),
-      initialRoute: 'login_screen.dart',
+      home: HomeScreen(),
+      initialRoute: WelcomeScreen.id,
       routes: {
-        'home_screen.dart': (context) => HomeScreen(),
-        'login_screen.dart': (context) => LoginScreen(),
-        'welcome_screen.dart': (context) => WelcomeScreen()
+        WelcomeScreen.id: (context) => WelcomeScreen(),
+        LoginScreen.id: (context) => LoginScreen(),
+        RegisterScreen.id: (context) => RegisterScreen(),
+        HomeScreen.id: (context) => HomeScreen(),
       },
     );
   }
