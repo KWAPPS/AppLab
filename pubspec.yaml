@@ -29,6 +29,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.3
   font_awesome_flutter: ^8.10.0
+  shimmer: ^1.1.2
 
 dev_dependencies:
   flutter_test:
@@ -51,6 +52,6 @@ flutter:
 
 
   fonts:
-   - family: Handlee
+   - family: Pacifico
      fonts:
-     - asset: fonts/Handlee-Regular.ttf
+     - asset: fonts/Pacifico-Regular.ttf
