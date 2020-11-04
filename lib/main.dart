@@ -1,15 +1,11 @@
+import 'package:connect_app/screens/details_screen.dart';
+import 'package:connect_app/screens/hire_me_screen.dart';
 import 'package:flutter/material.dart';
-<<<<<<< Updated upstream
-import 'screens/welcome_screen.dart';
-import 'screens/login_screen.dart';
-import 'screens/home_screen.dart';
-import 'screens/register_screen.dart';
-=======
-import 'screens/home_screen.dart';
-import 'screens/login_screen.dart';
-import 'screens/welcome_screen.dart';
-import 'screens/details_screen.dart';
->>>>>>> Stashed changes
+import 'package:connect_app/screens/welcome_screen.dart';
+
+import 'package:connect_app/screens/login_screen.dart';
+import 'package:connect_app/screens/home_screen.dart';
+import 'package:connect_app/screens/register_screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -27,12 +23,14 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      initialRoute: WelcomeScreen.id,
+      initialRoute: 'screens/home_screen.dart',
       routes: {
-        WelcomeScreen.id: (context) => WelcomeScreen(),
-        LoginScreen.id: (context) => LoginScreen(),
-        RegisterScreen.id: (context) => RegisterScreen(),
-        HomeScreen.id: (context) => HomeScreen(),
+        'screens/details_screen.dart': (context) => DetailsScreen(),
+        'screens/hire_me_screen.dart': (context) => HireMeScreen(),
+        'screens/welcome_screen.dart': (context) => WelcomeScreen(),
+        'screens/login_screen.dart': (context) => LoginScreen(),
+        'screens/register_screen.dart': (context) => RegisterScreen(),
+        'screens/home_screen.dart': (context) => HomeScreen(),
       },
     );
   }

@@ -1,15 +1,7 @@
 import 'package:flutter/material.dart';
-<<<<<<< Updated upstream:lib/screens/hire_me_screen.dart
-=======
-import 'file:///C:/Users/user/AndroidStudioProjects/AppLab/lib/utilities/constants.dart';
->>>>>>> Stashed changes:lib/hire_me_screen.dart
-import 'package:flutter/services.dart';
 import 'package:connect_app/utilities/constants.dart';
+import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-<<<<<<< Updated upstream:lib/screens/hire_me_screen.dart
-=======
-import 'file:///C:/Users/user/AndroidStudioProjects/AppLab/lib/screens/details_screen.dart';
->>>>>>> Stashed changes:lib/hire_me_screen.dart
 
 class HireMeScreen extends StatefulWidget {
   @override

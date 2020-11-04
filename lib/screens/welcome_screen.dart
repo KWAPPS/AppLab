@@ -1,8 +1,9 @@
 import '../utilities/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'file:///C:/Users/user/AndroidStudioProjects/AppLab/lib/utilities/custom_containers.dart';
+
 import 'package:connect_app/utilities/constants.dart';
+import 'package:connect_app/utilities/custom_containers.dart';
 
 class WelcomeScreen extends StatefulWidget {
   @override
@@ -43,15 +44,23 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               Column(
                 children: [
                   CustomRaisedButton(
+                    onPressed: () {
+                      print('on pressed');
+                    },
                     buttonText: 'sign in',
                     buttonColor: kLightBlue2,
+                    buttonTextFontSize: 20,
                   ),
                   SizedBox(
                     height: 20,
                   ),
                   CustomRaisedButton(
+                    onPressed: () {
+                      print('on pressed');
+                    },
                     buttonColor: kDarkBlue2,
                     buttonText: 'sign up',
+                    buttonTextFontSize: 20,
                   ),
                   SizedBox(
                     height: 100,
