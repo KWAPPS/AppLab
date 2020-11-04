@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:connect_app/utilities/constants.dart';
+import 'package:flutter/services.dart';
 import 'package:connect_app/screens/hire_me_screen.dart';
-import 'package:connect_app/custom_widgets/portfolio_image.dart';
 import 'package:connect_app/custom_widgets/star.dart';
+import 'package:connect_app/custom_widgets/portfolio_image.dart';
 import 'package:connect_app/custom_widgets/review.dart';
 
 class DetailsScreen extends StatefulWidget {
+  static const String id = 'details_screen';
   @override
   _DetailsScreenState createState() => _DetailsScreenState();
 }
@@ -92,6 +93,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                   borderRadius: BorderRadius.all(Radius.circular(10)),
                   elevation: 6,
                   child: Container(
+                    padding: EdgeInsets.symmetric(vertical: 3),
                     height: MediaQuery.of(context).size.height * 0.4,
                     width: double.infinity,
                     decoration: BoxDecoration(

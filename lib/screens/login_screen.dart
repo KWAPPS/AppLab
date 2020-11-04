@@ -1,9 +1,9 @@
+import 'package:connect_app/screens/home_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import '../utilities/constants.dart';
 import '../utilities/custom_containers.dart';
-
 import 'package:flutter/services.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -18,28 +18,30 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-      systemNavigationBarColor: kLightCream, // navigation bar color
-      statusBarColor: kLightCream, // status bar color
+      systemNavigationBarColor: kDarkBlue2, // navigation bar color
+      statusBarColor: kLightBlue2, // status bar color
     ));
     return Scaffold(
-      body: Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage('images/back.jpg'),
-            fit: BoxFit.cover,
+      body: SafeArea(
+        child: Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('images/untitles3.png'),
+              fit: BoxFit.cover,
+            ),
           ),
-        ),
-        constraints: BoxConstraints.expand(),
-        child: SafeArea(
-          child: Column(
-            children: [
-              Expanded(
-                child: Container(
-                  margin: EdgeInsets.only(left: 10.0),
+          constraints: BoxConstraints.expand(),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                Container(
+                  height: MediaQuery.of(context).size.height * 0.3,
+                  margin: EdgeInsets.only(
+                      left: 10.0,
+                      bottom: MediaQuery.of(context).size.height * 0.13),
                   alignment: Alignment.centerLeft,
-                  padding: EdgeInsets.only(top: 20.0),
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       Text('Welcome', style: kLoginTextStyle),
@@ -47,37 +49,42 @@ class _LoginScreenState extends State<LoginScreen> {
                     ],
                   ),
                 ),
-              ),
-              Expanded(
-                child: Container(
-                  margin: EdgeInsets.only(left: 6.0, right: 6.0),
+                Container(
+                  height: MediaQuery.of(context).size.height * 0.4,
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 30,
+                    // vertical: MediaQuery.of(context).size.height * 0.2,
+                  ),
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.end,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       LoginBar(barText: 'Email'),
-                      SizedBox(
-                        height: 10.0,
-                      ),
                       LoginBar(barText: 'Password'),
+                      SizedBox(
+                        height: 5,
+                      ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          FlatButton(
-                            onPressed: null,
-                            child: Text(
-                              'Sign in',
-                              style: kSigninTextStyle,
-                            ),
+                          CustomRaisedButton(
+                            onPressed: () {
+                              print('on pressed');
+                              Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => HomeScreen()));
+                            },
+                            buttonColor: kDarkBlue2,
+                            buttonText: 'sign in',
+                            buttonTextFontSize: 15,
                           ),
-                          RaisedButton(
-                            onPressed: null,
-                          )
                         ],
                       ),
                       Container(
+                        height: MediaQuery.of(context).size.height * 0.2,
                         padding: EdgeInsets.only(top: 20.0, bottom: 20.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             FlatButton(
                               onPressed: null,
@@ -99,8 +106,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     ],
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

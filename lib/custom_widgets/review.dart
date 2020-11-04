@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+
 import 'package:connect_app/custom_widgets/star.dart';
 
 class Review extends StatelessWidget {
-  String reviewerName;
-  String reviewText;
+  final String reviewerName;
+  final String reviewText;
 
   Review({this.reviewerName, this.reviewText});
 

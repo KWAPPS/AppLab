@@ -4,6 +4,8 @@ import 'screens/welcome_screen.dart';
 import 'screens/register_screen.dart';
 import 'screens/login_screen.dart';
 import 'package:flutter/material.dart';
+import 'screens/details_screen.dart';
+import 'screens/hire_me_screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -21,13 +23,15 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      initialRoute: WelcomeScreen.id,
+      initialRoute: SplashScreen.id,
       routes: {
         WelcomeScreen.id: (context) => WelcomeScreen(),
         LoginScreen.id: (context) => LoginScreen(),
         RegisterScreen.id: (context) => RegisterScreen(),
         HomeScreen.id: (context) => HomeScreen(),
         SplashScreen.id: (context) => SplashScreen(),
+        DetailsScreen.id: (context) => DetailsScreen(),
+        HireMeScreen.id: (context) => HireMeScreen(),
       },
     );
   }
