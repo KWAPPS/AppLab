@@ -1,7 +1,7 @@
 import 'file:///C:/Users/Peter%20Oketta/AndroidStudioProjects/AppLab/lib/utilities/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import '../custom_containers.dart';
+import '../utilities/custom_containers.dart';
 
 class RegisterScreen extends StatefulWidget {
   static const String id = 'register_screen';
