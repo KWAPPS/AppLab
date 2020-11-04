@@ -3,7 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import '../utilities/constants.dart';
 import '../utilities/custom_containers.dart';
+<<<<<<< Updated upstream:lib/screens/login_screen.dart
 
+=======
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+>>>>>>> Stashed changes:lib/login_screen.dart
 import 'package:flutter/services.dart';
 
 class LoginScreen extends StatefulWidget {

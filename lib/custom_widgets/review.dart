@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+<<<<<<< Updated upstream
+=======
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'file:///C:/Users/user/AndroidStudioProjects/AppLab/lib/utilities/custom_containers.dart';
+>>>>>>> Stashed changes
 import 'package:connect_app/custom_widgets/star.dart';
 
 class Review extends StatelessWidget {

@@ -1,10 +1,20 @@
 import 'package:flutter/material.dart';
+<<<<<<< Updated upstream:lib/screens/details_screen.dart
 import 'package:flutter/services.dart';
 import 'package:connect_app/utilities/constants.dart';
 import 'package:connect_app/screens/hire_me_screen.dart';
 import 'package:connect_app/custom_widgets/portfolio_image.dart';
 import 'package:connect_app/custom_widgets/star.dart';
 import 'package:connect_app/custom_widgets/review.dart';
+=======
+import 'file:///C:/Users/user/AndroidStudioProjects/AppLab/lib/utilities/constants.dart';
+import 'package:flutter/services.dart';
+import 'file:///C:/Users/user/AndroidStudioProjects/AppLab/lib/utilities/custom_containers.dart';
+import 'package:connect_app/custom_widgets/review.dart';
+import 'package:connect_app/custom_widgets/portfolio_image.dart';
+import 'package:connect_app/custom_widgets/star.dart';
+import 'file:///C:/Users/user/AndroidStudioProjects/AppLab/lib/screens/hire_me_screen.dart';
+>>>>>>> Stashed changes:lib/details_screen.dart
 
 class DetailsScreen extends StatefulWidget {
   @override
@@ -92,6 +102,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                   borderRadius: BorderRadius.all(Radius.circular(10)),
                   elevation: 6,
                   child: Container(
+                    padding: EdgeInsets.symmetric(vertical: 3),
                     height: MediaQuery.of(context).size.height * 0.4,
                     width: double.infinity,
                     decoration: BoxDecoration(
