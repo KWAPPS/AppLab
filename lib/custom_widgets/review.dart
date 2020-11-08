@@ -36,7 +36,8 @@ class Review extends StatelessWidget {
                 padding: EdgeInsets.only(left: 10),
                 child: Text(
                   reviewText,
-                  style: TextStyle(fontWeight: FontWeight.w300),
+                  style: TextStyle(
+                      fontFamily: 'Roboto', fontWeight: FontWeight.w300),
                 )),
             Divider(
               color: Colors.white,

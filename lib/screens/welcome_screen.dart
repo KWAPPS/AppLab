@@ -1,3 +1,6 @@
+import 'package:connect_app/screens/login_screen.dart';
+import 'package:connect_app/screens/register_screen.dart';
+
 import '../utilities/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -46,6 +49,10 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   CustomRaisedButton(
                     onPressed: () {
                       print('on pressed');
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => LoginScreen()));
                     },
                     buttonText: 'sign in',
                     buttonColor: kLightBlue2,
@@ -57,6 +64,10 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   CustomRaisedButton(
                     onPressed: () {
                       print('on pressed');
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => RegisterScreen()));
                     },
                     buttonColor: kDarkBlue2,
                     buttonText: 'sign up',

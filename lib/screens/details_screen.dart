@@ -5,6 +5,7 @@ import 'package:connect_app/screens/hire_me_screen.dart';
 import 'package:connect_app/custom_widgets/star.dart';
 import 'package:connect_app/custom_widgets/portfolio_image.dart';
 import 'package:connect_app/custom_widgets/review.dart';
+import 'package:connect_app/custom_widgets/hire_me_button.dart';
 
 class DetailsScreen extends StatefulWidget {
   static const String id = 'details_screen';
@@ -14,11 +15,23 @@ class DetailsScreen extends StatefulWidget {
 
 class _DetailsScreenState extends State<DetailsScreen> {
   @override
-  Widget build(BuildContext context) {
+  void initState() {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-      systemNavigationBarColor: kDarkBlue2, // navigation bar color
-      statusBarColor: kDarkBlue2, // status bar color
-    ));
+        systemNavigationBarColor: kDarkBlue2, // navigation bar color
+        statusBarColor: kDarkBlue2));
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+        systemNavigationBarColor: kLightPurple, // navigation bar color
+        statusBarColor: kLightPurple));
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: kDarkBlue2,
       body: SafeArea(
@@ -52,7 +65,10 @@ class _DetailsScreenState extends State<DetailsScreen> {
                       ),
                       Text(
                         'Events Organizer',
-                        style: TextStyle(color: Colors.white),
+                        style: TextStyle(
+                            fontWeight: FontWeight.w600,
+                            fontFamily: 'OpenSans',
+                            color: kLightPurple),
                       ),
                       SizedBox(
                         height: 10,
@@ -65,18 +81,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                           Star(),
                         ],
                       ),
-                      RaisedButton(
-                        onPressed: () {
-                          showModalBottomSheet(
-                              context: context,
-                              builder: (context) => HireMeScreen());
-                        },
-                        padding: EdgeInsets.all(0),
-                        child: Text('Hire me'),
-                        color: kLightBlue2,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(15)),
-                      )
+                      HireMeButton()
                     ],
                   )
                 ],
@@ -169,7 +174,9 @@ class _DetailsScreenState extends State<DetailsScreen> {
                           Text(
                             'Reviews',
                             style: TextStyle(
-                                fontSize: 17, fontWeight: FontWeight.w500),
+                                color: kLightPurple,
+                                fontSize: 15,
+                                fontWeight: FontWeight.w600),
                           ),
                           Container(
                               width: 70,

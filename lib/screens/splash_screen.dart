@@ -4,6 +4,7 @@ import 'package:shimmer/shimmer.dart';
 import 'package:connect_app/utilities/constants.dart';
 import 'home_screen.dart';
 import 'welcome_screen.dart';
+import 'package:flutter/services.dart';
 
 class SplashScreen extends StatefulWidget {
   static const String id = 'splash_screen';
@@ -48,6 +49,10 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+      systemNavigationBarColor: Colors.white, // navigation bar color
+      statusBarColor: Colors.white, // status bar color
+    ));
     return Scaffold(
       body: Container(
         child: Stack(

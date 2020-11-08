@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:connect_app/utilities/constants.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:connect_app/custom_widgets/action_prompt.dart';
 
 class HireMeScreen extends StatefulWidget {
   static const String id = 'hire_me_screen';
@@ -11,12 +12,15 @@ class HireMeScreen extends StatefulWidget {
 
 class _HireMeScreenState extends State<HireMeScreen> {
   @override
-  Widget build(BuildContext context) {
+  void initState() {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-      systemNavigationBarColor: kDarkBlue2, // navigation bar color
-      statusBarColor: kDarkBlue2, // status bar color
-    ));
+        systemNavigationBarColor: kDarkBlue2, // navigation bar color
+        statusBarColor: kDarkBlue2));
+    super.initState();
+  }
 
+  @override
+  Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
       height: MediaQuery.of(context).size.height * 0.5,
@@ -33,8 +37,9 @@ class _HireMeScreenState extends State<HireMeScreen> {
               'Hello, my name is Freedah Akoth, and I am an Events Organizer',
               textAlign: TextAlign.center,
               style: TextStyle(
+                  fontFamily: 'OpenSans',
                   color: Colors.white,
-                  fontSize: 20,
+                  fontSize: 18,
                   fontWeight: FontWeight.w300),
             ),
           ),
@@ -64,50 +69,5 @@ class _HireMeScreenState extends State<HireMeScreen> {
         ],
       ),
     );
-  }
-}
-
-class ActionPrompt extends StatelessWidget {
-  final IconData iconName;
-  final String promptText;
-
-  ActionPrompt({@required this.iconName, @required this.promptText});
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-        padding: EdgeInsets.symmetric(horizontal: 0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            RaisedButton(
-              animationDuration: Duration(seconds: 3),
-              visualDensity: VisualDensity.comfortable,
-              padding: EdgeInsets.all(15),
-              shape: CircleBorder(side: BorderSide.none),
-              elevation: 5,
-              onPressed: () {
-                print('been pressed');
-              },
-              color: kDarkBlue2,
-              child: FaIcon(
-                iconName,
-                color: Colors.yellow[100],
-                size: 30,
-              ),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            Container(
-              width: 80,
-              child: Text(
-                promptText,
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 10, color: Colors.white),
-              ),
-            )
-          ],
-        ));
   }
 }
