@@ -71,7 +71,7 @@ class _SplashScreenState extends State<SplashScreen> {
               baseColor: Color(0xFF9ad3bc),
               highlightColor: kDarkBlue,
               child: Text(
-                'Connect',
+                'quickc.',
                 style: TextStyle(
                   fontSize: 50,
                   fontFamily: 'Pacifico',
