@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:connect_app/utilities/constants.dart';
 
 class CategoryCard extends StatelessWidget {
-  String categoryName;
+  final String categoryName;
 
   CategoryCard({this.categoryName = 'Hair Dresser'});
 

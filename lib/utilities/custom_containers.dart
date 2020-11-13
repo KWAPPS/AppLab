@@ -52,3 +52,27 @@ class CustomRaisedButton extends StatelessWidget {
     );
   }
 }
+
+class ProfileButton extends StatelessWidget {
+  final String text;
+  final Color color;
+  final Function onPressed;
+
+  ProfileButton({this.color, this.text, this.onPressed});
+
+  @override
+  Widget build(BuildContext context) {
+    return ButtonTheme(
+      minWidth: 150.0,
+      child: RaisedButton(
+        onPressed: onPressed,
+        color: color,
+        elevation: 10.0,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(7.0),
+        ),
+        child: Text(text),
+      ),
+    );
+  }
+}

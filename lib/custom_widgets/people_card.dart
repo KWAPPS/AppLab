@@ -5,10 +5,10 @@ import 'package:connect_app/custom_widgets/hire_me_button.dart';
 import 'package:connect_app/screens/details_screen.dart';
 
 class PeopleCards extends StatelessWidget {
-  String descriptiveText;
-  String imagePath;
-  String name;
-  String occupation;
+  final String descriptiveText;
+  final String imagePath;
+  final String name;
+  final String occupation;
 
   PeopleCards(
       {this.descriptiveText, this.imagePath, this.name, this.occupation});
@@ -102,9 +102,9 @@ class PeopleCards extends StatelessWidget {
 }
 
 class PeopleCard2 extends StatelessWidget {
-  String assetImagePath;
-  String name;
-  String occupation;
+  final String assetImagePath;
+  final String name;
+  final String occupation;
 
   PeopleCard2(
       {this.assetImagePath = 'images/portfolio2.jpg',

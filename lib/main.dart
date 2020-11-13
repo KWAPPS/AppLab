@@ -3,9 +3,9 @@ import 'screens/home_screen.dart';
 import 'screens/welcome_screen.dart';
 import 'screens/register_screen.dart';
 import 'screens/login_screen.dart';
-import 'package:flutter/material.dart';
 import 'screens/details_screen.dart';
 import 'screens/hire_me_screen.dart';
+import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
 

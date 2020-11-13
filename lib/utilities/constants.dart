@@ -20,3 +20,5 @@ const kSignupTextStyle =
     TextStyle(fontSize: 13.0, fontWeight: FontWeight.w400, color: Colors.black);
 const kSigninTextStyle =
     TextStyle(fontSize: 24.0, fontWeight: FontWeight.w700, color: Colors.black);
+
+const kReviewText = (TextStyle(fontSize: 13.0, color: Colors.black));

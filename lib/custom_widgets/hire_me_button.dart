@@ -4,7 +4,7 @@ import 'package:connect_app/utilities/constants.dart';
 import 'package:connect_app/screens/hire_me_screen.dart';
 
 class HireMeButton extends StatelessWidget {
-  Color buttonColor;
+  final Color buttonColor;
 
   HireMeButton({this.buttonColor = kLightBlue2});
 
