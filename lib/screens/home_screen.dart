@@ -3,13 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:connect_app/utilities/constants.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:connect_app/custom_widgets/category_card.dart';
 import 'package:connect_app/custom_widgets/people_card.dart';
-import 'package:connect_app/custom_widgets/star.dart';
+import 'package:connect_app/custom_widgets/custom_floating_bottom_bar.dart';
 
-ScrollController _scrollBottomBarController = new ScrollController();
-// set controller on scrolling
+ScrollController _scrollBottomBarController = ScrollController();
+
 bool isScrollingDown = false;
 bool _show = true;
 
@@ -40,9 +39,11 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   }
 
   void myScroll() async {
+    print('my scroll called');
     _scrollBottomBarController.addListener(() {
       if (_scrollBottomBarController.position.userScrollDirection ==
           ScrollDirection.reverse) {
+        print('scroll direction is reverse');
         if (!isScrollingDown) {
           isScrollingDown = true;
           _show = false;
@@ -51,6 +52,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
       }
       if (_scrollBottomBarController.position.userScrollDirection ==
           ScrollDirection.forward) {
+        print('scroll is forward');
         if (isScrollingDown) {
           isScrollingDown = false;
           _show = true;
@@ -111,11 +113,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                             Padding(
                               child: Text(
                                 'Category Suggestions >',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w800,
-                                    fontFamily: 'Roboto',
-                                    color: kDarkBlue2,
-                                    fontSize: 15),
+                                style: kSmallHeadingStyle,
                               ),
                               padding: EdgeInsets.only(left: 15),
                             ),
@@ -155,11 +153,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                           Padding(
                             child: Text(
                               'Suggestions Near You >',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w800,
-                                  color: kDarkBlue2,
-                                  fontFamily: 'Roboto',
-                                  fontSize: 15),
+                              style: kSmallHeadingStyle,
                             ),
                             padding: EdgeInsets.only(left: 15),
                           ),
@@ -208,11 +202,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                           Padding(
                             child: Text(
                               'More Top Suggestions >',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w800,
-                                  color: kDarkBlue2,
-                                  fontFamily: 'Roboto',
-                                  fontSize: 15),
+                              style: kSmallHeadingStyle,
                             ),
                             padding: EdgeInsets.only(left: 15),
                           ),
@@ -281,42 +271,8 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
               child: Material(
                 color: kLightPurple,
                 borderRadius: BorderRadius.circular(20.0),
-                elevation: 20,
-                child: _show == true
-                    ? Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          IconButton(
-                            icon: FaIcon(
-                              FontAwesomeIcons.home,
-                              color: kDarkBlue2,
-                            ),
-                            onPressed: null,
-                          ),
-                          IconButton(
-                            icon: FaIcon(
-                              FontAwesomeIcons.search,
-                              color: kDarkBlue2,
-                            ),
-                            onPressed: null,
-                          ),
-                          IconButton(
-                            icon: FaIcon(
-                              FontAwesomeIcons.userCircle,
-                              color: kDarkBlue2,
-                            ),
-                            onPressed: null,
-                          ),
-                          IconButton(
-                            icon: FaIcon(
-                              FontAwesomeIcons.bars,
-                              color: kDarkBlue2,
-                            ),
-                            onPressed: null,
-                          )
-                        ],
-                      )
-                    : null,
+                elevation: 10,
+                child: _show == true ? CustomFloatingBottomBar() : null,
               ),
             )
           ],

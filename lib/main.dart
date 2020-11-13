@@ -6,6 +6,7 @@ import 'screens/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'screens/details_screen.dart';
 import 'screens/hire_me_screen.dart';
+import 'screens/search_screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -25,6 +26,7 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: SplashScreen.id,
       routes: {
+        'screens/search_screen.dart': (context) => SearchScreen(),
         WelcomeScreen.id: (context) => WelcomeScreen(),
         LoginScreen.id: (context) => LoginScreen(),
         RegisterScreen.id: (context) => RegisterScreen(),
