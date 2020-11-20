@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:connect_app/utilities/constants.dart';
 import 'package:flutter/services.dart';
-import 'package:connect_app/screens/hire_me_screen.dart';
 import 'package:connect_app/custom_widgets/star.dart';
 import 'package:connect_app/custom_widgets/portfolio_image.dart';
 import 'package:connect_app/custom_widgets/review.dart';

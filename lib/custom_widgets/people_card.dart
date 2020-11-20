@@ -1,9 +1,8 @@
-import 'package:connect_app/screens/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:connect_app/utilities/constants.dart';
 import 'package:connect_app/custom_widgets/star.dart';
 import 'package:connect_app/custom_widgets/hire_me_button.dart';
-import 'package:connect_app/screens/details_screen.dart';
+import 'package:connect_app/screens/in_app/profile_screen.dart';
 
 class PeopleCards extends StatelessWidget {
   final String descriptiveText;

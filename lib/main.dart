@@ -1,15 +1,15 @@
-import 'package:connect_app/screens/profile_screen.dart';
+import 'file:///C:/Users/Peter%20Oketta/AndroidStudioProjects/AppLab/lib/screens/in_app/profile_screen.dart';
 import 'package:connect_app/utilities/constants.dart';
 
 import 'screens/splash_screen.dart';
-import 'screens/home_screen.dart';
+import 'screens/in_app/home_screen.dart';
 import 'screens/welcome_screen.dart';
 import 'screens/register_screen.dart';
 import 'screens/login_screen.dart';
-import 'screens/details_screen.dart';
-import 'screens/hire_me_screen.dart';
+import 'screens/in_app/details_screen.dart';
+import 'screens/in_app/hire_me_screen.dart';
 import 'package:flutter/material.dart';
-import 'screens/search_screen.dart';
+import 'screens/in_app/search_screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      initialRoute: SplashScreen.id,
+      initialRoute: RegisterScreen.id,
       routes: {
         'screens/profile_screen.dart': (context) => ProfileScreen(),
         'screens/search_screen.dart': (context) => SearchScreen(),

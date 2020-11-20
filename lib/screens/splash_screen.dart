@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:shimmer/shimmer.dart';
 import 'package:connect_app/utilities/constants.dart';
-import 'home_screen.dart';
+import 'in_app/home_screen.dart';
 import 'welcome_screen.dart';
 import 'package:flutter/services.dart';
 

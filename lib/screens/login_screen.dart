@@ -1,4 +1,4 @@
-import 'package:connect_app/screens/home_screen.dart';
+import 'file:///C:/Users/Peter%20Oketta/AndroidStudioProjects/AppLab/lib/screens/in_app/home_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -24,13 +24,20 @@ class _LoginScreenState extends State<LoginScreen> {
     return Scaffold(
       body: SafeArea(
         child: Container(
+          constraints: BoxConstraints.expand(),
+          margin: EdgeInsets.all(0),
+          height: double.infinity,
+          width: double.infinity,
           decoration: BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage('images/untitles3.png'),
-              fit: BoxFit.cover,
+            gradient: LinearGradient(
+              colors: [
+                Color(0xff000046),
+                Color(0xff1CB5E0),
+              ],
+              begin: Alignment.topRight,
+              end: Alignment.bottomLeft,
             ),
           ),
-          constraints: BoxConstraints.expand(),
           child: SingleChildScrollView(
             child: Column(
               children: [

@@ -1,8 +1,7 @@
-import 'package:connect_app/screens/details_screen.dart';
-import 'package:connect_app/screens/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:connect_app/utilities/constants.dart';
-import 'package:connect_app/screens/hire_me_screen.dart';
+import 'package:connect_app/screens/in_app/profile_screen.dart';
+import 'package:connect_app/screens/in_app/hire_me_screen.dart';
 
 class HireMeButton extends StatelessWidget {
   final Color buttonColor;

@@ -22,68 +22,73 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
     ));
     return Scaffold(
       body: Container(
-          constraints: BoxConstraints.expand(),
-          margin: EdgeInsets.all(0),
-          height: double.infinity,
-          width: double.infinity,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Row(
-                children: [
-                  Flexible(
-                    child: Padding(
-                        padding: EdgeInsets.only(top: 60, left: 20.0),
-                        child: Text(
-                          'Welcome',
-                          style: TextStyle(fontSize: 50),
-                        )),
-                  ),
-                  SizedBox(
-                    width: 30.0,
-                  )
-                ],
-              ),
-              Column(
-                children: [
-                  CustomRaisedButton(
-                    onPressed: () {
-                      print('on pressed');
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => LoginScreen()));
-                    },
-                    buttonText: 'sign in',
-                    buttonColor: kLightBlue2,
-                    buttonTextFontSize: 20,
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  CustomRaisedButton(
-                    onPressed: () {
-                      print('on pressed');
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => RegisterScreen()));
-                    },
-                    buttonColor: kDarkBlue2,
-                    buttonText: 'sign up',
-                    buttonTextFontSize: 20,
-                  ),
-                  SizedBox(
-                    height: 100,
-                  )
-                ],
-              )
+        constraints: BoxConstraints.expand(),
+        margin: EdgeInsets.all(0),
+        height: double.infinity,
+        width: double.infinity,
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [
+              Color(0xff1CB5E0),
+              Color(0xff000046),
             ],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
           ),
-          decoration: BoxDecoration(
-              image: DecorationImage(
-                  image: AssetImage('images/untitles3.png'),
-                  fit: BoxFit.cover))),
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Row(
+              children: [
+                Flexible(
+                  child: Padding(
+                      padding: EdgeInsets.only(top: 60, left: 20.0),
+                      child: Text(
+                        'Welcome',
+                        style: TextStyle(fontSize: 50),
+                      )),
+                ),
+                SizedBox(
+                  width: 30.0,
+                )
+              ],
+            ),
+            Column(
+              children: [
+                CustomRaisedButton(
+                  onPressed: () {
+                    print('on pressed');
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => LoginScreen()));
+                  },
+                  buttonText: 'sign in',
+                  buttonColor: kLightBlue2,
+                  buttonTextFontSize: 20,
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                CustomRaisedButton(
+                  onPressed: () {
+                    print('on pressed');
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => RegisterScreen()));
+                  },
+                  buttonColor: kDarkBlue2,
+                  buttonText: 'sign up',
+                  buttonTextFontSize: 20,
+                ),
+                SizedBox(
+                  height: 100,
+                )
+              ],
+            )
+          ],
+        ),
+      ),
     );
   }
 }

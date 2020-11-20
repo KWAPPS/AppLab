@@ -1,17 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:connect_app/utilities/constants.dart';
-import 'package:connect_app/screens/search_screen.dart';
 
 final inputTextController = TextEditingController();
 
 class SearchBar extends StatelessWidget {
-  Color colour;
+  final Color colour;
   String searchTerm;
 
-  SearchBar({
-    this.colour,
-  });
+  SearchBar({this.colour, this.searchTerm});
 
   @override
   Widget build(BuildContext context) {

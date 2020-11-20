@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:connect_app/utilities/custom_containers.dart';
-import 'package:connect_app/screens/my_work.dart' as mywork;
-import 'package:connect_app/screens/reviews.dart' as reviews;
-import 'package:connect_app/screens/socials.dart' as socials;
+
+import 'package:connect_app/screens/in_app/my_work.dart' as mywork;
+import 'package:connect_app/screens/in_app/reviews.dart' as reviews;
+import 'package:connect_app/screens/in_app/socials.dart' as socials;
 import 'package:connect_app/utilities/constants.dart';
 import 'package:connect_app/custom_widgets/hire_me_button.dart';
 import 'package:flutter/services.dart';
