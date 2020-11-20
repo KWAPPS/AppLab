@@ -1,6 +1,7 @@
 import 'package:connect_app/utilities/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:connect_app/custom_widgets/review.dart';
 
 class Reviews extends StatefulWidget {
   @override
@@ -11,37 +12,30 @@ class _ReviewsState extends State<Reviews> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: kProfilePageColor,
       body: SingleChildScrollView(
         child: Container(
           margin: EdgeInsets.only(left: 10.0, top: 20.0, right: 10.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              ReviewsText(
-                name: 'Martha J',
-                review: 'She delivered timely work beyond our expectations',
+              Review(
+                reviewText:
+                    'She is awesome, she is really friendly and has a sense of humor',
+                reviewerName: 'Gerald',
               ),
-              SizedBox(
-                height: 10.0,
+              Review(
+                reviewerName: 'Becky',
+                reviewText: 'She was really nice to work with',
               ),
-              ReviewsText(
-                name: 'Emma P',
-                review: 'Great Service',
-              ),
-              SizedBox(
-                height: 10.0,
-              ),
-              ReviewsText(
-                name: 'Nathan T',
-                review: 'Very Creative and Amazing to work with',
-              ),
-              SizedBox(
-                height: 10.0,
-              ),
-              ReviewsText(
-                name: 'Maria L',
-                review: 'Highly Recommended. Very good service',
-              ),
+              Review(reviewerName: 'Dian', reviewText: 'Freedah is so kind'),
+              Review(
+                  reviewerName: 'Jason',
+                  reviewText: 'She was cool nice to work with'),
+              Review(
+                  reviewerName: 'Brad',
+                  reviewText: 'Very professional and high quality delivery'),
+              Review(reviewerName: 'Sharon', reviewText: 'Awesome!'),
             ],
           ),
         ),

@@ -1,3 +1,4 @@
+import 'package:connect_app/utilities/constants.dart';
 import 'package:flutter/material.dart';
 
 import 'package:connect_app/custom_widgets/star.dart';
@@ -17,14 +18,17 @@ class Review extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
+                SizedBox(
+                  width: 10,
+                ),
                 Text(
                   reviewerName,
                   style: TextStyle(
                       fontSize: 15,
                       fontWeight: FontWeight.w600,
-                      color: Colors.black45),
+                      color: kLightPurple),
                 ),
                 Star(),
                 Star(),

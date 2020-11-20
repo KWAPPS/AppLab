@@ -1,3 +1,4 @@
+import 'package:connect_app/screens/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:connect_app/utilities/constants.dart';
 import 'package:connect_app/custom_widgets/star.dart';
@@ -23,7 +24,7 @@ class PeopleCards extends StatelessWidget {
         child: GestureDetector(
           onTap: () {
             Navigator.push(context,
-                MaterialPageRoute(builder: (context) => DetailsScreen()));
+                MaterialPageRoute(builder: (context) => ProfileScreen()));
           },
           child: Container(
             padding: EdgeInsets.all(10),
@@ -115,7 +116,7 @@ class PeopleCard2 extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => DetailsScreen()));
+            context, MaterialPageRoute(builder: (context) => ProfileScreen()));
       },
       child: Container(
         child: Column(

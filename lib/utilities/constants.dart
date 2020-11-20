@@ -7,6 +7,7 @@ const kDarkBlue2 = Color(0xFF07375D);
 const kLightBlue2 = Color(0xFF4E84B3);
 const kLightCream = Color(0xFFD6D6CA);
 const kLightPurple = Color(0xFFD3D7E5);
+const kProfilePageColor = Color(0xFF3C174C);
 
 const kLoginTextStyle = TextStyle(
   // fontFamily: 'Handlee',

@@ -1,3 +1,4 @@
+import 'package:connect_app/utilities/constants.dart';
 import 'package:flutter/material.dart';
 
 class Socials extends StatefulWidget {
@@ -8,6 +9,8 @@ class Socials extends StatefulWidget {
 class _SocialsState extends State<Socials> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Container(
+      color: kProfilePageColor,
+    );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:connect_app/screens/details_screen.dart';
+import 'package:connect_app/screens/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:connect_app/utilities/constants.dart';
 import 'package:connect_app/screens/hire_me_screen.dart';
@@ -13,7 +14,7 @@ class HireMeButton extends StatelessWidget {
     return RaisedButton(
       onPressed: () {
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => DetailsScreen()));
+            context, MaterialPageRoute(builder: (context) => ProfileScreen()));
         showModalBottomSheet(
             context: context, builder: (context) => HireMeScreen());
       },

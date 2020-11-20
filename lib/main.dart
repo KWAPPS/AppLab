@@ -1,3 +1,6 @@
+import 'package:connect_app/screens/profile_screen.dart';
+import 'package:connect_app/utilities/constants.dart';
+
 import 'screens/splash_screen.dart';
 import 'screens/home_screen.dart';
 import 'screens/welcome_screen.dart';
@@ -15,6 +18,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData.dark().copyWith(
+        primaryColor: kDarkBlue2,
         bottomSheetTheme: BottomSheetThemeData(
           backgroundColor: Colors.transparent,
           shape: RoundedRectangleBorder(
@@ -26,6 +30,7 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: SplashScreen.id,
       routes: {
+        'screens/profile_screen.dart': (context) => ProfileScreen(),
         'screens/search_screen.dart': (context) => SearchScreen(),
         WelcomeScreen.id: (context) => WelcomeScreen(),
         LoginScreen.id: (context) => LoginScreen(),

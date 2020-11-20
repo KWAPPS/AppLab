@@ -1,3 +1,4 @@
+import 'package:connect_app/utilities/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:connect_app/custom_widgets/portfolio_image.dart';
 
@@ -10,6 +11,7 @@ class _MyWorkState extends State<MyWork> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: kProfilePageColor,
       body: SingleChildScrollView(
         child: Column(
           children: [
