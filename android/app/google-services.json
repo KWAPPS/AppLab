@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "674567608210",
+    "firebase_url": "https://quickc-b09fd.firebaseio.com",
+    "project_id": "quickc-b09fd",
+    "storage_bucket": "quickc-b09fd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:674567608210:android:cc82407efa9e5ede86534b",
+        "android_client_info": {
+          "package_name": "swypetech.quickc"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "674567608210-hg2uc1450jkcvfnklc2st6ged395saum.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA6fEHLfH9IvU3QPF1JYjo9GhKqR0tPJ-Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "674567608210-hg2uc1450jkcvfnklc2st6ged395saum.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

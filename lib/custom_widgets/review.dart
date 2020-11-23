@@ -26,6 +26,7 @@ class Review extends StatelessWidget {
                 Text(
                   reviewerName,
                   style: TextStyle(
+                      fontFamily: 'Nunito',
                       fontSize: 15,
                       fontWeight: FontWeight.w600,
                       color: kLightPurple),
@@ -41,7 +42,7 @@ class Review extends StatelessWidget {
                 child: Text(
                   reviewText,
                   style: TextStyle(
-                      fontFamily: 'Roboto', fontWeight: FontWeight.w300),
+                      fontFamily: 'Nunito', fontWeight: FontWeight.w300),
                 )),
             Divider(
               color: Colors.white,

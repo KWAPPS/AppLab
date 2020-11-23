@@ -41,12 +41,15 @@ class CustomRaisedButton extends StatelessWidget {
     return RaisedButton(
       elevation: 5,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
-      padding: EdgeInsets.symmetric(horizontal: 30.0, vertical: 5),
+      padding: EdgeInsets.symmetric(
+          horizontal: MediaQuery.of(context).size.width * 0.2, vertical: 5),
       color: buttonColor,
       child: Text(
         buttonText,
         style: TextStyle(
-            fontSize: buttonTextFontSize, fontWeight: FontWeight.w400),
+            fontFamily: 'Nunito',
+            fontSize: buttonTextFontSize,
+            fontWeight: FontWeight.w600),
       ),
       onPressed: onPressed,
     );

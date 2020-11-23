@@ -37,7 +37,7 @@ class _HireMeScreenState extends State<HireMeScreen> {
               'Hello, my name is Freedah Akoth, and I am an Events Organizer',
               textAlign: TextAlign.center,
               style: TextStyle(
-                  fontFamily: 'OpenSans',
+                  fontFamily: 'Nunito',
                   color: Colors.white,
                   fontSize: 18,
                   fontWeight: FontWeight.w300),

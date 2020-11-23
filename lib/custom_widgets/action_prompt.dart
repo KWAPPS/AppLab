@@ -40,7 +40,7 @@ class ActionPrompt extends StatelessWidget {
                 promptText,
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                    fontFamily: 'Roboto',
+                    fontFamily: 'Nunito',
                     fontSize: 10,
                     fontWeight: FontWeight.w600,
                     color: Colors.white),

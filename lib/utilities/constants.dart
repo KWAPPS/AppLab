@@ -26,6 +26,6 @@ const kReviewText = (TextStyle(fontSize: 13.0, color: Colors.black));
 
 const kSmallHeadingStyle = TextStyle(
     fontWeight: FontWeight.w800,
-    fontFamily: 'Roboto',
+    fontFamily: 'Nunito',
     color: kDarkBlue2,
     fontSize: 15);

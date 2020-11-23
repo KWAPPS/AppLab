@@ -23,13 +23,17 @@ class _ProfileScreenState extends State<ProfileScreen>
 
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
       systemNavigationBarColor: kProfilePageColor, // navigation bar color
-      statusBarColor: kProfilePageColor, // status bar color
+      statusBarColor: Colors.transparent, // status bar color
     ));
   }
 
   @override
   void dispose() {
     controller.dispose();
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+      systemNavigationBarColor: kLightPurple, // navigation bar color
+      statusBarColor: Colors.transparent, // status bar color
+    ));
     super.dispose();
   }
 
@@ -68,6 +72,7 @@ class _ProfileScreenState extends State<ProfileScreen>
                               'Freedah Akoth',
                               textAlign: TextAlign.center,
                               style: TextStyle(
+                                  fontFamily: 'Nunito',
                                   color: Colors.white,
                                   fontWeight: FontWeight.w600,
                                   fontSize: 15),
@@ -77,7 +82,7 @@ class _ProfileScreenState extends State<ProfileScreen>
                             'Events Designer',
                             style: TextStyle(
                                 fontWeight: FontWeight.w600,
-                                fontFamily: 'OpenSans',
+                                fontFamily: 'Nunito',
                                 color: kLightPurple),
                           ),
                           HireMeButton()

@@ -20,7 +20,7 @@ class HireMeButton extends StatelessWidget {
       padding: EdgeInsets.all(0),
       child: Text(
         'Hire me',
-        style: TextStyle(fontWeight: FontWeight.w600),
+        style: TextStyle(fontFamily: 'Nunito', fontWeight: FontWeight.w600),
       ),
       color: buttonColor,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),

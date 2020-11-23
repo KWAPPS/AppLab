@@ -1,4 +1,4 @@
-import 'file:///C:/Users/Peter%20Oketta/AndroidStudioProjects/AppLab/lib/screens/in_app/home_screen.dart';
+import 'package:connect_app/screens/in_app/home_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -19,7 +19,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
       systemNavigationBarColor: kDarkBlue2, // navigation bar color
-      statusBarColor: kLightBlue2, // status bar color
+      statusBarColor: Colors.transparent, // status bar color
     ));
     return Scaffold(
       body: SafeArea(

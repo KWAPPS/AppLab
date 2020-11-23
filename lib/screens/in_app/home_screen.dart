@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:connect_app/utilities/constants.dart';
@@ -11,6 +12,13 @@ ScrollController _scrollBottomBarController = ScrollController();
 
 bool isScrollingDown = false;
 bool _show = true;
+
+List<PeopleCard> peopleCards = [];
+List<PeopleCard2> morePeopleCards1 = [];
+List<PeopleCard2> morePeopleCards2 = [];
+List<CategoryCard> categoryCards = [];
+
+final _firestore = FirebaseFirestore.instance;
 
 class HomeScreen extends StatefulWidget {
   static const String id = 'home_screen';
@@ -75,9 +83,10 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     super.initState();
 
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-      systemNavigationBarColor: kLightPurple, // navigation bar color
-      statusBarColor: kLightPurple, // status bar color
-    ));
+        systemNavigationBarColor: kLightPurple,
+        // navigation bar color
+        statusBarColor: Colors.transparent // status bar color
+        ));
   }
 
   @override
@@ -121,21 +130,36 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                               scrollDirection: Axis.horizontal,
                               child: Row(
                                 children: [
-                                  CategoryCard(),
-                                  CategoryCard(
-                                    categoryName: 'Makeup Artist',
-                                  ),
-                                  CategoryCard(
-                                    categoryName: 'Painter',
-                                  ),
-                                  CategoryCard(
-                                    categoryName: 'Graphics Designer',
-                                  ),
-                                  CategoryCard(
-                                    categoryName: 'Dog Trainer',
-                                  ),
-                                  CategoryCard(
-                                    categoryName: 'Painter',
+                                  StreamBuilder<QuerySnapshot>(
+                                    stream: _firestore
+                                        .collection('categories')
+                                        .snapshots(),
+                                    builder: (context, snapshot) {
+                                      if (!snapshot.hasData) {
+                                        print('oops');
+                                        return Center(
+                                          child: CircularProgressIndicator(
+                                            backgroundColor: kLightPurple,
+                                          ),
+                                        );
+                                      }
+
+                                      final categories = snapshot.data.docs;
+                                      for (var category in categories) {
+                                        if (category.data()['categoryName'] !=
+                                            null) {
+                                          CategoryCard categoryCard =
+                                              CategoryCard(
+                                            categoryName:
+                                                category.data()['categoryName'],
+                                          );
+                                          categoryCards.add(categoryCard);
+                                        }
+                                      }
+                                      return Row(
+                                        children: categoryCards,
+                                      );
+                                    },
                                   )
                                 ],
                               ),
@@ -161,34 +185,39 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                             scrollDirection: Axis.horizontal,
                             child: Row(
                               children: [
-                                PeopleCards(
-                                  name: 'Janet Adoi',
-                                  occupation: 'Hair Dresser',
-                                  descriptiveText:
-                                      "I tap into you afro hair's greatest potential. I do both natural and synthetic hair styles",
-                                  imagePath: 'images/avatar2.jpg',
-                                ),
-                                PeopleCards(
-                                  name: 'James Oboth',
-                                  occupation: 'Landscaper',
-                                  descriptiveText:
-                                      'Your compound surely deserves a lot more love. And I am here to give it!',
-                                  imagePath: 'images/avatar3.jpg',
-                                ),
-                                PeopleCards(
-                                  name: 'Freedah Akoth',
-                                  occupation: 'Events Organizer',
-                                  descriptiveText:
-                                      'Hello, I worry about the organizing so you can do the partying.',
-                                  imagePath: 'images/avatar1.jpg',
-                                ),
-                                PeopleCards(
-                                  name: 'Ashley Mandela ',
-                                  occupation: 'Photographer',
-                                  descriptiveText:
-                                      'My passion is to capture the most brilliant moments through a camera lens.',
-                                  imagePath: 'images/avatar4.jpg',
-                                ),
+                                StreamBuilder<QuerySnapshot>(
+                                  stream: _firestore
+                                      .collection('userData')
+                                      .snapshots(),
+                                  builder: (context, snapshot) {
+                                    if (!snapshot.hasData) {
+                                      print('oops');
+                                      return Center(
+                                        child: CircularProgressIndicator(
+                                          backgroundColor: kLightPurple,
+                                        ),
+                                      );
+                                    }
+
+                                    final users = snapshot.data.docs;
+                                    for (var user in users) {
+                                      PeopleCard peopleCard = PeopleCard(
+                                        descriptiveText:
+                                            user.data()['description'],
+                                        imageURL:
+                                            user.data()['profileImageURL'],
+                                        occupation: user.data()['occupation'],
+                                        name:
+                                            '${user.data()["firstName"]} ${user.data()["lastName"]} ',
+                                      );
+
+                                      peopleCards.add(peopleCard);
+                                    }
+                                    return Row(
+                                      children: peopleCards,
+                                    );
+                                  },
+                                )
                               ],
                             ),
                           ),
@@ -209,48 +238,49 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              PeopleCard2(
-                                occupation: 'Photographer',
-                                name: 'Angela N',
-                                assetImagePath: 'images/landscape6.jpg',
-                              ),
-                              PeopleCard2(
-                                occupation: 'Hair Dresser',
-                                name: 'Michelle N',
-                                assetImagePath: 'images/landscape2.jpg',
+                              StreamBuilder<QuerySnapshot>(
+                                stream: _firestore
+                                    .collection('userData')
+                                    .snapshots(),
+                                builder: (context, snapshot) {
+                                  if (!snapshot.hasData) {
+                                    print('oops');
+                                    return Center(
+                                        child: CircularProgressIndicator(
+                                            backgroundColor: kLightPurple));
+                                  }
+
+                                  final users = snapshot.data.docs;
+                                  for (var user in users) {
+                                    PeopleCard2 peopleCard2 = PeopleCard2(
+                                      imageURL: user.data()['profileImageURL'],
+                                      occupation: user.data()['occupation'],
+                                      name:
+                                          '${user.data()["firstName"]} ${user.data()["lastName"]} ',
+                                    );
+
+                                    if (morePeopleCards1.length ==
+                                        morePeopleCards2.length) {
+                                      morePeopleCards1.add(peopleCard2);
+                                    } else if (morePeopleCards1.length >
+                                        morePeopleCards2.length) {
+                                      morePeopleCards2.add(peopleCard2);
+                                    }
+                                  }
+                                  return Row(
+                                    children: [
+                                      Column(
+                                        children: morePeopleCards1,
+                                      ),
+                                      Column(
+                                        children: morePeopleCards2,
+                                      )
+                                    ],
+                                  );
+                                },
                               )
                             ],
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              PeopleCard2(
-                                occupation: 'Personal Shopper',
-                                name: 'Timothy W',
-                                assetImagePath: 'images/landscape4.jpg',
-                              ),
-                              PeopleCard2(
-                                occupation: 'Graphics Designer',
-                                name: 'Michael O',
-                                assetImagePath: 'images/landscape3.jpg',
-                              )
-                            ],
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              PeopleCard2(
-                                occupation: 'Dog Trainer',
-                                name: 'Jim O',
-                                assetImagePath: 'images/landscape5.jpg',
-                              ),
-                              PeopleCard2(
-                                occupation: 'MakeUp Artist',
-                                name: 'Annete A',
-                                assetImagePath: 'images/landscape1.jpg',
-                              )
-                            ],
-                          ),
+                          )
                         ],
                       ),
                     )

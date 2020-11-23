@@ -1,7 +1,7 @@
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:connect_app/utilities/constants.dart';
-import 'file:///C:/Users/Peter%20Oketta/AndroidStudioProjects/AppLab/lib/screens/in_app/search_screen.dart';
+import 'package:connect_app/screens/in_app/search_screen.dart';
 
 class CustomFloatingBottomBar extends StatelessWidget {
   const CustomFloatingBottomBar({

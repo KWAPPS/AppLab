@@ -72,7 +72,7 @@ class _SearchScreenState extends State<SearchScreen>
 
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
       systemNavigationBarColor: kLightPurple, // navigation bar color
-      statusBarColor: kLightPurple, // status bar color
+      statusBarColor: Colors.transparent, // status bar color
     ));
     super.initState();
   }
@@ -106,96 +106,6 @@ class _SearchScreenState extends State<SearchScreen>
                           'Results for "hair stylist">',
                           style: kSmallHeadingStyle,
                         ),
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          PeopleCard2(
-                            occupation: 'Hair Stylist',
-                            name: 'Angela N',
-                            assetImagePath: 'images/landscape6.jpg',
-                          ),
-                          PeopleCard2(
-                            occupation: 'Hair Stylist',
-                            name: 'Michelle N',
-                            assetImagePath: 'images/landscape2.jpg',
-                          )
-                        ],
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          PeopleCard2(
-                            occupation: 'Hair Stylist',
-                            name: 'Timothy W',
-                            assetImagePath: 'images/landscape4.jpg',
-                          ),
-                          PeopleCard2(
-                            occupation: 'Hair Stylist',
-                            name: 'Michael O',
-                            assetImagePath: 'images/landscape3.jpg',
-                          )
-                        ],
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          PeopleCard2(
-                            occupation: 'Hair Stylist',
-                            name: 'Jim O',
-                            assetImagePath: 'images/landscape5.jpg',
-                          ),
-                          PeopleCard2(
-                            occupation: 'Hair Stylist',
-                            name: 'Annete A',
-                            assetImagePath: 'images/landscape1.jpg',
-                          )
-                        ],
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          PeopleCard2(
-                            occupation: 'Hair Stylist',
-                            name: 'Angela N',
-                            assetImagePath: 'images/landscape6.jpg',
-                          ),
-                          PeopleCard2(
-                            occupation: 'Hair Stylist',
-                            name: 'Michelle N',
-                            assetImagePath: 'images/landscape2.jpg',
-                          )
-                        ],
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          PeopleCard2(
-                            occupation: 'Hair Stylist',
-                            name: 'Timothy W',
-                            assetImagePath: 'images/landscape4.jpg',
-                          ),
-                          PeopleCard2(
-                            occupation: 'Hair Stylist',
-                            name: 'Michael O',
-                            assetImagePath: 'images/landscape3.jpg',
-                          )
-                        ],
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          PeopleCard2(
-                            occupation: 'Hair Stylist',
-                            name: 'Jim O',
-                            assetImagePath: 'images/landscape5.jpg',
-                          ),
-                          PeopleCard2(
-                            occupation: 'Hair Stylist',
-                            name: 'Annete A',
-                            assetImagePath: 'images/landscape1.jpg',
-                          )
-                        ],
                       ),
                     ],
                   ),

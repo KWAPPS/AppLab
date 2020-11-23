@@ -4,14 +4,13 @@ import 'package:connect_app/custom_widgets/star.dart';
 import 'package:connect_app/custom_widgets/hire_me_button.dart';
 import 'package:connect_app/screens/in_app/profile_screen.dart';
 
-class PeopleCards extends StatelessWidget {
+class PeopleCard extends StatelessWidget {
   final String descriptiveText;
-  final String imagePath;
+  final String imageURL;
   final String name;
   final String occupation;
 
-  PeopleCards(
-      {this.descriptiveText, this.imagePath, this.name, this.occupation});
+  PeopleCard({this.descriptiveText, this.imageURL, this.name, this.occupation});
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +41,7 @@ class PeopleCards extends StatelessWidget {
                     children: [
                       CircleAvatar(
                         radius: 40,
-                        backgroundImage: AssetImage(imagePath),
+                        backgroundImage: NetworkImage(imageURL),
                       ),
                       SizedBox(
                         width: 6,
@@ -51,7 +50,9 @@ class PeopleCards extends StatelessWidget {
                         children: [
                           Text(
                             name,
-                            style: TextStyle(fontWeight: FontWeight.w700),
+                            style: TextStyle(
+                                fontFamily: 'Nunito',
+                                fontWeight: FontWeight.w700),
                           ),
                           Row(
                             children: [Star(), Star(), Star(), Star()],
@@ -62,7 +63,7 @@ class PeopleCards extends StatelessWidget {
                           Text(
                             occupation,
                             style: TextStyle(
-                                fontFamily: 'Roboto',
+                                fontFamily: 'Nunito',
                                 fontWeight: FontWeight.w600,
                                 color: kLightPurple),
                           ),
@@ -83,7 +84,7 @@ class PeopleCards extends StatelessWidget {
                       width: 180,
                       child: Text(
                         descriptiveText,
-                        style: TextStyle(fontFamily: 'OpenSans'),
+                        style: TextStyle(fontFamily: 'Nunito'),
                         textAlign: TextAlign.center,
                       ),
                     ),
@@ -102,12 +103,12 @@ class PeopleCards extends StatelessWidget {
 }
 
 class PeopleCard2 extends StatelessWidget {
-  final String assetImagePath;
+  final String imageURL;
   final String name;
   final String occupation;
 
   PeopleCard2(
-      {this.assetImagePath = 'images/portfolio2.jpg',
+      {this.imageURL = 'images/portfolio2.jpg',
       this.name = 'Michael Okoth',
       this.occupation = 'photographer'});
   @override
@@ -132,15 +133,17 @@ class PeopleCard2 extends StatelessWidget {
                       topLeft: Radius.circular(15),
                       topRight: Radius.circular(15)),
                   image: DecorationImage(
-                      image: AssetImage(assetImagePath), fit: BoxFit.fill)),
+                      image: NetworkImage(imageURL), fit: BoxFit.fill)),
             ),
             SizedBox(
               height: 10,
             ),
             Text(
               name,
-              style:
-                  TextStyle(color: Colors.white, fontWeight: FontWeight.w600),
+              style: TextStyle(
+                  fontFamily: 'Nunito',
+                  color: Colors.white,
+                  fontWeight: FontWeight.w600),
             ),
             Padding(
               padding: EdgeInsets.symmetric(vertical: 5),
@@ -153,7 +156,7 @@ class PeopleCard2 extends StatelessWidget {
             Text(
               occupation,
               style: TextStyle(
-                  fontFamily: 'Roboto',
+                  fontFamily: 'Nunito',
                   color: kLightPurple,
                   fontWeight: FontWeight.w600),
             ),

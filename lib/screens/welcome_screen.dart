@@ -17,8 +17,8 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-      systemNavigationBarColor: kDarkBlue2, // navigation bar color
-      statusBarColor: kLightBlue2, // status bar color
+      systemNavigationBarColor: Color(0xff000046), // navigation bar color
+      statusBarColor: Colors.transparent, // status bar color
     ));
     return Scaffold(
       body: Container(
@@ -40,18 +40,22 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Flexible(
-                  child: Padding(
-                      padding: EdgeInsets.only(top: 60, left: 20.0),
+                  child: Container(
+                      padding: EdgeInsets.only(
+                          top: MediaQuery.of(context).size.height * 0.1),
+                      width: MediaQuery.of(context).size.width,
                       child: Text(
-                        'Welcome',
-                        style: TextStyle(fontSize: 50),
+                        'welcome',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            fontFamily: 'Pacifico',
+                            fontSize: 50,
+                            fontWeight: FontWeight.w600),
                       )),
                 ),
-                SizedBox(
-                  width: 30.0,
-                )
               ],
             ),
             Column(
@@ -63,7 +67,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                         MaterialPageRoute(builder: (context) => LoginScreen()));
                   },
                   buttonText: 'sign in',
-                  buttonColor: kLightBlue2,
+                  buttonColor: kDarkBlue2,
                   buttonTextFontSize: 20,
                 ),
                 SizedBox(
@@ -77,7 +81,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                         MaterialPageRoute(
                             builder: (context) => RegisterScreen()));
                   },
-                  buttonColor: kDarkBlue2,
+                  buttonColor: kLightBlue2,
                   buttonText: 'sign up',
                   buttonTextFontSize: 20,
                 ),

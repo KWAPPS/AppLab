@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:connect_app/utilities/constants.dart';
 
 class CategoryCard extends StatelessWidget {
-  final String categoryName;
+  String categoryName;
 
   CategoryCard({this.categoryName = 'Hair Dresser'});
 
@@ -15,7 +15,7 @@ class CategoryCard extends StatelessWidget {
           categoryName,
           style: TextStyle(
               fontSize: 17,
-              fontFamily: 'Roboto',
+              fontFamily: 'Nunito',
               color: kLightPurple,
               fontWeight: FontWeight.w800),
         )),

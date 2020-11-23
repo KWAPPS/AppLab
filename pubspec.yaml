@@ -30,6 +30,11 @@ dependencies:
   cupertino_icons: ^0.1.3
   font_awesome_flutter: ^8.10.0
   shimmer: ^1.1.2
+  firebase_core: ^0.5.0
+  firebase_auth: ^0.18.1+1
+  cloud_firestore: ^0.14.1+2
+  firebase_storage: ^4.0.1
+  image_picker: ^0.6.7+11
 
 dev_dependencies:
   flutter_test:
@@ -56,11 +61,8 @@ flutter:
      fonts:
      - asset: fonts/Pacifico-Regular.ttf
 
-   - family: OpenSans
-     fonts:
-     - asset: fonts/OpenSans-Regular.ttf
 
-   - family: Roboto
+   - family: Nunito
      fonts:
-     - asset: fonts/Roboto-Regular.ttf
+     - asset: fonts/Nunito-Regular.ttf
 
