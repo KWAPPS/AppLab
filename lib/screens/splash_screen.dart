@@ -5,6 +5,9 @@ import 'package:connect_app/utilities/constants.dart';
 import 'in_app/home_screen.dart';
 import 'welcome_screen.dart';
 import 'package:flutter/services.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
+FirebaseAuth _auth = FirebaseAuth.instance;
 
 class SplashScreen extends StatefulWidget {
   static const String id = 'splash_screen';
@@ -20,6 +23,8 @@ class _SplashScreenState extends State<SplashScreen> {
     _checkSession().then((status) {
       if (status) {
         _navigateToHome();
+        print(
+            'current user_________________________________-${_auth.currentUser.email}');
       } else {
         _navigateToWelcome();
       }
@@ -28,7 +33,12 @@ class _SplashScreenState extends State<SplashScreen> {
 
   Future<bool> _checkSession() async {
     await Future.delayed(Duration(milliseconds: 5000), () {});
-    return false;
+    if (_auth.currentUser != null) {
+      return true;
+    }
+    if (_auth.currentUser == null) {
+      return false;
+    }
   }
 
   void _navigateToHome() {
@@ -54,17 +64,13 @@ class _SplashScreenState extends State<SplashScreen> {
       statusBarColor: Colors.transparent, // status bar color
     ));
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Container(
         child: Stack(
           alignment: Alignment.center,
           children: [
             Container(
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage('images/white.png'),
-                  fit: BoxFit.cover,
-                ),
-              ),
+              color: Colors.white,
               constraints: BoxConstraints.expand(),
             ),
             Shimmer.fromColors(

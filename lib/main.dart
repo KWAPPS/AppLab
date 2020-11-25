@@ -11,6 +11,7 @@ import 'screens/in_app/hire_me_screen.dart';
 import 'package:flutter/material.dart';
 import 'screens/in_app/search_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/services.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,6 +22,11 @@ void main() async {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+      // navigation bar color
+      statusBarColor: Colors.transparent, // status bar color
+    ));
+
     return MaterialApp(
       theme: ThemeData.dark().copyWith(
         primaryColor: kDarkBlue2,
@@ -33,7 +39,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      initialRoute: HomeScreen.id,
+      initialRoute: SplashScreen.id,
       routes: {
         'screens/in_app/info_getter.dart': (context) => InfoGetter(),
         'screens/in_app/profile_screen.dart': (context) => ProfileScreen(),

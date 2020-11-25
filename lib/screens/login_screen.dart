@@ -1,10 +1,22 @@
 import 'package:connect_app/screens/in_app/home_screen.dart';
+import 'package:connect_app/screens/register_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:modal_progress_hud/modal_progress_hud.dart';
 import '../utilities/constants.dart';
 import '../utilities/custom_containers.dart';
 import 'package:flutter/services.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:connect_app/utilities/log_in_functionality.dart';
+
+String email;
+
+String password;
+UserCredential newUser;
+bool showSpinner = false;
+
+LogInFunctionality _logInFunctionality = LogInFunctionality();
 
 class LoginScreen extends StatefulWidget {
   static const String id = 'login_screen';
@@ -18,11 +30,14 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-      systemNavigationBarColor: kDarkBlue2, // navigation bar color
+      systemNavigationBarColor: Color(0xff1CB5E0), // navigation bar color
       statusBarColor: Colors.transparent, // status bar color
     ));
+
     return Scaffold(
-      body: SafeArea(
+      body: ModalProgressHUD(
+        inAsyncCall: showSpinner,
+        color: kDarkBlue2,
         child: Container(
           constraints: BoxConstraints.expand(),
           margin: EdgeInsets.all(0),
@@ -41,20 +56,34 @@ class _LoginScreenState extends State<LoginScreen> {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                Container(
-                  height: MediaQuery.of(context).size.height * 0.3,
-                  margin: EdgeInsets.only(
-                      left: 10.0,
-                      bottom: MediaQuery.of(context).size.height * 0.13),
-                  alignment: Alignment.centerLeft,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      Text('Welcome', style: kLoginTextStyle),
-                      Text('Back', style: kLoginTextStyle),
-                    ],
-                  ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.05,
+                      width: MediaQuery.of(context).size.width,
+                    ),
+                    Text(
+                      'welcome',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          fontFamily: 'Pacifico',
+                          fontSize: 50,
+                          fontWeight: FontWeight.w600),
+                    ),
+                    Text(
+                      'back',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          fontFamily: 'Pacifico',
+                          fontSize: 40,
+                          fontWeight: FontWeight.w600),
+                    ),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.2,
+                    )
+                  ],
                 ),
                 Container(
                   height: MediaQuery.of(context).size.height * 0.4,
@@ -65,50 +94,56 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      LoginBar(barText: 'Email'),
-                      LoginBar(barText: 'Password'),
+                      CredentialsTextField(
+                        barText: 'email',
+                        onChanged: (value) {
+                          email = value;
+                        },
+                      ),
+                      CredentialsTextField(
+                        textObscure: true,
+                        barText: 'password',
+                        onChanged: (value) {
+                          password = value;
+                        },
+                      ),
                       SizedBox(
                         height: 5,
+                      ),
+                      CustomRaisedButton(
+                        onPressed: () async {
+                          setState(() {
+                            showSpinner = true;
+                          });
+                          _logInFunctionality.logInUser(context, () {});
+                        },
+                        buttonColor: kDarkBlue2,
+                        buttonText: 'sign in',
+                        buttonTextFontSize: 15,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          CustomRaisedButton(
-                            onPressed: () {
-                              print('on pressed');
-                              Navigator.pushReplacement(
+                          Text(
+                            'forgot password?',
+                            style: TextStyle(fontFamily: 'Nunito'),
+                          ),
+                          SizedBox(
+                            width: 20,
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => HomeScreen()));
+                                      builder: (context) => RegisterScreen()));
                             },
-                            buttonColor: kDarkBlue2,
-                            buttonText: 'sign in',
-                            buttonTextFontSize: 15,
-                          ),
+                            child: Text(
+                              'sign up',
+                              style: TextStyle(fontFamily: 'Nunito'),
+                            ),
+                          )
                         ],
-                      ),
-                      Container(
-                        height: MediaQuery.of(context).size.height * 0.2,
-                        padding: EdgeInsets.only(top: 20.0, bottom: 20.0),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            FlatButton(
-                              onPressed: null,
-                              child: Text(
-                                'Sign up',
-                                style: kSignupTextStyle,
-                              ),
-                            ),
-                            FlatButton(
-                              onPressed: null,
-                              child: Text(
-                                'Forgot Password',
-                                style: kSignupTextStyle,
-                              ),
-                            ),
-                          ],
-                        ),
                       )
                     ],
                   ),

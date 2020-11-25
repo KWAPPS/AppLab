@@ -86,41 +86,39 @@ class _SearchScreenState extends State<SearchScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Container(
-            height: MediaQuery.of(context).size.height,
-            color: kLightPurple,
-            child: Stack(
-              children: [
-                SingleChildScrollView(
-                  controller: _scrollSearchBarController,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SizedBox(
-                        height: 80,
+      body: Container(
+          height: MediaQuery.of(context).size.height,
+          color: kLightPurple,
+          child: Stack(
+            children: [
+              SingleChildScrollView(
+                controller: _scrollSearchBarController,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(
+                      height: 100,
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(left: 20),
+                      child: Text(
+                        'Results for "hair stylist">',
+                        style: kSmallHeadingStyle,
                       ),
-                      Padding(
-                        padding: EdgeInsets.only(left: 20),
-                        child: Text(
-                          'Results for "hair stylist">',
-                          style: kSmallHeadingStyle,
-                        ),
-                      ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
-                Padding(
-                  padding: EdgeInsets.only(top: 20),
-                  child: _show == true
-                      ? SearchBar(
-                          colour: Colors.white,
-                        )
-                      : null,
-                )
-              ],
-            )),
-      ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(top: 40),
+                child: _show == true
+                    ? SearchBar(
+                        colour: Colors.white,
+                      )
+                    : null,
+              )
+            ],
+          )),
     );
   }
 }

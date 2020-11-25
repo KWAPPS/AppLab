@@ -1,20 +1,33 @@
 import 'package:connect_app/utilities/constants.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class LoginBar extends StatelessWidget {
+class CredentialsTextField extends StatelessWidget {
   final String barText;
-  LoginBar({@required this.barText});
+  Function onChanged;
+  bool textObscure;
+
+  CredentialsTextField(
+      {@required this.barText, this.onChanged, this.textObscure = false});
   @override
   Widget build(BuildContext context) {
     return TextField(
+        style: TextStyle(color: kDarkBlue2),
+        keyboardType: TextInputType.emailAddress,
+        obscureText: textObscure,
         textAlign: TextAlign.center,
-        onChanged: (value) {},
+        onChanged: onChanged,
         decoration: InputDecoration(
-          enabledBorder: UnderlineInputBorder(
-            borderSide: BorderSide(color: kDarkBlue2, width: 1.0),
+          contentPadding: EdgeInsets.symmetric(vertical: 2),
+          filled: true,
+          fillColor: Colors.white,
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.all(Radius.circular(35)),
+            borderSide: BorderSide(color: Colors.white, width: 1.0),
           ),
-          focusedBorder: UnderlineInputBorder(
-            borderSide: BorderSide(color: kDarkBlue2, width: 2.0),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.all(Radius.circular(35)),
+            borderSide: BorderSide(color: Colors.white, width: 2.0),
           ),
           hintText: barText,
           hintStyle: TextStyle(

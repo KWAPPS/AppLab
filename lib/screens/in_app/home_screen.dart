@@ -72,6 +72,11 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
 
   @override
   void initState() {
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+        systemNavigationBarColor: kLightPurple,
+        // navigation bar color
+        statusBarColor: Colors.transparent // status bar color
+        ));
     myScroll();
     controller =
         AnimationController(vsync: this, duration: Duration(milliseconds: 200));
@@ -81,12 +86,6 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
       setState(() {});
     });
     super.initState();
-
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-        systemNavigationBarColor: kLightPurple,
-        // navigation bar color
-        statusBarColor: Colors.transparent // status bar color
-        ));
   }
 
   @override
@@ -98,6 +97,11 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+        systemNavigationBarColor: kLightPurple,
+        // navigation bar color
+        statusBarColor: Colors.transparent // status bar color
+        ));
     return Scaffold(
       body: Container(
         color: kLightPurple,

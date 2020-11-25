@@ -37,26 +37,51 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
           ),
         ),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Flexible(
-                  child: Container(
-                      padding: EdgeInsets.only(
-                          top: MediaQuery.of(context).size.height * 0.1),
-                      width: MediaQuery.of(context).size.width,
-                      child: Text(
-                        'welcome',
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.1,
+            ),
+            Container(
+                height: MediaQuery.of(context).size.height * 0.2,
+                width: MediaQuery.of(context).size.width,
+                child: Text(
+                  'welcome',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      fontFamily: 'Pacifico',
+                      fontSize: 50,
+                      fontWeight: FontWeight.w600),
+                )),
+            Flexible(
+              child: Container(
+                  width: MediaQuery.of(context).size.width,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'to',
                         textAlign: TextAlign.center,
                         style: TextStyle(
                             fontFamily: 'Pacifico',
-                            fontSize: 50,
+                            fontSize: 30,
                             fontWeight: FontWeight.w600),
-                      )),
-                ),
-              ],
+                      ),
+                      Text(
+                        ' quickc.',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            color: kDarkBlue2,
+                            fontFamily: 'Pacifico',
+                            fontSize: 30,
+                            fontWeight: FontWeight.w600),
+                      )
+                    ],
+                  )),
+            ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.3,
             ),
             Column(
               children: [
