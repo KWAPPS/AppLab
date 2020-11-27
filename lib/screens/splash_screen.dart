@@ -32,11 +32,20 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   Future<bool> _checkSession() async {
-    await Future.delayed(Duration(milliseconds: 5000), () {});
-    if (_auth.currentUser != null) {
-      return true;
-    }
-    if (_auth.currentUser == null) {
+    await Future.delayed(Duration(milliseconds: 2000), () {});
+    try {
+      if (_auth.currentUser.emailVerified) {
+        return true;
+      }
+      if (!_auth.currentUser.emailVerified) {
+        return false;
+      }
+
+      if (_auth.currentUser == null) {
+        return false;
+      }
+    } catch (e) {
+      print(e);
       return false;
     }
   }

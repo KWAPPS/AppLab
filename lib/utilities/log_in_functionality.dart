@@ -1,3 +1,4 @@
+import 'package:connect_app/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:connect_app/screens/in_app/home_screen.dart';
@@ -14,13 +15,22 @@ class LogInFunctionality {
           email: email, password: password);
       print(loggedInUser.credential);
       setState();
-      Navigator.pushReplacement(context,
-          MaterialPageRoute(builder: (BuildContext context) => HomeScreen()));
+      if (_auth.currentUser.emailVerified) {
+        Navigator.pushReplacement(context,
+            MaterialPageRoute(builder: (BuildContext context) => HomeScreen()));
+      }
+      if (_auth.currentUser.emailVerified == false) {
+        setState();
+        return await ReturnPopup(
+            displayText: "email address not verified",
+            context: context,
+            builderCallback: (context) => SplashScreen()).triggerPopup();
+      }
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         print('invalid email');
         ReturnPopup(
-            displayText: "user not found",
+            displayText: "wrong password or email",
             context: context,
             builderCallback: (context) => LoginScreen()).triggerPopup();
       } else {

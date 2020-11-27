@@ -25,6 +25,12 @@ class RegisterScreen extends StatefulWidget {
 
 class _RegisterScreenState extends State<RegisterScreen> {
   @override
+  void initState() {
+    showSpinner = false;
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
       systemNavigationBarColor: Color(0xff1CB5E0), // navigation bar color
@@ -49,105 +55,106 @@ class _RegisterScreenState extends State<RegisterScreen> {
               end: Alignment.bottomLeft,
             ),
           ),
-          child: SafeArea(
-            child: Container(
-              child: SingleChildScrollView(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
+          child: Container(
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.07,
+                      ),
+                      Text(
+                        'join',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            fontFamily: 'Pacifico',
+                            fontSize: 40,
+                            fontWeight: FontWeight.w600),
+                      ),
+                      Text(
+                        'quickc.',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            color: kLightBlue2,
+                            fontFamily: 'Pacifico',
+                            fontSize: 40,
+                            fontWeight: FontWeight.w600),
+                      ),
+                    ],
+                  ),
+                  Container(
+                    height: MediaQuery.of(context).size.height * 0.7,
+                    padding: EdgeInsets.only(
+                        left: MediaQuery.of(context).size.width * 0.1,
+                        right: MediaQuery.of(context).size.width * 0.1,
+                        top: MediaQuery.of(context).size.height * 0.35),
+                    child: Column(
                       children: [
-                        Text(
-                          'join',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                              fontFamily: 'Pacifico',
-                              fontSize: 40,
-                              fontWeight: FontWeight.w600),
+                        SizedBox(
+                          height: 10.0,
                         ),
-                        Text(
-                          'quickc.',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                              color: kLightBlue2,
-                              fontFamily: 'Pacifico',
-                              fontSize: 40,
-                              fontWeight: FontWeight.w600),
+                        CredentialsTextField(
+                          barText: 'email',
+                          onChanged: (value) {
+                            email = value;
+                          },
+                        ),
+                        SizedBox(
+                          height: 10.0,
+                        ),
+                        CredentialsTextField(
+                          textObscure: true,
+                          barText: 'password',
+                          onChanged: (value) {
+                            password = value;
+                          },
+                        ),
+                        SizedBox(
+                          height: 10.0,
+                        ),
+                        CustomRaisedButton(
+                          onPressed: () async {
+                            setState(() {
+                              showSpinner = true;
+                            });
+                            _registrationFunctionality.registerUser(context,
+                                () {
+                              setState(() {
+                                showSpinner = false;
+                              });
+                            });
+
+                            print(registeredUser.credential);
+                          },
+                          buttonColor: kDarkBlue2,
+                          buttonText: 'sign up',
+                          buttonTextFontSize: 15,
+                        ),
+                        FlatButton(
+                          onPressed: null,
+                          child: GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => LoginScreen()));
+                            },
+                            child: Text(
+                              'sign in',
+                              style: TextStyle(
+                                  fontFamily: 'Nunito',
+                                  color: Colors.white,
+                                  fontSize: 15.0),
+                            ),
+                          ),
                         ),
                       ],
                     ),
-                    Container(
-                      height: MediaQuery.of(context).size.height * 0.55,
-                      padding: EdgeInsets.only(
-                          left: MediaQuery.of(context).size.width * 0.1,
-                          right: MediaQuery.of(context).size.width * 0.1,
-                          top: MediaQuery.of(context).size.height * 0.17),
-                      child: Column(
-                        children: [
-                          SizedBox(
-                            height: 10.0,
-                          ),
-                          CredentialsTextField(
-                            barText: 'email',
-                            onChanged: (value) {
-                              email = value;
-                            },
-                          ),
-                          SizedBox(
-                            height: 10.0,
-                          ),
-                          CredentialsTextField(
-                            textObscure: true,
-                            barText: 'password',
-                            onChanged: (value) {
-                              password = value;
-                            },
-                          ),
-                          SizedBox(
-                            height: 10.0,
-                          ),
-                          CustomRaisedButton(
-                            onPressed: () async {
-                              setState(() {
-                                showSpinner = true;
-                              });
-                              _registrationFunctionality.registerUser(context,
-                                  () {
-                                setState(() {
-                                  showSpinner = false;
-                                });
-                              });
-
-                              print(registeredUser.credential);
-                            },
-                            buttonColor: kDarkBlue2,
-                            buttonText: 'sign up',
-                            buttonTextFontSize: 15,
-                          ),
-                          FlatButton(
-                            onPressed: null,
-                            child: GestureDetector(
-                              onTap: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => LoginScreen()));
-                              },
-                              child: Text(
-                                'sign in',
-                                style: TextStyle(
-                                    fontFamily: 'Nunito',
-                                    color: Colors.white,
-                                    fontSize: 15.0),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
           ),

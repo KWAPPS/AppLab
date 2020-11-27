@@ -1,3 +1,4 @@
+import 'package:connect_app/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:connect_app/utilities/return_popup.dart';
 import 'package:connect_app/screens/register_screen.dart';
@@ -5,6 +6,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:connect_app/screens/in_app/home_screen.dart';
 import 'package:connect_app/screens/register_screen.dart';
+
+import 'dart:async';
 
 FirebaseAuth _auth = FirebaseAuth.instance;
 final _firestore = FirebaseFirestore.instance;
@@ -14,11 +17,15 @@ class RegistrationFunctionality {
     try {
       final newUser = await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
-      registeredUser = newUser;
+      await newUser.user.sendEmailVerification();
+      await _auth.signOut();
+      return await ReturnPopup(
+          context: context,
+          displayText:
+              'check your email and click the link to verify your address, then sign in!',
+          builderCallback: (context) => SplashScreen()).triggerPopup();
 
-      setState();
-      Navigator.pushReplacement(context,
-          MaterialPageRoute(builder: (BuildContext context) => HomeScreen()));
+      registeredUser = newUser;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'email-already-in-use') {
         print('Email Already In Use');

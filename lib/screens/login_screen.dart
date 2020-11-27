@@ -28,6 +28,12 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   @override
+  void initState() {
+    showSpinner = false;
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
       systemNavigationBarColor: Color(0xff1CB5E0), // navigation bar color
@@ -113,7 +119,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       CustomRaisedButton(
                         onPressed: () async {
                           setState(() {
-                            showSpinner = true;
+                            showSpinner = !showSpinner;
                           });
                           _logInFunctionality.logInUser(context, () {});
                         },

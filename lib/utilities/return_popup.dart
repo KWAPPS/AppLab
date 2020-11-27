@@ -17,12 +17,12 @@ class ReturnPopup {
         context: context,
         button: MaterialButton(
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(5.0),
+            borderRadius: BorderRadius.circular(20.0),
           ),
-          color: kLightBlue2,
+          color: kDarkBlue2,
           child: Text(
             'ok',
-            style: TextStyle(fontSize: 20, fontFamily: 'Cormorant'),
+            style: TextStyle(fontSize: 20, fontFamily: 'Nunito'),
           ),
           onPressed: () {
             Navigator.pushReplacement(
@@ -33,11 +33,12 @@ class ReturnPopup {
           children: <Widget>[
             Text(
               displayText,
+              textAlign: TextAlign.center,
               style: TextStyle(
-                  fontSize: 30, color: Colors.white, fontFamily: 'Cormorant'),
+                  fontSize: 30, color: Colors.white, fontFamily: 'Nunito'),
             ),
             SizedBox(
-              height: 30,
+              height: 20,
             )
           ],
         ));
