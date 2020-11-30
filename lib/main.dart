@@ -1,4 +1,6 @@
-import 'package:connect_app/screens/home_test.dart';
+import 'dart:developer';
+
+import 'package:connect_app/screens/timeline.dart';
 import 'package:connect_app/screens/in_app/profile_screen.dart';
 import 'package:connect_app/utilities/constants.dart';
 import 'package:connect_app/screens/in_app/info_getter.dart';
@@ -40,9 +42,9 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      initialRoute: SplashScreen.id,
+      initialRoute:'screen/timeline.dart',
       routes: {
-        // 'screen/home_test.dart': (context)=> HomeTest(),
+        'screen/timeline.dart': (context)=> Timeline(),
         'screens/in_app/info_getter.dart': (context) => InfoGetter(),
         'screens/in_app/profile_screen.dart': (context) => ProfileScreen(),
         'screens/in_app/search_screen.dart': (context) => SearchScreen(),

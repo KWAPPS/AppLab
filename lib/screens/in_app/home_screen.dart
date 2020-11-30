@@ -11,7 +11,7 @@ import 'package:connect_app/custom_widgets/custom_floating_bottom_bar.dart';
 ScrollController _scrollBottomBarController = ScrollController();
 
 bool isScrollingDown = false;
-bool _show = true;
+// bool _show = true;
 
 List<PeopleCard> peopleCards = [];
 List<PeopleCard2> morePeopleCards1 = [];
@@ -32,19 +32,19 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   Animation sizeAnimation;
   Animation marginAnimation;
 
-  void showBottomBar() async {
-    setState(() {
-      _show = true;
-      controller.reverse();
-    });
-  }
-
-  void hideBottomBar() async {
-    setState(() {
-      _show = false;
-      controller.forward();
-    });
-  }
+  // void showBottomBar() async {
+  //   setState(() {
+  //     _show = true;
+  //     controller.reverse();
+  //   });
+  // }
+  //
+  // void hideBottomBar() async {
+  //   setState(() {
+  //     _show = false;
+  //     controller.forward();
+  //   });
+  // }
 
   void myScroll() async {
     print('my scroll called');
@@ -52,20 +52,20 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
       if (_scrollBottomBarController.position.userScrollDirection ==
           ScrollDirection.reverse) {
         print('scroll direction is reverse');
-        if (!isScrollingDown) {
-          isScrollingDown = true;
-          _show = false;
-          hideBottomBar();
-        }
+        // if (!isScrollingDown) {
+        //   isScrollingDown = true;
+        //   _show = false;
+        //   hideBottomBar();
+        // }
       }
       if (_scrollBottomBarController.position.userScrollDirection ==
           ScrollDirection.forward) {
         print('scroll is forward');
-        if (isScrollingDown) {
-          isScrollingDown = false;
-          _show = true;
-          showBottomBar();
-        }
+        // if (isScrollingDown) {
+        //   isScrollingDown = false;
+        //   _show = true;
+        //   showBottomBar();
+        // }
       }
     });
   }
@@ -302,12 +302,12 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20.0),
               ),
-              child: Material(
-                color: kLightPurple,
-                borderRadius: BorderRadius.circular(20.0),
-                elevation: 10,
-                child: _show == true ? CustomFloatingBottomBar() : null,
-              ),
+              // child: Material(
+              //   color: kLightPurple,
+              //   borderRadius: BorderRadius.circular(20.0),
+              //   elevation: 10,
+              //   child: _show == true ? CustomFloatingBottomBar() : null,
+              // ),
             )
           ],
         )),
