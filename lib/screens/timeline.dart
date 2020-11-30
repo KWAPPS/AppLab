@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:connect_app/screens/in_app/home_screen.dart';
-import 'package:connect_app/screens/in_app/search_screen.dart';
+import 'package:connect_app/screens/in_app/search_page.dart';
 import 'package:connect_app/screens/in_app/profile_screen.dart';
 import 'package:connect_app/screens/in_app/upload_screen.dart';
 import 'package:flutter/cupertino.dart';
@@ -42,7 +42,7 @@ class _TimelineState extends State<Timeline> {
       body: PageView(
         children: [
           HomeScreen(),
-          SearchScreen(),
+          Search(),
           UploadScreen(),
           ProfileScreen(),
         ],
