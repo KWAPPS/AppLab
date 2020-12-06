@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:connect_app/provider_data.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:connect_app/utilities/constants.dart';
@@ -7,11 +8,13 @@ import 'package:flutter/services.dart';
 import 'package:connect_app/custom_widgets/category_card.dart';
 import 'package:connect_app/custom_widgets/people_card.dart';
 import 'package:connect_app/custom_widgets/custom_floating_bottom_bar.dart';
+import 'package:connect_app/screens/timeline.dart';
+import 'package:provider/provider.dart';
 
 ScrollController _scrollBottomBarController = ScrollController();
 
 bool isScrollingDown = false;
-// bool _show = true;
+bool showBottomBarOnHome = true;
 
 List<PeopleCard> peopleCards = [];
 List<PeopleCard2> morePeopleCards1 = [];
@@ -28,23 +31,13 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
-  AnimationController controller;
-  Animation sizeAnimation;
-  Animation marginAnimation;
+  void showBottomBar() async {
+    Provider.of<AppBarData>(context, listen: false).showBottomNavigation();
+  }
 
-  // void showBottomBar() async {
-  //   setState(() {
-  //     _show = true;
-  //     controller.reverse();
-  //   });
-  // }
-  //
-  // void hideBottomBar() async {
-  //   setState(() {
-  //     _show = false;
-  //     controller.forward();
-  //   });
-  // }
+  void hideBottomBar() async {
+    Provider.of<AppBarData>(context, listen: false).hideBottomNavigation();
+  }
 
   void myScroll() async {
     print('my scroll called');
@@ -52,20 +45,20 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
       if (_scrollBottomBarController.position.userScrollDirection ==
           ScrollDirection.reverse) {
         print('scroll direction is reverse');
-        // if (!isScrollingDown) {
-        //   isScrollingDown = true;
-        //   _show = false;
-        //   hideBottomBar();
-        // }
+        if (!isScrollingDown) {
+          isScrollingDown = true;
+          showBottomNavigationBar = false;
+          hideBottomBar();
+        }
       }
       if (_scrollBottomBarController.position.userScrollDirection ==
           ScrollDirection.forward) {
         print('scroll is forward');
-        // if (isScrollingDown) {
-        //   isScrollingDown = false;
-        //   _show = true;
-        //   showBottomBar();
-        // }
+        if (isScrollingDown) {
+          isScrollingDown = false;
+          showBottomNavigationBar = true;
+          showBottomBar();
+        }
       }
     });
   }
@@ -73,38 +66,38 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   @override
   void initState() {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-        systemNavigationBarColor: kLightPurple,
+        systemNavigationBarColor: Colors.white,
         // navigation bar color
         statusBarColor: Colors.transparent // status bar color
         ));
     myScroll();
-    controller =
-        AnimationController(vsync: this, duration: Duration(milliseconds: 200));
-    sizeAnimation = Tween<double>(begin: 60, end: 0).animate(controller);
-    marginAnimation = Tween<double>(begin: 20, end: 0).animate(controller);
-    controller.addListener(() {
-      setState(() {});
-    });
+
+    print('home screen init ___________________________________');
     super.initState();
   }
 
   @override
   void dispose() {
+    peopleCards.clear();
+    morePeopleCards2.clear();
+    morePeopleCards1.clear();
+    categoryCards.clear();
+    print('__________________________________disposed home screen');
     _scrollBottomBarController.removeListener(() {});
-    controller.removeListener(() {});
+
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-        systemNavigationBarColor: kLightPurple,
+        systemNavigationBarColor: Colors.white,
         // navigation bar color
         statusBarColor: Colors.transparent // status bar color
         ));
     return Scaffold(
       body: Container(
-        color: kLightPurple,
+        color: Colors.white,
         height: MediaQuery.of(context).size.height,
         child: SafeArea(
             child: Stack(
@@ -119,7 +112,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                       height: MediaQuery.of(context).size.height * 0.02,
                     ),
                     Container(
-                        color: kLightPurple,
+                        color: Colors.white,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -174,13 +167,13 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                       height: 15,
                     ),
                     Container(
-                      color: kLightPurple,
+                      color: Colors.white,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
                             child: Text(
-                              'Suggestions Near You >',
+                              'People Suggestions >',
                               style: kSmallHeadingStyle,
                             ),
                             padding: EdgeInsets.only(left: 15),
@@ -192,6 +185,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                 StreamBuilder<QuerySnapshot>(
                                   stream: _firestore
                                       .collection('userData')
+                                      .orderBy('timeStamp', descending: false)
                                       .snapshots(),
                                   builder: (context, snapshot) {
                                     if (!snapshot.hasData) {
@@ -205,17 +199,30 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
 
                                     final users = snapshot.data.docs;
                                     for (var user in users) {
-                                      PeopleCard peopleCard = PeopleCard(
-                                        descriptiveText:
-                                            user.data()['description'],
-                                        imageURL:
-                                            user.data()['profileImageURL'],
-                                        occupation: user.data()['occupation'],
-                                        name:
-                                            '${user.data()["firstName"]} ${user.data()["lastName"]} ',
-                                      );
-
-                                      peopleCards.add(peopleCard);
+                                      try {
+                                        if (user.data()['profileImageURL'] !=
+                                            null) {
+                                          PeopleCard peopleCard = PeopleCard(
+                                            profilePageColor: user.data()[
+                                                        'profilePageColor'] ==
+                                                    'purple'
+                                                ? kPurple
+                                                : kDarkBlue2,
+                                            description:
+                                                user.data()['description'],
+                                            email: user.data()['email'],
+                                            imageURL:
+                                                user.data()['profileImageURL'],
+                                            occupation:
+                                                user.data()['occupation'],
+                                            name:
+                                                '${user.data()["firstName"]} ${user.data()["lastName"]} ',
+                                          );
+                                          peopleCards.add(peopleCard);
+                                        }
+                                      } catch (e) {
+                                        print(e);
+                                      }
                                     }
                                     return Row(
                                       children: peopleCards,
@@ -234,7 +241,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                         children: [
                           Padding(
                             child: Text(
-                              'More Top Suggestions >',
+                              'More Suggestions >',
                               style: kSmallHeadingStyle,
                             ),
                             padding: EdgeInsets.only(left: 15),
@@ -245,6 +252,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                               StreamBuilder<QuerySnapshot>(
                                 stream: _firestore
                                     .collection('userData')
+                                    .orderBy('timeStamp', descending: true)
                                     .snapshots(),
                                 builder: (context, snapshot) {
                                   if (!snapshot.hasData) {
@@ -256,19 +264,28 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
 
                                   final users = snapshot.data.docs;
                                   for (var user in users) {
-                                    PeopleCard2 peopleCard2 = PeopleCard2(
-                                      imageURL: user.data()['profileImageURL'],
-                                      occupation: user.data()['occupation'],
-                                      name:
-                                          '${user.data()["firstName"]} ${user.data()["lastName"]} ',
-                                    );
+                                    try {
+                                      if (user.data()['profileImageURL'] !=
+                                          null) {
+                                        PeopleCard2 peopleCard2 = PeopleCard2(
+                                          imageURL:
+                                              user.data()['profileImageURL'],
+                                          email: user.data()['email'],
+                                          occupation: user.data()['occupation'],
+                                          name:
+                                              '${user.data()["firstName"]} ${user.data()["lastName"]} ',
+                                        );
 
-                                    if (morePeopleCards1.length ==
-                                        morePeopleCards2.length) {
-                                      morePeopleCards1.add(peopleCard2);
-                                    } else if (morePeopleCards1.length >
-                                        morePeopleCards2.length) {
-                                      morePeopleCards2.add(peopleCard2);
+                                        if (morePeopleCards1.length ==
+                                            morePeopleCards2.length) {
+                                          morePeopleCards1.add(peopleCard2);
+                                        } else if (morePeopleCards1.length >
+                                            morePeopleCards2.length) {
+                                          morePeopleCards2.add(peopleCard2);
+                                        }
+                                      }
+                                    } catch (e) {
+                                      print(e);
                                     }
                                   }
                                   return Row(
@@ -292,23 +309,6 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                 ),
               ),
             ),
-            Container(
-              height: sizeAnimation.value,
-              margin: EdgeInsets.only(
-                  top: MediaQuery.of(context).size.height * 0.85,
-                  left: MediaQuery.of(context).size.width * 0.1,
-                  right: MediaQuery.of(context).size.width * 0.1,
-                  bottom: 5),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20.0),
-              ),
-              // child: Material(
-              //   color: kLightPurple,
-              //   borderRadius: BorderRadius.circular(20.0),
-              //   elevation: 10,
-              //   child: _show == true ? CustomFloatingBottomBar() : null,
-              // ),
-            )
           ],
         )),
       ),

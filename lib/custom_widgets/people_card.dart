@@ -5,12 +5,20 @@ import 'package:connect_app/custom_widgets/hire_me_button.dart';
 import 'package:connect_app/screens/in_app/profile_screen.dart';
 
 class PeopleCard extends StatelessWidget {
-  final String descriptiveText;
+  final String description;
   final String imageURL;
   final String name;
   final String occupation;
+  final String email;
+  Color profilePageColor;
 
-  PeopleCard({this.descriptiveText, this.imageURL, this.name, this.occupation});
+  PeopleCard(
+      {this.description,
+      this.imageURL,
+      this.profilePageColor,
+      this.name,
+      this.email,
+      this.occupation});
 
   @override
   Widget build(BuildContext context) {
@@ -21,8 +29,15 @@ class PeopleCard extends StatelessWidget {
         elevation: 3,
         child: GestureDetector(
           onTap: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => ProfileScreen()));
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => ProfileScreen(
+                        profilePageColor: profilePageColor,
+                        name: name,
+                        occupation: occupation,
+                        email: email,
+                        profileImageURL: imageURL)));
           },
           child: Container(
             padding: EdgeInsets.all(10),
@@ -40,6 +55,7 @@ class PeopleCard extends StatelessWidget {
                   Row(
                     children: [
                       CircleAvatar(
+                        backgroundColor: kLightPurple,
                         radius: 40,
                         backgroundImage: NetworkImage(imageURL),
                       ),
@@ -83,7 +99,7 @@ class PeopleCard extends StatelessWidget {
                     child: Container(
                       width: 180,
                       child: Text(
-                        descriptiveText,
+                        description,
                         style: TextStyle(fontFamily: 'Nunito'),
                         textAlign: TextAlign.center,
                       ),
@@ -103,20 +119,30 @@ class PeopleCard extends StatelessWidget {
 }
 
 class PeopleCard2 extends StatelessWidget {
-  final String imageURL;
-  final String name;
-  final String occupation;
+  String imageURL;
+  String name;
+  String email;
+  String occupation;
+  String description;
 
   PeopleCard2(
       {this.imageURL = 'images/portfolio2.jpg',
       this.name = 'Michael Okoth',
+      this.email,
+      this.description,
       this.occupation = 'photographer'});
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => ProfileScreen()));
+            context,
+            MaterialPageRoute(
+                builder: (context) => ProfileScreen(
+                    name: name,
+                    occupation: occupation,
+                    email: email,
+                    profileImageURL: imageURL)));
       },
       child: Container(
         child: Column(
@@ -129,6 +155,7 @@ class PeopleCard2 extends StatelessWidget {
                 style: TextStyle(fontSize: 1),
               ),
               decoration: BoxDecoration(
+                  color: kLightPurple,
                   borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(15),
                       topRight: Radius.circular(15)),

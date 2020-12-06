@@ -6,13 +6,17 @@ class CredentialsTextField extends StatelessWidget {
   final String barText;
   Function onChanged;
   bool textObscure;
+  Color fillColor;
 
   CredentialsTextField(
-      {@required this.barText, this.onChanged, this.textObscure = false});
+      {@required this.barText,
+      this.onChanged,
+      this.fillColor = Colors.white,
+      this.textObscure = false});
   @override
   Widget build(BuildContext context) {
     return TextField(
-        style: TextStyle(color: kDarkBlue2),
+        style: TextStyle(color: kDarkBlue2, fontFamily: 'Nunito'),
         keyboardType: TextInputType.emailAddress,
         obscureText: textObscure,
         textAlign: TextAlign.center,
@@ -20,7 +24,7 @@ class CredentialsTextField extends StatelessWidget {
         decoration: InputDecoration(
           contentPadding: EdgeInsets.symmetric(vertical: 2),
           filled: true,
-          fillColor: Colors.white,
+          fillColor: fillColor,
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.all(Radius.circular(35)),
             borderSide: BorderSide(color: Colors.white, width: 1.0),
@@ -31,6 +35,7 @@ class CredentialsTextField extends StatelessWidget {
           ),
           hintText: barText,
           hintStyle: TextStyle(
+            fontFamily: 'Nunito',
             color: Colors.black45,
           ),
         ));

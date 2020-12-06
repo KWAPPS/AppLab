@@ -15,19 +15,24 @@ class ReturnPopup {
   Future triggerPopup() async {
     await PopupBox.showPopupBox(
         context: context,
-        button: MaterialButton(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(20.0),
-          ),
-          color: kDarkBlue2,
-          child: Text(
-            'ok',
-            style: TextStyle(fontSize: 20, fontFamily: 'Nunito'),
-          ),
-          onPressed: () {
-            Navigator.pushReplacement(
-                context, MaterialPageRoute(builder: builderCallback));
-          },
+        button: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            MaterialButton(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20.0),
+              ),
+              color: kDarkBlue2,
+              child: Text(
+                'ok',
+                style: TextStyle(fontSize: 20, fontFamily: 'Nunito'),
+              ),
+              onPressed: () {
+                Navigator.pushReplacement(
+                    context, MaterialPageRoute(builder: builderCallback));
+              },
+            )
+          ],
         ),
         willDisplayWidget: Column(
           children: <Widget>[
@@ -38,7 +43,7 @@ class ReturnPopup {
                   fontSize: 30, color: Colors.white, fontFamily: 'Nunito'),
             ),
             SizedBox(
-              height: 20,
+              height: 10,
             )
           ],
         ));
