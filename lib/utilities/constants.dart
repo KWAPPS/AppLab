@@ -7,7 +7,7 @@ const kDarkBlue2 = Color(0xFF07375D);
 const kLightBlue2 = Color(0xFF4E84B3);
 const kLightCream = Color(0xFFD6D6CA);
 const kLightPurple = Color(0xFFD3D7E5);
-
+const kDarkGreen = Color(0xFF105157);
 const kLoginTextStyle = TextStyle(
   fontSize: 50.0,
   fontWeight: FontWeight.w500,

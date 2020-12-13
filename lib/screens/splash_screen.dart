@@ -87,9 +87,9 @@ class _SplashScreenState extends State<SplashScreen> {
               baseColor: Color(0xFF9ad3bc),
               highlightColor: kPurple,
               child: Text(
-                'quickc.',
+                'quick.',
                 style: TextStyle(
-                  fontSize: 50,
+                  fontSize: 60,
                   fontFamily: 'Pacifico',
                 ),
               ),

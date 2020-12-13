@@ -3,8 +3,15 @@ import 'package:connect_app/utilities/constants.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:connect_app/custom_widgets/action_prompt.dart';
+import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 
 class HireMeScreen extends StatefulWidget {
+  String name;
+  String email;
+  String occupation;
+
+  HireMeScreen({this.name, this.email, this.occupation});
+
   static const String id = 'hire_me_screen';
   @override
   _HireMeScreenState createState() => _HireMeScreenState();
@@ -31,10 +38,10 @@ class _HireMeScreenState extends State<HireMeScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Padding(
-            padding: EdgeInsets.only(top: 28, bottom: 28),
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
             child: Text(
-              'Hello, my name is Freedah Akoth, and I am an Events Organizer',
+              'Hello, my name is ${widget.name}, I can be your ${widget.occupation}.',
               textAlign: TextAlign.center,
               style: TextStyle(
                   fontFamily: 'Nunito',
@@ -43,28 +50,43 @@ class _HireMeScreenState extends State<HireMeScreen> {
                   fontWeight: FontWeight.w300),
             ),
           ),
+          SizedBox(
+            height: MediaQuery.of(context).size.width * 0.05,
+          ),
           Container(
             width: MediaQuery.of(context).size.width * 0.7,
             child: Divider(
               color: Colors.yellow[100],
             ),
           ),
+          SizedBox(
+            height: MediaQuery.of(context).size.width * 0.07,
+          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               ActionPrompt(
-                iconName: FontAwesomeIcons.calendar,
-                promptText: 'Book Appointment',
-              ),
-              ActionPrompt(
-                iconName: FontAwesomeIcons.phone,
+                iconName: LineAwesomeIcons.phone,
                 promptText: 'Call',
               ),
               ActionPrompt(
-                iconName: FontAwesomeIcons.solidEnvelope,
-                promptText: 'Message',
+                iconName: LineAwesomeIcons.what_s_app,
+                promptText: 'WhatsApp',
+              ),
+              ActionPrompt(
+                iconName: LineAwesomeIcons.envelope,
+                promptText: 'Email',
               ),
             ],
+          ),
+          SizedBox(
+            height: MediaQuery.of(context).size.width * 0.07,
+          ),
+          Container(
+            width: MediaQuery.of(context).size.width * 0.5,
+            child: Divider(
+              color: Colors.yellow[100],
+            ),
           )
         ],
       ),

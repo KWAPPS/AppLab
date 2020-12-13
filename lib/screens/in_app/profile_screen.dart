@@ -1,3 +1,4 @@
+import 'package:connect_app/screens/login_screen.dart';
 import 'package:connect_app/screens/timeline.dart';
 import 'package:flutter/material.dart';
 
@@ -36,13 +37,24 @@ class _ProfileScreenState extends State<ProfileScreen>
 
   @override
   void initState() {
+    chosenProfilePageColor = widget.profilePageColor;
+    print(
+        'initialized profile screen with chosenProfilecolor as _____$chosenProfilePageColor');
     controller = TabController(length: 3, vsync: this);
-    super.initState();
 
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
       systemNavigationBarColor: chosenProfilePageColor, // navigation bar color
       statusBarColor: Colors.transparent, // status bar color
     ));
+    Future.delayed(
+        Duration(
+          seconds: 1,
+        ), () {
+      print('__________setting state after 1 second');
+      setState(() {});
+    });
+
+    super.initState();
   }
 
   @override
@@ -58,9 +70,15 @@ class _ProfileScreenState extends State<ProfileScreen>
       systemNavigationBarColor: chosenProfilePageColor, // navigation bar color
       statusBarColor: Colors.transparent, // status bar color
     ));
-    chosenProfilePageColor = widget.profilePageColor;
+
+    setState(() {
+      chosenProfilePageColor = widget.profilePageColor;
+    });
+
     return Scaffold(
       backgroundColor: chosenProfilePageColor,
+      resizeToAvoidBottomInset: false,
+      extendBodyBehindAppBar: true,
       body: SafeArea(
         child: Column(
           children: [
@@ -106,7 +124,12 @@ class _ProfileScreenState extends State<ProfileScreen>
                                 fontFamily: 'Nunito',
                                 color: kLightPurple),
                           ),
-                          HireMeButton()
+                          HireMeButton(
+                            name: widget.name,
+                            occupation: widget.occupation,
+                            email: widget.email,
+                            buttonColor: kLightBlue2,
+                          )
                         ],
                       )
                     ],

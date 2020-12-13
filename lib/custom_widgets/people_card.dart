@@ -106,7 +106,10 @@ class PeopleCard extends StatelessWidget {
                     ),
                   ),
                   HireMeButton(
+                    occupation: occupation,
                     buttonColor: kLightBlue2,
+                    name: name,
+                    email: email,
                   ),
                 ],
               ),

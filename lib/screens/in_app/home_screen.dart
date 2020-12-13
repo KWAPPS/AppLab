@@ -199,15 +199,25 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
 
                                     final users = snapshot.data.docs;
                                     for (var user in users) {
+                                      var profileColor = kDarkBlue2;
+
                                       try {
+                                        if (user.data()['profilePageColor'] ==
+                                            '1') {
+                                          profileColor = kDarkBlue2;
+                                        }
+                                        if (user.data()['profilePageColor'] ==
+                                            '2') {
+                                          profileColor = kPurple;
+                                        }
+                                        if (user.data()['profilePageColor'] ==
+                                            '3') {
+                                          profileColor = kDarkGreen;
+                                        }
                                         if (user.data()['profileImageURL'] !=
                                             null) {
                                           PeopleCard peopleCard = PeopleCard(
-                                            profilePageColor: user.data()[
-                                                        'profilePageColor'] ==
-                                                    'purple'
-                                                ? kPurple
-                                                : kDarkBlue2,
+                                            profilePageColor: profileColor,
                                             description:
                                                 user.data()['description'],
                                             email: user.data()['email'],
