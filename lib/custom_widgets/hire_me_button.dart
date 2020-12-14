@@ -5,17 +5,24 @@ import 'package:connect_app/screens/in_app/hire_me_screen.dart';
 
 class HireMeButton extends StatelessWidget {
   final Color buttonColor;
+  String name;
+  String email;
+  String occupation;
 
-  HireMeButton({this.buttonColor = kLightBlue2});
+  HireMeButton(
+      {this.buttonColor = kLightBlue2, this.occupation, this.name, this.email});
 
   @override
   Widget build(BuildContext context) {
     return RaisedButton(
       onPressed: () {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => ProfileScreen()));
         showModalBottomSheet(
-            context: context, builder: (context) => HireMeScreen());
+            context: context,
+            builder: (context) => HireMeScreen(
+                  occupation: occupation,
+                  name: name,
+                  email: email,
+                ));
       },
       padding: EdgeInsets.all(0),
       child: Text(

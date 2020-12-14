@@ -1,4 +1,5 @@
 import 'package:connect_app/screens/splash_screen.dart';
+import 'package:connect_app/screens/timeline.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:connect_app/screens/in_app/home_screen.dart';
@@ -17,7 +18,7 @@ class LogInFunctionality {
       setState();
       if (_auth.currentUser.emailVerified) {
         Navigator.pushReplacement(context,
-            MaterialPageRoute(builder: (BuildContext context) => HomeScreen()));
+            MaterialPageRoute(builder: (BuildContext context) => Timeline()));
       }
       if (_auth.currentUser.emailVerified == false) {
         setState();

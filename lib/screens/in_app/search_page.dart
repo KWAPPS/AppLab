@@ -1,8 +1,8 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:connect_app/custom_widgets/progress.dart';
 import 'package:connect_app/utilities/users.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 final usersRef = FirebaseFirestore.instance.collection('userData');
 
@@ -14,7 +14,6 @@ class Search extends StatefulWidget {
 class _SearchState extends State<Search> {
   TextEditingController searchController = TextEditingController();
   Future<QuerySnapshot> searchResultsFuture;
-
   handleSearch(String query) {
     Future<QuerySnapshot> users =
     usersRef.where('firstName', isGreaterThanOrEqualTo: query).get();
@@ -22,8 +21,6 @@ class _SearchState extends State<Search> {
       searchResultsFuture = users;
     });
   }
-
-
 
   clearSearch() {
     searchController.clear();
@@ -107,9 +104,7 @@ class _SearchState extends State<Search> {
 
 class UserResult extends StatelessWidget {
   final User user;
-
   UserResult(this.user);
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -118,23 +113,27 @@ class UserResult extends StatelessWidget {
         children: [
           GestureDetector(
             onTap: () => print('tapped'),
-          child:
-          ListTile(
-            leading: CircleAvatar(
-              backgroundImage: CachedNetworkImageProvider(user.profileImageURL),
-              backgroundColor: Colors.grey,
+            child: ListTile(
+              leading: CircleAvatar(
+                backgroundImage:
+                    CachedNetworkImageProvider(user.profileImageURL),
+                backgroundColor: Colors.grey,
+              ),
+              title: Text(
+                user.firstName,
+                style:
+                    TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+              ),
+              subtitle: Text(
+                user.description,
+                style: TextStyle(color: Colors.white),
+              ),
             ),
-            title: Text(
-              user.firstName,
-              style:
-                  TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-            ),
-            subtitle: Text(
-              user.description,
-              style: TextStyle(color: Colors.white),
-            ),
-          ),),
-          Divider(height: 2.0,color: Colors.white54,)
+          ),
+          Divider(
+            height: 2.0,
+            color: Colors.white54,
+          )
         ],
       ),
     );

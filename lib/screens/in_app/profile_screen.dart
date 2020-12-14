@@ -1,3 +1,5 @@
+import 'package:connect_app/screens/login_screen.dart';
+import 'package:connect_app/screens/timeline.dart';
 import 'package:flutter/material.dart';
 
 import 'package:connect_app/screens/in_app/my_work.dart' as mywork;
@@ -6,8 +8,25 @@ import 'package:connect_app/screens/in_app/socials.dart' as socials;
 import 'package:connect_app/utilities/constants.dart';
 import 'package:connect_app/custom_widgets/hire_me_button.dart';
 import 'package:flutter/services.dart';
+import 'package:connect_app/screens/in_app/home_screen.dart';
+import 'my_work.dart';
+
+var chosenProfilePageColor = kDarkBlue2;
 
 class ProfileScreen extends StatefulWidget {
+  Color profilePageColor;
+  String name;
+  String occupation;
+  String email;
+  String profileImageURL;
+
+  ProfileScreen(
+      {this.name,
+      this.occupation,
+      this.profilePageColor,
+      this.profileImageURL,
+      this.email});
+
   @override
   _ProfileScreenState createState() => _ProfileScreenState();
 }
@@ -18,35 +37,54 @@ class _ProfileScreenState extends State<ProfileScreen>
 
   @override
   void initState() {
+    chosenProfilePageColor = widget.profilePageColor;
+    print(
+        'initialized profile screen with chosenProfilecolor as _____$chosenProfilePageColor');
     controller = TabController(length: 3, vsync: this);
-    super.initState();
 
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-      systemNavigationBarColor: kProfilePageColor, // navigation bar color
+      systemNavigationBarColor: chosenProfilePageColor, // navigation bar color
       statusBarColor: Colors.transparent, // status bar color
     ));
+    Future.delayed(
+        Duration(
+          seconds: 1,
+        ), () {
+      print('__________setting state after 1 second');
+      setState(() {});
+    });
+
+    super.initState();
   }
 
   @override
   void dispose() {
     controller.dispose();
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-      systemNavigationBarColor: kLightPurple, // navigation bar color
-      statusBarColor: Colors.transparent, // status bar color
-    ));
+
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+      systemNavigationBarColor: chosenProfilePageColor, // navigation bar color
+      statusBarColor: Colors.transparent, // status bar color
+    ));
+
+    setState(() {
+      chosenProfilePageColor = widget.profilePageColor;
+    });
+
     return Scaffold(
-      backgroundColor: kProfilePageColor,
+      backgroundColor: chosenProfilePageColor,
+      resizeToAvoidBottomInset: false,
+      extendBodyBehindAppBar: true,
       body: SafeArea(
         child: Column(
           children: [
             Container(
               height: MediaQuery.of(context).size.height * 0.19,
-              color: kProfilePageColor,
+              color: chosenProfilePageColor,
 //                margin: EdgeInsets.only(left: 20.0, top: 20.0),
               child: Column(
                 children: [
@@ -56,8 +94,9 @@ class _ProfileScreenState extends State<ProfileScreen>
                       Padding(
                         padding: const EdgeInsets.only(top: 20.0, bottom: 20),
                         child: CircleAvatar(
+                          backgroundColor: kLightPurple,
                           radius: 50,
-                          backgroundImage: AssetImage('images/avatar1.jpg'),
+                          backgroundImage: NetworkImage(widget.profileImageURL),
                         ),
                       ),
                       SizedBox(
@@ -69,7 +108,7 @@ class _ProfileScreenState extends State<ProfileScreen>
                           Container(
                             width: MediaQuery.of(context).size.width * 0.5,
                             child: Text(
-                              'Freedah Akoth',
+                              widget.name,
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                   fontFamily: 'Nunito',
@@ -79,13 +118,18 @@ class _ProfileScreenState extends State<ProfileScreen>
                             ),
                           ),
                           Text(
-                            'Events Designer',
+                            widget.occupation,
                             style: TextStyle(
                                 fontWeight: FontWeight.w600,
                                 fontFamily: 'Nunito',
                                 color: kLightPurple),
                           ),
-                          HireMeButton()
+                          HireMeButton(
+                            name: widget.name,
+                            occupation: widget.occupation,
+                            email: widget.email,
+                            buttonColor: kLightBlue2,
+                          )
                         ],
                       )
                     ],
@@ -94,7 +138,7 @@ class _ProfileScreenState extends State<ProfileScreen>
               ),
             ),
             Container(
-              color: kProfilePageColor,
+              color: chosenProfilePageColor,
               height: MediaQuery.of(context).size.height * 0.75,
               child: Column(
                 children: [
@@ -103,13 +147,22 @@ class _ProfileScreenState extends State<ProfileScreen>
                     controller: controller,
                     tabs: [
                       Tab(
-                        text: 'My Work',
+                        child: Text(
+                          'my work',
+                          style: TextStyle(fontFamily: 'Nunito'),
+                        ),
                       ),
                       Tab(
-                        text: 'Reviews',
+                        child: Text(
+                          'reviews',
+                          style: TextStyle(fontFamily: 'Nunito'),
+                        ),
                       ),
                       Tab(
-                        text: 'Socials',
+                        child: Text(
+                          'socials',
+                          style: TextStyle(fontFamily: 'Nunito'),
+                        ),
                       ),
                     ],
                   ),
@@ -120,7 +173,9 @@ class _ProfileScreenState extends State<ProfileScreen>
                     child: TabBarView(
                       controller: controller,
                       children: [
-                        mywork.MyWork(),
+                        mywork.MyWork(
+                          email: widget.email,
+                        ),
                         reviews.Reviews(),
                         socials.Socials()
                       ],
