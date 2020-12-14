@@ -8,7 +8,7 @@ class User {
   final String profileImageURL;
 
   User(
-      {this.firstName,
+  {this.firstName,
       this.lastName,
       this.description,
       this.occupation,

@@ -16,10 +16,8 @@ class _SearchState extends State<Search> {
   Future<QuerySnapshot> searchResultsFuture;
 
   handleSearch(String query) {
-    Future<QuerySnapshot> users = FirebaseFirestore.instance
-        .collection('userData')
-        .where('firstName', isGreaterThanOrEqualTo: query)
-        .get();
+    Future<QuerySnapshot> users =
+    usersRef.where('firstName', isGreaterThanOrEqualTo: query).get();
     setState(() {
       searchResultsFuture = users;
     });
@@ -45,7 +43,7 @@ class _SearchState extends State<Search> {
           ),
           suffixIcon: IconButton(
             icon: Icon(Icons.clear),
-            onPressed: clearSearch(),
+            onPressed: clearSearch,
           ),
         ),
         onFieldSubmitted: handleSearch,
@@ -82,7 +80,7 @@ class _SearchState extends State<Search> {
     return FutureBuilder(
         future: searchResultsFuture,
         builder: (context, snapshot) {
-          if (!snapshot.hasData) {
+          if(!snapshot.hasData) {
             return circularProgress();
           }
           List<UserResult> searchResults = [];
