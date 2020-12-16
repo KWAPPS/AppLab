@@ -122,6 +122,7 @@ class PeopleCard extends StatelessWidget {
 }
 
 class PeopleCard2 extends StatelessWidget {
+  Color profilePageColor;
   String imageURL;
   String name;
   String email;
@@ -131,6 +132,7 @@ class PeopleCard2 extends StatelessWidget {
   PeopleCard2(
       {this.imageURL = 'images/portfolio2.jpg',
       this.name = 'Michael Okoth',
+      this.profilePageColor,
       this.email,
       this.description,
       this.occupation = 'photographer'});
@@ -142,6 +144,7 @@ class PeopleCard2 extends StatelessWidget {
             context,
             MaterialPageRoute(
                 builder: (context) => ProfileScreen(
+                    profilePageColor: profilePageColor,
                     name: name,
                     occupation: occupation,
                     email: email,
