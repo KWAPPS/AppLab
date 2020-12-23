@@ -35,21 +35,21 @@ class MyApp extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (_) => AppBarData(),
       child: MaterialApp(
-        theme: ThemeData.dark().copyWith(
-          primaryColor: kDarkBlue2,
-          buttonBarTheme: ButtonBarThemeData(
-            alignment: MainAxisAlignment.center,
-          ),
-          bottomSheetTheme: BottomSheetThemeData(
-            backgroundColor: Colors.transparent,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.vertical(
-                top: Radius.circular(20),
-              ),
-            ),
-          ),
-        ),
-        initialRoute: SplashScreen.id,
+        // theme: ThemeData.dark().copyWith(
+        //   primaryColor: kDarkBlue2,
+        //   buttonBarTheme: ButtonBarThemeData(
+        //     alignment: MainAxisAlignment.center,
+        //   ),
+        //   bottomSheetTheme: BottomSheetThemeData(
+        //     backgroundColor: Colors.transparent,
+        //     shape: RoundedRectangleBorder(
+        //       borderRadius: BorderRadius.vertical(
+        //         top: Radius.circular(20),
+        //       ),
+        //     ),
+        //   ),
+        // ),
+        initialRoute: 'screen/timeline.dart',
         routes: {
           'screen/timeline.dart': (context) => Timeline(),
           'screens/in_app/info_getter.dart': (context) => InfoGetter(),

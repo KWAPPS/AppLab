@@ -1,10 +1,7 @@
-import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:connect_app/custom_widgets/progress.dart';
-import 'package:connect_app/utilities/users.dart';
-import 'package:cached_network_image/cached_network_image.dart';
-
-final usersRef = FirebaseFirestore.instance.collection('userData');
+import 'package:connect_app/utilities/data_controller.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class Search extends StatefulWidget {
   @override
@@ -12,130 +9,79 @@ class Search extends StatefulWidget {
 }
 
 class _SearchState extends State<Search> {
-  TextEditingController searchController = TextEditingController();
-  Future<QuerySnapshot> searchResultsFuture;
-  handleSearch(String query) {
-    Future<QuerySnapshot> users =
-    usersRef.where('firstName', isGreaterThanOrEqualTo: query).get();
-    setState(() {
-      searchResultsFuture = users;
-    });
-  }
-
-  clearSearch() {
-    searchController.clear();
-  }
-
-  AppBar buildSearchField() {
-    return AppBar(
-      backgroundColor: Colors.white,
-      title: TextFormField(
-        controller: searchController,
-        decoration: InputDecoration(
-          hintText: 'Search user...',
-          filled: true,
-          prefixIcon: Icon(
-            Icons.account_circle,
-            size: 28.0,
-          ),
-          suffixIcon: IconButton(
-            icon: Icon(Icons.clear),
-            onPressed: clearSearch,
-          ),
-        ),
-        onFieldSubmitted: handleSearch,
-      ),
-    );
-  }
-
-  Container buildNoContent() {
-    return Container(
-      child: Center(
-        child: ListView(
-          shrinkWrap: true,
-          children: [
-            Icon(
-              Icons.group,
-              color: Colors.blueAccent,
-              size: 200.0,
-            ),
-            Text(
-              'search users',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                  color: Colors.blueAccent,
-                  fontSize: 50.0,
-                  fontWeight: FontWeight.w500),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  buildSearchResults() {
-    return FutureBuilder(
-        future: searchResultsFuture,
-        builder: (context, snapshot) {
-          if(!snapshot.hasData) {
-            return circularProgress();
-          }
-          List<UserResult> searchResults = [];
-          snapshot.data.documents.forEach((doc) {
-            User user = User.fromDocuments(doc);
-            UserResult searchResult = UserResult(user);
-            searchResults.add(searchResult);
-          });
-          return ListView(
-            children: searchResults,
-          );
-        });
-  }
-
+  final TextEditingController searchController = TextEditingController();
+  QuerySnapshot snapshotData;
+  bool isExecuted = false;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: buildSearchField(),
-      body:
-          searchResultsFuture == null ? buildNoContent() : buildSearchResults(),
-    );
-  }
-}
-
-class UserResult extends StatelessWidget {
-  final User user;
-  UserResult(this.user);
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      color: Colors.lightBlueAccent,
-      child: Column(
-        children: [
-          GestureDetector(
-            onTap: () => print('tapped'),
-            child: ListTile(
+    Widget searchedData() {
+      return ListView.builder(
+          itemCount: snapshotData.docs.length,
+          itemBuilder: (BuildContext context, int index) {
+            return ListTile(
               leading: CircleAvatar(
-                backgroundImage:
-                    CachedNetworkImageProvider(user.profileImageURL),
-                backgroundColor: Colors.grey,
+                backgroundImage: NetworkImage(
+                    snapshotData.docs[index].data()['profileImageURL']),
               ),
               title: Text(
-                user.firstName,
-                style:
-                    TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                snapshotData.docs[index].data()['firstName'],
+                style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 22.0),
               ),
               subtitle: Text(
-                user.description,
-                style: TextStyle(color: Colors.white),
+                snapshotData.docs[index].data()['description'],
+                style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16.0),
+              ),
+            );
+          });
+    }
+
+    return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.clear),
+        onPressed: () {
+          setState(() {
+            isExecuted = false;
+          });
+        },
+      ),
+      appBar: AppBar(
+        actions: [
+          GetBuilder<DataController>(
+              init: DataController(),
+              builder: (val) {
+                return IconButton(
+                    icon: Icon(Icons.search),
+                    onPressed: () {
+                      val.queryData(searchController.text).then((value) {
+                        snapshotData = value;
+                        setState(() {
+                          isExecuted = true;
+                        });
+                      });
+                    });
+              })
+        ],
+        title: TextField(
+          decoration: InputDecoration(hintText: 'Search User...'),
+          controller: searchController,
+        ),
+      ),
+      body: isExecuted
+          ? searchedData()
+          : Container(
+              child: Center(
+                child: Text(
+                  'Search for a user',
+                  style: TextStyle(color: Colors.white, fontSize: 30.0),
+                ),
               ),
             ),
-          ),
-          Divider(
-            height: 2.0,
-            color: Colors.white54,
-          )
-        ],
-      ),
     );
   }
 }

@@ -1,10 +1,9 @@
 import 'package:connect_app/provider_data.dart';
 import 'package:connect_app/screens/in_app/my_profile.dart';
-import 'package:connect_app/screens/in_app/search_screen.dart';
+
 import 'package:flutter/material.dart';
 import 'package:connect_app/screens/in_app/home_screen.dart';
 import 'package:connect_app/screens/in_app/search_page.dart';
-
 import 'package:connect_app/screens/in_app/upload_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';

@@ -29,6 +29,7 @@ dependencies:
   uuid: 2.2.2
   line_awesome_flutter: ^1.0.1
   transparent_image: ^1.0.0
+  get: ^3.24.0
 
 
 
