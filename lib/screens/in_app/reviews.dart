@@ -2,7 +2,6 @@ import 'package:connect_app/utilities/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:connect_app/custom_widgets/review.dart';
-import 'package:connect_app/screens/in_app/profile_screen.dart';
 
 class Reviews extends StatefulWidget {
   @override
@@ -13,7 +12,7 @@ class _ReviewsState extends State<Reviews> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: chosenProfilePageColor,
+      backgroundColor: kProfilePageColor,
       body: SingleChildScrollView(
         child: Container(
           margin: EdgeInsets.only(left: 10.0, top: 20.0, right: 10.0),

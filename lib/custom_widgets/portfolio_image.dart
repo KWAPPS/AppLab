@@ -1,24 +1,18 @@
-import 'package:connect_app/utilities/constants.dart';
 import 'package:flutter/material.dart';
-import 'package:transparent_image/transparent_image.dart';
 
 class PortfolioImage extends StatelessWidget {
-  PortfolioImage({@required this.networkImageURL});
+  PortfolioImage({@required this.assetImagePath});
 
-  final String networkImageURL;
+  final String assetImagePath;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.all(5),
       child: Container(
-        decoration: BoxDecoration(
-            color: kLightPurple,
-            borderRadius: BorderRadius.all(Radius.circular(8))),
-        width: MediaQuery.of(context).size.width * 0.43,
+        width: 200,
         child: ClipRRect(
-          child: FadeInImage.memoryNetwork(
-              placeholder: kTransparentImage, image: networkImageURL),
+          child: Image(image: AssetImage(assetImagePath)),
           borderRadius: BorderRadius.all(Radius.circular(8)),
         ),
       ),

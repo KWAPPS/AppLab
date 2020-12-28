@@ -1,4 +1,3 @@
-import 'package:connect_app/screens/forgot_password_screen.dart';
 import 'package:connect_app/screens/in_app/home_screen.dart';
 import 'package:connect_app/screens/register_screen.dart';
 import 'package:flutter/cupertino.dart';
@@ -131,16 +130,9 @@ class _LoginScreenState extends State<LoginScreen> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          GestureDetector(
-                            onTap: () {
-                              showModalBottomSheet(
-                                  context: context,
-                                  builder: (context) => ForgotPasswordScreen());
-                            },
-                            child: Text(
-                              'forgot password?',
-                              style: TextStyle(fontFamily: 'Nunito'),
-                            ),
+                          Text(
+                            'forgot password?',
+                            style: TextStyle(fontFamily: 'Nunito'),
                           ),
                           SizedBox(
                             width: 20,

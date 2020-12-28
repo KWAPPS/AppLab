@@ -6,7 +6,6 @@ import 'in_app/home_screen.dart';
 import 'welcome_screen.dart';
 import 'package:flutter/services.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:connect_app/screens/timeline.dart';
 
 FirebaseAuth _auth = FirebaseAuth.instance;
 
@@ -54,7 +53,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void _navigateToHome() {
     Navigator.of(context).pushReplacement(
       MaterialPageRoute(
-        builder: (context) => Timeline(),
+        builder: (context) => HomeScreen(),
       ),
     );
   }
@@ -85,7 +84,7 @@ class _SplashScreenState extends State<SplashScreen> {
             ),
             Shimmer.fromColors(
               baseColor: Color(0xFF9ad3bc),
-              highlightColor: kPurple,
+              highlightColor: kDarkBlue,
               child: Text(
                 'quick.',
                 style: TextStyle(

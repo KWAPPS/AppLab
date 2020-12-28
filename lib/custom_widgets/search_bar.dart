@@ -1,17 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:connect_app/utilities/constants.dart';
-import 'package:connect_app/screens/in_app/search_screen.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 
 final inputTextController = TextEditingController();
 
 class SearchBar extends StatelessWidget {
   final Color colour;
   String searchTerm;
-  Function runSearch;
 
-  SearchBar({this.colour, this.searchTerm, this.runSearch});
+  SearchBar({this.colour, this.searchTerm});
 
   @override
   Widget build(BuildContext context) {
@@ -25,14 +22,12 @@ class SearchBar extends StatelessWidget {
           textAlign: TextAlign.left,
           onChanged: (value) {
             searchTerm = value;
-            searchTermValue = value;
-            print('after onchanged, search term $searchTerm');
           },
-          onEditingComplete: () async {
+          onEditingComplete: () {
             print('editing complete');
-            runSearch();
-            print('after editing complete, search term $searchTerm');
-            print(searchResultsFuture);
+            inputTextController.clear();
+
+            print(searchTerm);
           },
           style: TextStyle(
               color: kDarkBlue2,
