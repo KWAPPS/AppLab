@@ -274,40 +274,24 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
 
                                   final users = snapshot.data.docs;
                                   for (var user in users) {
-                                    var profileColor = kDarkBlue2;
-
                                     try {
-                                      if (user.data()['profilePageColor'] ==
-                                          '1') {
-                                        profileColor = kDarkBlue2;
-                                      }
-                                      if (user.data()['profilePageColor'] ==
-                                          '2') {
-                                        profileColor = kPurple;
-                                      }
-                                      if (user.data()['profilePageColor'] ==
-                                          '3') {
-                                        profileColor = kDarkGreen;
-                                      }
                                       if (user.data()['profileImageURL'] !=
                                           null) {
-                                        PeopleCard2 peopleCard = PeopleCard2(
-                                          profilePageColor: profileColor,
-                                          description:
-                                              user.data()['description'],
-                                          email: user.data()['email'],
+                                        PeopleCard2 peopleCard2 = PeopleCard2(
                                           imageURL:
                                               user.data()['profileImageURL'],
+                                          email: user.data()['email'],
                                           occupation: user.data()['occupation'],
                                           name:
                                               '${user.data()["firstName"]} ${user.data()["lastName"]} ',
                                         );
+
                                         if (morePeopleCards1.length ==
                                             morePeopleCards2.length) {
-                                          morePeopleCards1.add(peopleCard);
+                                          morePeopleCards1.add(peopleCard2);
                                         } else if (morePeopleCards1.length >
                                             morePeopleCards2.length) {
-                                          morePeopleCards2.add(peopleCard);
+                                          morePeopleCards2.add(peopleCard2);
                                         }
                                       }
                                     } catch (e) {

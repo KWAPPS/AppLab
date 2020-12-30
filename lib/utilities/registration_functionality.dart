@@ -17,7 +17,6 @@ class RegistrationFunctionality {
     try {
       final newUser = await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
-      _firestore.collection('userData').add({'email': email});
       await newUser.user.sendEmailVerification();
       await _auth.signOut();
       return await ReturnPopup(
