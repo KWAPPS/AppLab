@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
-import 'package:shimmer/shimmer.dart';
 import 'package:connect_app/utilities/constants.dart';
+import 'package:shimmer/shimmer.dart';
+
 import 'in_app/home_screen.dart';
 import 'welcome_screen.dart';
 import 'package:flutter/services.dart';
@@ -84,7 +85,7 @@ class _SplashScreenState extends State<SplashScreen> {
             ),
             Shimmer.fromColors(
               baseColor: Color(0xFF9ad3bc),
-              highlightColor: kDarkBlue,
+              highlightColor: kDarkBlue2,
               child: Text(
                 'quick.',
                 style: TextStyle(
