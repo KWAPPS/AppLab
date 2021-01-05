@@ -1,28 +1,30 @@
-import 'package:connect_app/screens/login_screen.dart';
-import 'package:connect_app/screens/timeline.dart';
 import 'package:flutter/material.dart';
-
+import 'package:smooth_star_rating/smooth_star_rating.dart';
 import 'package:connect_app/screens/in_app/my_work.dart' as mywork;
 import 'package:connect_app/screens/in_app/reviews.dart' as reviews;
 import 'package:connect_app/screens/in_app/socials.dart' as socials;
 import 'package:connect_app/utilities/constants.dart';
 import 'package:connect_app/custom_widgets/hire_me_button.dart';
 import 'package:flutter/services.dart';
-import 'package:connect_app/screens/in_app/home_screen.dart';
-import 'my_work.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 var chosenProfilePageColor = kDarkBlue2;
+String ratingOfTheProfessional;
 
 class ProfileScreen extends StatefulWidget {
   Color profilePageColor;
+  String idOfProfessional;
   String name;
   String occupation;
   String email;
+  String starRating;
   String profileImageURL;
 
   ProfileScreen(
       {this.name,
       this.occupation,
+      this.starRating,
+      this.idOfProfessional,
       this.profilePageColor,
       this.profileImageURL,
       this.email});
@@ -38,8 +40,8 @@ class _ProfileScreenState extends State<ProfileScreen>
   @override
   void initState() {
     chosenProfilePageColor = widget.profilePageColor;
-    print(
-        'initialized profile screen with chosenProfilecolor as _____$chosenProfilePageColor');
+    ratingOfTheProfessional = widget.starRating;
+
     controller = TabController(length: 3, vsync: this);
 
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
@@ -50,7 +52,6 @@ class _ProfileScreenState extends State<ProfileScreen>
         Duration(
           seconds: 1,
         ), () {
-      print('__________setting state after 1 second');
       setState(() {});
     });
 
@@ -83,12 +84,13 @@ class _ProfileScreenState extends State<ProfileScreen>
         child: Column(
           children: [
             Container(
-              height: MediaQuery.of(context).size.height * 0.19,
+              height: MediaQuery.of(context).size.height * 0.25,
               color: chosenProfilePageColor,
 //                margin: EdgeInsets.only(left: 20.0, top: 20.0),
               child: Column(
                 children: [
                   Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Padding(
@@ -106,6 +108,7 @@ class _ProfileScreenState extends State<ProfileScreen>
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Container(
+                            padding: EdgeInsets.only(bottom: 5, top: 15),
                             width: MediaQuery.of(context).size.width * 0.5,
                             child: Text(
                               widget.name,
@@ -117,18 +120,40 @@ class _ProfileScreenState extends State<ProfileScreen>
                                   fontSize: 15),
                             ),
                           ),
-                          Text(
-                            widget.occupation,
-                            style: TextStyle(
-                                fontWeight: FontWeight.w600,
-                                fontFamily: 'Nunito',
-                                color: kLightPurple),
+                          SmoothStarRating(
+                            rating: double.parse(widget.starRating),
+                            isReadOnly: true,
+                            size: 14,
+                            borderColor: Colors.yellowAccent,
+                            filledIconData: FontAwesomeIcons.solidStar,
+                            color: Colors.yellowAccent,
+                            defaultIconData: FontAwesomeIcons.star,
+                            starCount: 5,
+                            allowHalfRating: true,
+                            spacing: 2.0,
+                            onRated: (value) {
+                              print("rating value -> $value");
+                              // print("rating value dd -> ${value.truncate()}");
+                            },
                           ),
-                          HireMeButton(
-                            name: widget.name,
-                            occupation: widget.occupation,
-                            email: widget.email,
-                            buttonColor: kLightBlue2,
+                          Container(
+                            padding: EdgeInsets.only(top: 10, bottom: 5),
+                            child: Text(
+                              widget.occupation,
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w600,
+                                  fontFamily: 'Nunito',
+                                  color: kLightPurple),
+                            ),
+                          ),
+                          Container(
+                            padding: EdgeInsets.symmetric(vertical: 4),
+                            child: HireMeButton(
+                              name: widget.name,
+                              occupation: widget.occupation,
+                              email: widget.email,
+                              buttonColor: kLightBlue2,
+                            ),
                           )
                         ],
                       )
@@ -139,7 +164,7 @@ class _ProfileScreenState extends State<ProfileScreen>
             ),
             Container(
               color: chosenProfilePageColor,
-              height: MediaQuery.of(context).size.height * 0.75,
+              height: MediaQuery.of(context).size.height * 0.69,
               child: Column(
                 children: [
                   TabBar(
@@ -169,14 +194,20 @@ class _ProfileScreenState extends State<ProfileScreen>
                   Container(
                     color: kDarkBlue2,
                     width: MediaQuery.of(context).size.width,
-                    height: MediaQuery.of(context).size.height * 0.68,
+                    height: MediaQuery.of(context).size.height * 0.62,
                     child: TabBarView(
                       controller: controller,
                       children: [
                         mywork.MyWork(
                           email: widget.email,
                         ),
-                        reviews.Reviews(),
+                        reviews.Reviews(
+                          idOfProfessional: widget.idOfProfessional,
+                          email: widget.email,
+                          name: widget.name,
+                          occupation: widget.occupation,
+                          profileImageURL: widget.profileImageURL,
+                        ),
                         socials.Socials()
                       ],
                     ),

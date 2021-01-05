@@ -50,6 +50,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   'welcome',
                   textAlign: TextAlign.center,
                   style: TextStyle(
+                      color: Colors.white,
                       fontFamily: 'Pacifico',
                       fontSize: 50,
                       fontWeight: FontWeight.w600),
@@ -64,6 +65,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                         'to',
                         textAlign: TextAlign.center,
                         style: TextStyle(
+                            color: Colors.white,
                             fontFamily: 'Pacifico',
                             fontSize: 30,
                             fontWeight: FontWeight.w600),
@@ -92,7 +94,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                         MaterialPageRoute(builder: (context) => LoginScreen()));
                   },
                   buttonText: 'sign in',
-                  buttonColor: kDarkBlue2,
+                  buttonColor: Color(0xFF083961),
                   buttonTextFontSize: 20,
                 ),
                 SizedBox(
@@ -106,7 +108,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                         MaterialPageRoute(
                             builder: (context) => RegisterScreen()));
                   },
-                  buttonColor: kLightBlue2,
+                  buttonColor: Color(0xFF2B95FF),
                   buttonText: 'sign up',
                   buttonTextFontSize: 20,
                 ),

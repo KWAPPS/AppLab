@@ -1,20 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:connect_app/utilities/constants.dart';
-import 'package:connect_app/custom_widgets/star.dart';
+import 'package:smooth_star_rating/smooth_star_rating.dart';
 import 'package:connect_app/custom_widgets/hire_me_button.dart';
 import 'package:connect_app/screens/in_app/profile_screen.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class PeopleCard extends StatelessWidget {
   final String description;
   final String imageURL;
   final String name;
+  final String starRating;
   final String occupation;
+  final String idOfProfessional;
   final String email;
   Color profilePageColor;
 
   PeopleCard(
       {this.description,
+      this.idOfProfessional,
       this.imageURL,
+      this.starRating,
       this.profilePageColor,
       this.name,
       this.email,
@@ -33,6 +38,8 @@ class PeopleCard extends StatelessWidget {
                 context,
                 MaterialPageRoute(
                     builder: (context) => ProfileScreen(
+                        starRating: starRating,
+                        idOfProfessional: idOfProfessional,
                         profilePageColor: profilePageColor,
                         name: name,
                         occupation: occupation,
@@ -67,11 +74,25 @@ class PeopleCard extends StatelessWidget {
                           Text(
                             name,
                             style: TextStyle(
+                                color: Colors.white,
                                 fontFamily: 'Nunito',
                                 fontWeight: FontWeight.w700),
                           ),
-                          Row(
-                            children: [Star(), Star(), Star(), Star()],
+                          SmoothStarRating(
+                            rating: double.parse(starRating),
+                            isReadOnly: true,
+                            size: 12,
+                            borderColor: Colors.yellowAccent,
+                            filledIconData: FontAwesomeIcons.solidStar,
+                            color: Colors.yellowAccent,
+                            defaultIconData: FontAwesomeIcons.star,
+                            starCount: 5,
+                            allowHalfRating: true,
+                            spacing: 2.0,
+                            onRated: (value) {
+                              print("rating value -> $value");
+                              // print("rating value dd -> ${value.truncate()}");
+                            },
                           ),
                           SizedBox(
                             height: 8,
@@ -100,7 +121,8 @@ class PeopleCard extends StatelessWidget {
                       width: 180,
                       child: Text(
                         description,
-                        style: TextStyle(fontFamily: 'Nunito'),
+                        style: TextStyle(
+                            color: Colors.white, fontFamily: 'Nunito'),
                         textAlign: TextAlign.center,
                       ),
                     ),
@@ -124,14 +146,20 @@ class PeopleCard extends StatelessWidget {
 class PeopleCard2 extends StatelessWidget {
   String imageURL;
   String name;
+  String starRating;
   String email;
   String occupation;
   String description;
+  Color profilePageColor;
+  String idOfProfessional;
 
   PeopleCard2(
       {this.imageURL = 'images/portfolio2.jpg',
       this.name = 'Michael Okoth',
       this.email,
+      this.starRating,
+      this.idOfProfessional,
+      this.profilePageColor,
       this.description,
       this.occupation = 'photographer'});
   @override
@@ -142,6 +170,9 @@ class PeopleCard2 extends StatelessWidget {
             context,
             MaterialPageRoute(
                 builder: (context) => ProfileScreen(
+                    idOfProfessional: idOfProfessional,
+                    starRating: starRating,
+                    profilePageColor: profilePageColor,
                     name: name,
                     occupation: occupation,
                     email: email,
@@ -190,8 +221,21 @@ class PeopleCard2 extends StatelessWidget {
                   color: kLightPurple,
                   fontWeight: FontWeight.w600),
             ),
-            Row(
-              children: [Star(), Star(), Star(), Star()],
+            SmoothStarRating(
+              rating: double.parse(starRating),
+              isReadOnly: true,
+              size: 12,
+              borderColor: Colors.yellowAccent,
+              filledIconData: FontAwesomeIcons.solidStar,
+              color: Colors.yellowAccent,
+              defaultIconData: FontAwesomeIcons.star,
+              starCount: 5,
+              allowHalfRating: true,
+              spacing: 2.0,
+              onRated: (value) {
+                print("rating value -> $value");
+                // print("rating value dd -> ${value.truncate()}");
+              },
             )
           ],
         ),

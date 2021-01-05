@@ -22,6 +22,12 @@ class MyWork extends StatefulWidget {
 
 class _MyWorkState extends State<MyWork> {
   @override
+  void initState() {
+    portfolioColumn2.clear();
+    portfolioColumn1.clear();
+    super.initState();
+  }
+
   void dispose() {
     portfolioColumn2.clear();
     portfolioColumn1.clear();

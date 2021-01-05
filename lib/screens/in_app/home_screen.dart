@@ -198,6 +198,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                     }
 
                                     final users = snapshot.data.docs;
+
                                     for (var user in users) {
                                       var profileColor = kDarkBlue2;
 
@@ -218,8 +219,11 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                             null) {
                                           PeopleCard peopleCard = PeopleCard(
                                             profilePageColor: profileColor,
+                                            idOfProfessional: user.id,
                                             description:
                                                 user.data()['description'],
+                                            starRating:
+                                                user.data()['starRating'],
                                             email: user.data()['email'],
                                             imageURL:
                                                 user.data()['profileImageURL'],
@@ -274,12 +278,30 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
 
                                   final users = snapshot.data.docs;
                                   for (var user in users) {
+                                    var theProfileColor = kDarkBlue2;
+
                                     try {
+                                      if (user.data()['profilePageColor'] ==
+                                          '1') {
+                                        theProfileColor = kDarkBlue2;
+                                      }
+                                      if (user.data()['profilePageColor'] ==
+                                          '2') {
+                                        theProfileColor = kPurple;
+                                      }
+                                      if (user.data()['profilePageColor'] ==
+                                          '3') {
+                                        theProfileColor = kDarkGreen;
+                                      }
+
                                       if (user.data()['profileImageURL'] !=
                                           null) {
                                         PeopleCard2 peopleCard2 = PeopleCard2(
+                                          profilePageColor: theProfileColor,
+                                          idOfProfessional: user.id,
                                           imageURL:
                                               user.data()['profileImageURL'],
+                                          starRating: user.data()['starRating'],
                                           email: user.data()['email'],
                                           occupation: user.data()['occupation'],
                                           name:
@@ -301,9 +323,13 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                   return Row(
                                     children: [
                                       Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
                                         children: morePeopleCards1,
                                       ),
                                       Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
                                         children: morePeopleCards2,
                                       )
                                     ],

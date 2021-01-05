@@ -30,6 +30,7 @@ dependencies:
   line_awesome_flutter: ^1.0.1
   transparent_image: ^1.0.0
   get: ^3.24.0
+  smooth_star_rating: ^1.1.1
 
 
 

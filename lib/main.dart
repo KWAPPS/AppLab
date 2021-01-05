@@ -1,9 +1,9 @@
 import 'dart:developer';
-import 'utilities/data_controller.dart';
+
 import 'package:connect_app/provider_data.dart';
 import 'package:connect_app/screens/timeline.dart';
 import 'package:connect_app/screens/in_app/profile_screen.dart';
-import 'package:connect_app/utilities/constants.dart';
+
 import 'package:connect_app/screens/in_app/info_getter.dart';
 import 'package:provider/provider.dart';
 import 'screens/splash_screen.dart';
@@ -11,7 +11,7 @@ import 'screens/in_app/home_screen.dart';
 import 'screens/welcome_screen.dart';
 import 'screens/register_screen.dart';
 import 'screens/login_screen.dart';
-import 'screens/in_app/details_screen.dart';
+
 import 'screens/in_app/hire_me_screen.dart';
 import 'package:flutter/material.dart';
 import 'screens/in_app/search_screen.dart';
@@ -35,21 +35,20 @@ class MyApp extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (_) => AppBarData(),
       child: MaterialApp(
-        // theme: ThemeData.dark().copyWith(
-        //   primaryColor: kDarkBlue2,
-        //   buttonBarTheme: ButtonBarThemeData(
-        //     alignment: MainAxisAlignment.center,
-        //   ),
-        //   bottomSheetTheme: BottomSheetThemeData(
-        //     backgroundColor: Colors.transparent,
-        //     shape: RoundedRectangleBorder(
-        //       borderRadius: BorderRadius.vertical(
-        //         top: Radius.circular(20),
-        //       ),
-        //     ),
-        //   ),
-        // ),
-        initialRoute: 'screen/timeline.dart',
+        theme: ThemeData.dark().copyWith(
+          buttonBarTheme: ButtonBarThemeData(
+            alignment: MainAxisAlignment.center,
+          ),
+          bottomSheetTheme: BottomSheetThemeData(
+            backgroundColor: Colors.transparent,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.vertical(
+                top: Radius.circular(20),
+              ),
+            ),
+          ),
+        ),
+        initialRoute: SplashScreen.id,
         routes: {
           'screen/timeline.dart': (context) => Timeline(),
           'screens/in_app/info_getter.dart': (context) => InfoGetter(),

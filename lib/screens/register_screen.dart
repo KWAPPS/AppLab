@@ -70,6 +70,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         'join',
                         textAlign: TextAlign.center,
                         style: TextStyle(
+                            color: Colors.white,
                             fontFamily: 'Pacifico',
                             fontSize: 40,
                             fontWeight: FontWeight.w600),
@@ -78,7 +79,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         'quickc.',
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                            color: kLightBlue2,
+                            color: Color(0xFF2B95FF),
                             fontFamily: 'Pacifico',
                             fontSize: 40,
                             fontWeight: FontWeight.w600),
@@ -97,6 +98,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           height: 10.0,
                         ),
                         CredentialsTextField(
+                          fillColor: Colors.white,
                           barText: 'email',
                           onChanged: (value) {
                             email = value;
@@ -106,6 +108,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           height: 10.0,
                         ),
                         CredentialsTextField(
+                          fillColor: Colors.white,
                           textObscure: true,
                           barText: 'password',
                           onChanged: (value) {
