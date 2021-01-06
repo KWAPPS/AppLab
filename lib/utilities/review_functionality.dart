@@ -7,8 +7,6 @@ import 'package:connect_app/screens/in_app/profile_screen.dart';
 FirebaseFirestore _firestore = Firestore.instance;
 FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
-
-
 class ReviewHandling {
   void postReview(
       String reviewText, bool userAlreadyReviewed, String emailOfReviewee) {
@@ -27,7 +25,6 @@ class ReviewHandling {
       'reviewText': newReviewText,
       'numberOfStars': starRating == null ? '3.5' : starRating,
     });
-
 
     print('review updated ______ $newReviewText');
   }

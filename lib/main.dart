@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
     ));
 
     return ChangeNotifierProvider(
-      create: (_) => AppBarData(),
+      create: (_) => ProviderData(),
       child: MaterialApp(
         theme: ThemeData.dark().copyWith(
           buttonBarTheme: ButtonBarThemeData(

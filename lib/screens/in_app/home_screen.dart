@@ -32,11 +32,11 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   void showBottomBar() async {
-    Provider.of<AppBarData>(context, listen: false).showBottomNavigation();
+    Provider.of<ProviderData>(context, listen: false).showBottomNavigation();
   }
 
   void hideBottomBar() async {
-    Provider.of<AppBarData>(context, listen: false).hideBottomNavigation();
+    Provider.of<ProviderData>(context, listen: false).hideBottomNavigation();
   }
 
   void myScroll() async {
