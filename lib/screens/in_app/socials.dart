@@ -1,4 +1,4 @@
-import 'package:connect_app/utilities/constants.dart';
+
 import 'package:flutter/material.dart';
 import 'package:connect_app/screens/in_app/profile_screen.dart';
 

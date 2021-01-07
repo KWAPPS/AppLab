@@ -7,7 +7,6 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:connect_app/custom_widgets/category_card.dart';
 import 'package:connect_app/custom_widgets/people_card.dart';
-import 'package:connect_app/custom_widgets/custom_floating_bottom_bar.dart';
 import 'package:connect_app/screens/timeline.dart';
 import 'package:provider/provider.dart';
 

@@ -1,11 +1,10 @@
-import 'package:connect_app/screens/login_screen.dart';
+
 import 'package:connect_app/utilities/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:connect_app/custom_widgets/portfolio_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:connect_app/screens/in_app/home_screen.dart';
-import 'package:transparent_image/transparent_image.dart';
 import 'package:connect_app/screens/in_app/profile_screen.dart';
 
 List<PortfolioImage> portfolioColumn1 = [];
@@ -14,7 +13,7 @@ List<PortfolioImage> portfolioColumn2 = [];
 final _firestore = FirebaseFirestore.instance;
 
 class MyWork extends StatefulWidget {
-  String email;
+  final String email;
   MyWork({this.email});
 
   @override

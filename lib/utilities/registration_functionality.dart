@@ -1,13 +1,9 @@
 import 'package:connect_app/screens/splash_screen.dart';
-import 'package:flutter/material.dart';
 import 'package:connect_app/utilities/return_popup.dart';
 import 'package:connect_app/screens/register_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:connect_app/screens/in_app/home_screen.dart';
-import 'package:connect_app/screens/register_screen.dart';
 
-import 'dart:async';
 
 FirebaseAuth _auth = FirebaseAuth.instance;
 final _firestore = FirebaseFirestore.instance;

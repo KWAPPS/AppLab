@@ -2,8 +2,6 @@ import 'package:connect_app/screens/splash_screen.dart';
 import 'package:connect_app/screens/timeline.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:connect_app/screens/in_app/home_screen.dart';
-import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:connect_app/screens/login_screen.dart';
 import 'package:connect_app/utilities/return_popup.dart';
 

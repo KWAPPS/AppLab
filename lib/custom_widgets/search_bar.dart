@@ -2,14 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:connect_app/utilities/constants.dart';
 import 'package:connect_app/screens/in_app/search_screen.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 
 final inputTextController = TextEditingController();
 
 class SearchBar extends StatelessWidget {
   final Color colour;
-  String searchTerm;
-  Function runSearch;
+   String searchTerm;
+  final Function runSearch;
 
   SearchBar({this.colour, this.searchTerm, this.runSearch});
 

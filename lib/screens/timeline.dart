@@ -1,6 +1,5 @@
 import 'package:connect_app/provider_data.dart';
 import 'package:connect_app/screens/in_app/my_profile.dart';
-
 import 'package:flutter/material.dart';
 import 'package:connect_app/screens/in_app/home_screen.dart';
 import 'package:connect_app/screens/in_app/search_page.dart';
@@ -9,7 +8,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/services.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 bool showBottomNavigationBar = true;
 

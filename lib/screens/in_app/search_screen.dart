@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:connect_app/utilities/constants.dart';
 import 'package:connect_app/custom_widgets/search_bar.dart';
 import 'package:connect_app/custom_widgets/people_card.dart';
 import 'package:flutter/rendering.dart';
@@ -7,9 +6,8 @@ import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:connect_app/provider_data.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:connect_app/utilities/users.dart';
 import 'package:connect_app/custom_widgets/progress.dart';
-import 'package:connect_app/custom_widgets/people_card.dart';
+
 
 ScrollController _scrollSearchBarController;
 bool isScrollingDown = false;

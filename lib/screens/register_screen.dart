@@ -5,8 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import '../utilities/custom_containers.dart';
 import 'package:flutter/services.dart';
-import 'package:connect_app/screens/in_app/home_screen.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:connect_app/utilities/registration_functionality.dart';
 
 String email;

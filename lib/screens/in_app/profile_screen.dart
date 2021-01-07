@@ -1,24 +1,21 @@
-import 'package:connect_app/screens/login_screen.dart';
-import 'package:connect_app/screens/timeline.dart';
-import 'package:flutter/material.dart';
 
+import 'package:flutter/material.dart';
 import 'package:connect_app/screens/in_app/my_work.dart' as mywork;
 import 'package:connect_app/screens/in_app/reviews.dart' as reviews;
 import 'package:connect_app/screens/in_app/socials.dart' as socials;
 import 'package:connect_app/utilities/constants.dart';
 import 'package:connect_app/custom_widgets/hire_me_button.dart';
 import 'package:flutter/services.dart';
-import 'package:connect_app/screens/in_app/home_screen.dart';
-import 'my_work.dart';
+
 
 var chosenProfilePageColor = kDarkBlue2;
 
 class ProfileScreen extends StatefulWidget {
-  Color profilePageColor;
-  String name;
-  String occupation;
-  String email;
-  String profileImageURL;
+  final Color profilePageColor;
+  final String name;
+  final String occupation;
+  final String email;
+  final String profileImageURL;
 
   ProfileScreen(
       {this.name,

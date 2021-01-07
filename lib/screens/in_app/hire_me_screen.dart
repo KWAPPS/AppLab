@@ -1,8 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:connect_app/utilities/constants.dart';
-import 'package:flutter/services.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:connect_app/custom_widgets/action_prompt.dart';
+import 'package:connect_app/utilities/constants.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 
 class HireMeScreen extends StatefulWidget {

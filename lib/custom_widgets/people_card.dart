@@ -10,7 +10,7 @@ class PeopleCard extends StatelessWidget {
   final String name;
   final String occupation;
   final String email;
-  Color profilePageColor;
+  final Color profilePageColor;
 
   PeopleCard(
       {this.description,
@@ -122,12 +122,12 @@ class PeopleCard extends StatelessWidget {
 }
 
 class PeopleCard2 extends StatelessWidget {
-  Color profilePageColor;
-  String imageURL;
-  String name;
-  String email;
-  String occupation;
-  String description;
+  final Color profilePageColor;
+  final String imageURL;
+  final String name;
+  final String email;
+  final String occupation;
+  final String description;
 
   PeopleCard2(
       {this.imageURL = 'images/portfolio2.jpg',

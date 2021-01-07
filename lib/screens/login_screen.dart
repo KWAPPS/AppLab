@@ -1,5 +1,4 @@
 import 'package:connect_app/screens/forgot_password_screen.dart';
-import 'package:connect_app/screens/in_app/home_screen.dart';
 import 'package:connect_app/screens/register_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
