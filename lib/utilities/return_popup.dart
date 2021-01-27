@@ -22,7 +22,7 @@ class ReturnPopup {
           color: kDarkBlue2,
           child: Text(
             'ok',
-            style: TextStyle(fontSize: 20, fontFamily: 'Nunito'),
+            style: TextStyle(fontSize: 15, fontFamily: 'Nunito'),
           ),
           onPressed: () {
             Navigator.pushReplacement(
@@ -35,7 +35,7 @@ class ReturnPopup {
               displayText,
               textAlign: TextAlign.center,
               style: TextStyle(
-                  fontSize: 30, color: Colors.white, fontFamily: 'Nunito'),
+                  fontSize: 30, color: kDarkBlue2, fontFamily: 'Nunito'),
             ),
             SizedBox(
               height: 20,

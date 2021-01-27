@@ -1,3 +1,4 @@
+import 'package:connect_app/screens/timeline.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:connect_app/utilities/constants.dart';
@@ -54,7 +55,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void _navigateToHome() {
     Navigator.of(context).pushReplacement(
       MaterialPageRoute(
-        builder: (context) => HomeScreen(),
+        builder: (context) => Timeline(),
       ),
     );
   }
@@ -87,7 +88,7 @@ class _SplashScreenState extends State<SplashScreen> {
               baseColor: Color(0xFF9ad3bc),
               highlightColor: kDarkBlue2,
               child: Text(
-                'quick.',
+                'quickc.',
                 style: TextStyle(
                   fontSize: 60,
                   fontFamily: 'Pacifico',

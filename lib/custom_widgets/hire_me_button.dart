@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:connect_app/utilities/constants.dart';
-import 'package:connect_app/screens/in_app/profile_screen.dart';
 import 'package:connect_app/screens/in_app/hire_me_screen.dart';
 
 class HireMeButton extends StatelessWidget {
@@ -30,7 +29,7 @@ class HireMeButton extends StatelessWidget {
         style: TextStyle(fontFamily: 'Nunito', fontWeight: FontWeight.w600),
       ),
       color: buttonColor,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
     );
   }
 }

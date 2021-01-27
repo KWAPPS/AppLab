@@ -1,3 +1,4 @@
+import 'package:connect_app/screens/forgot_password_screen.dart';
 import 'package:connect_app/screens/in_app/home_screen.dart';
 import 'package:connect_app/screens/register_screen.dart';
 import 'package:flutter/cupertino.dart';
@@ -74,6 +75,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       'welcome',
                       textAlign: TextAlign.center,
                       style: TextStyle(
+                          color: Colors.white,
                           fontFamily: 'Pacifico',
                           fontSize: 50,
                           fontWeight: FontWeight.w600),
@@ -82,6 +84,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       'back',
                       textAlign: TextAlign.center,
                       style: TextStyle(
+                          color: Color(0xFF2B95FF),
                           fontFamily: 'Pacifico',
                           fontSize: 40,
                           fontWeight: FontWeight.w600),
@@ -101,12 +104,14 @@ class _LoginScreenState extends State<LoginScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       CredentialsTextField(
+                        fillColor: Colors.white,
                         barText: 'email',
                         onChanged: (value) {
                           email = value;
                         },
                       ),
                       CredentialsTextField(
+                        fillColor: Colors.white,
                         textObscure: true,
                         barText: 'password',
                         onChanged: (value) {
@@ -130,9 +135,16 @@ class _LoginScreenState extends State<LoginScreen> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text(
-                            'forgot password?',
-                            style: TextStyle(fontFamily: 'Nunito'),
+                          GestureDetector(
+                            child: Text(
+                              'forgot password?',
+                              style: TextStyle(fontFamily: 'Nunito'),
+                            ),
+                            onTap: () {
+                              showModalBottomSheet(
+                                  context: context,
+                                  builder: (context) => ForgotPasswordScreen());
+                            },
                           ),
                           SizedBox(
                             width: 20,

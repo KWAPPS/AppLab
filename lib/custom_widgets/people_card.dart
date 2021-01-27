@@ -1,24 +1,71 @@
 import 'package:flutter/material.dart';
 import 'package:connect_app/utilities/constants.dart';
-import 'package:connect_app/custom_widgets/star.dart';
+import 'package:smooth_star_rating/smooth_star_rating.dart';
 import 'package:connect_app/custom_widgets/hire_me_button.dart';
 import 'package:connect_app/screens/in_app/profile_screen.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
-class PeopleCard extends StatelessWidget {
+double theOverallRating1;
+double theOverallRating2;
+
+class PersonInfoCard1 extends StatefulWidget {
   final String description;
   final String imageURL;
   final String name;
+  final String starRating;
   final String occupation;
+  final String idOfProfessional;
   final String email;
   Color profilePageColor;
 
-  PeopleCard(
+  PersonInfoCard1(
       {this.description,
+      this.idOfProfessional,
       this.imageURL,
+      this.starRating,
       this.profilePageColor,
       this.name,
       this.email,
       this.occupation});
+
+  @override
+  _PersonInfoCard1State createState() => _PersonInfoCard1State();
+}
+
+class _PersonInfoCard1State extends State<PersonInfoCard1> {
+  Future<double> getRating() async {
+    double ratingCounter = 0;
+    List<String> reviewers = [];
+    double overallRating;
+    await FirebaseFirestore.instance
+        .collection('reviews')
+        .snapshots()
+        .listen((data) => data.docs.forEach((doc) {
+              if (doc.data()['emailOfReviewee'] == widget.email) {
+                ratingCounter =
+                    ratingCounter + double.parse(doc.data()['numberOfStars']);
+
+                reviewers.add('a reviewer');
+                overallRating = ratingCounter / reviewers.length;
+                theOverallRating1 = overallRating;
+              } else {
+                print('nooo emailOfReviewee != widget.email__________');
+              }
+            }));
+
+    return overallRating;
+  }
+
+  @override
+  void initState() {
+    getRating().then((value) {
+      setState(() {
+        theOverallRating1 = value;
+      });
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,11 +80,13 @@ class PeopleCard extends StatelessWidget {
                 context,
                 MaterialPageRoute(
                     builder: (context) => ProfileScreen(
-                        profilePageColor: profilePageColor,
-                        name: name,
-                        occupation: occupation,
-                        email: email,
-                        profileImageURL: imageURL)));
+                        starRating: theOverallRating1.toString(),
+                        idOfProfessional: widget.idOfProfessional,
+                        profilePageColor: widget.profilePageColor,
+                        name: widget.name,
+                        occupation: widget.occupation,
+                        email: widget.email,
+                        profileImageURL: widget.imageURL)));
           },
           child: Container(
             padding: EdgeInsets.all(10),
@@ -57,7 +106,7 @@ class PeopleCard extends StatelessWidget {
                       CircleAvatar(
                         backgroundColor: kLightPurple,
                         radius: 40,
-                        backgroundImage: NetworkImage(imageURL),
+                        backgroundImage: NetworkImage(widget.imageURL),
                       ),
                       SizedBox(
                         width: 6,
@@ -65,19 +114,35 @@ class PeopleCard extends StatelessWidget {
                       Column(
                         children: [
                           Text(
-                            name,
+                            widget.name,
                             style: TextStyle(
+                                color: Colors.white,
                                 fontFamily: 'Nunito',
                                 fontWeight: FontWeight.w700),
                           ),
-                          Row(
-                            children: [Star(), Star(), Star(), Star()],
-                          ),
+                          theOverallRating1 == null
+                              ? Text('null')
+                              : SmoothStarRating(
+                                  rating: theOverallRating1,
+                                  isReadOnly: true,
+                                  size: 12,
+                                  borderColor: Colors.yellowAccent,
+                                  filledIconData: FontAwesomeIcons.solidStar,
+                                  color: Colors.yellowAccent,
+                                  defaultIconData: FontAwesomeIcons.star,
+                                  starCount: 5,
+                                  allowHalfRating: true,
+                                  spacing: 2.0,
+                                  onRated: (value) {
+                                    print("rating value -> $value");
+                                    // print("rating value dd -> ${value.truncate()}");
+                                  },
+                                ),
                           SizedBox(
                             height: 8,
                           ),
                           Text(
-                            occupation,
+                            widget.occupation,
                             style: TextStyle(
                                 fontFamily: 'Nunito',
                                 fontWeight: FontWeight.w600,
@@ -99,17 +164,18 @@ class PeopleCard extends StatelessWidget {
                     child: Container(
                       width: 180,
                       child: Text(
-                        description,
-                        style: TextStyle(fontFamily: 'Nunito'),
+                        widget.description,
+                        style: TextStyle(
+                            color: Colors.white, fontFamily: 'Nunito'),
                         textAlign: TextAlign.center,
                       ),
                     ),
                   ),
                   HireMeButton(
-                    occupation: occupation,
+                    occupation: widget.occupation,
                     buttonColor: kLightBlue2,
-                    name: name,
-                    email: email,
+                    name: widget.name,
+                    email: widget.email,
                   ),
                 ],
               ),
@@ -121,19 +187,63 @@ class PeopleCard extends StatelessWidget {
   }
 }
 
-class PeopleCard2 extends StatelessWidget {
+class PersonInfoCard2 extends StatefulWidget {
   String imageURL;
   String name;
+  String starRating;
   String email;
   String occupation;
   String description;
+  Color profilePageColor;
+  String idOfProfessional;
 
-  PeopleCard2(
+  PersonInfoCard2(
       {this.imageURL = 'images/portfolio2.jpg',
       this.name = 'Michael Okoth',
       this.email,
+      this.starRating,
+      this.idOfProfessional,
+      this.profilePageColor,
       this.description,
       this.occupation = 'photographer'});
+
+  @override
+  _PersonInfoCard2State createState() => _PersonInfoCard2State();
+}
+
+class _PersonInfoCard2State extends State<PersonInfoCard2> {
+  Future<double> getRating() async {
+    double ratingCounter = 0;
+    List<String> reviewers = [];
+    double overallRating;
+    await FirebaseFirestore.instance
+        .collection('reviews')
+        .snapshots()
+        .listen((data) => data.docs.forEach((doc) {
+              if (doc.data()['emailOfReviewee'] == widget.email) {
+                ratingCounter =
+                    ratingCounter + double.parse(doc.data()['numberOfStars']);
+
+                reviewers.add('a reviewer');
+                overallRating = ratingCounter / reviewers.length;
+                theOverallRating2 = overallRating;
+              } else {
+                print('nooo emailOfReviewee != widget.email__________');
+              }
+            }));
+
+    return overallRating;
+  }
+
+  void initState() {
+    getRating().then((value) {
+      setState(() {
+        theOverallRating2 = value;
+      });
+    });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -142,10 +252,13 @@ class PeopleCard2 extends StatelessWidget {
             context,
             MaterialPageRoute(
                 builder: (context) => ProfileScreen(
-                    name: name,
-                    occupation: occupation,
-                    email: email,
-                    profileImageURL: imageURL)));
+                    idOfProfessional: widget.idOfProfessional,
+                    starRating: theOverallRating2.toString(),
+                    profilePageColor: widget.profilePageColor,
+                    name: widget.name,
+                    occupation: widget.occupation,
+                    email: widget.email,
+                    profileImageURL: widget.imageURL)));
       },
       child: Container(
         child: Column(
@@ -163,13 +276,13 @@ class PeopleCard2 extends StatelessWidget {
                       topLeft: Radius.circular(15),
                       topRight: Radius.circular(15)),
                   image: DecorationImage(
-                      image: NetworkImage(imageURL), fit: BoxFit.fill)),
+                      image: NetworkImage(widget.imageURL), fit: BoxFit.fill)),
             ),
             SizedBox(
               height: 10,
             ),
             Text(
-              name,
+              widget.name,
               style: TextStyle(
                   fontFamily: 'Nunito',
                   color: Colors.white,
@@ -184,15 +297,30 @@ class PeopleCard2 extends StatelessWidget {
               ),
             ),
             Text(
-              occupation,
+              widget.occupation,
               style: TextStyle(
                   fontFamily: 'Nunito',
                   color: kLightPurple,
                   fontWeight: FontWeight.w600),
             ),
-            Row(
-              children: [Star(), Star(), Star(), Star()],
-            )
+            theOverallRating2 == null
+                ? Text('null')
+                : SmoothStarRating(
+                    rating: theOverallRating1,
+                    isReadOnly: true,
+                    size: 12,
+                    borderColor: Colors.yellowAccent,
+                    filledIconData: FontAwesomeIcons.solidStar,
+                    color: Colors.yellowAccent,
+                    defaultIconData: FontAwesomeIcons.star,
+                    starCount: 5,
+                    allowHalfRating: true,
+                    spacing: 2.0,
+                    onRated: (value) {
+                      print("rating value -> $value");
+                      // print("rating value dd -> ${value.truncate()}");
+                    },
+                  ),
           ],
         ),
         height: 190,

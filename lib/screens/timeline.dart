@@ -64,7 +64,7 @@ class _TimelineState extends State<Timeline> {
         onPageChanged: onPageChanged,
         physics: NeverScrollableScrollPhysics(),
       ),
-      bottomNavigationBar: Consumer<AppBarData>(
+      bottomNavigationBar: Consumer<ProviderData>(
         builder: (context, AppBarData, child) {
           return AnimatedContainer(
             duration: Duration(milliseconds: 500),

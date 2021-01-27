@@ -11,7 +11,7 @@ bool _show = true;
 
 class SearchScreen extends StatefulWidget {
   @override
-  _SearchScreenState createState() => _SearchScreenState(); 
+  _SearchScreenState createState() => _SearchScreenState();
 }
 
 class _SearchScreenState extends State<SearchScreen>
