@@ -1,15 +1,15 @@
 import 'package:connect_app/screens/forgot_password_screen.dart';
-import 'package:connect_app/screens/in_app/home_screen.dart';
 import 'package:connect_app/screens/register_screen.dart';
+import 'package:connect_app/utilities/log_in_functionality.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
+
 import '../utilities/constants.dart';
 import '../utilities/custom_containers.dart';
-import 'package:flutter/services.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:connect_app/utilities/log_in_functionality.dart';
 
 String email;
 
