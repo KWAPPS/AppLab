@@ -253,7 +253,7 @@ class _PersonInfoCard2State extends State<PersonInfoCard2> {
             MaterialPageRoute(
                 builder: (context) => ProfileScreen(
                     idOfProfessional: widget.idOfProfessional,
-                    starRating: theOverallRating2.toString(),
+                    starRating: theOverallRating1.toString(),
                     profilePageColor: widget.profilePageColor,
                     name: widget.name,
                     occupation: widget.occupation,
