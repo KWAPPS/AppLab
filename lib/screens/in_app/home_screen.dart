@@ -7,18 +7,19 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:connect_app/custom_widgets/category_card.dart';
 import 'package:connect_app/custom_widgets/people_card.dart';
-import 'package:connect_app/custom_widgets/custom_floating_bottom_bar.dart';
+
 import 'package:connect_app/screens/timeline.dart';
 import 'package:provider/provider.dart';
+import 'package:connect_app/main.dart';
 
 ScrollController _scrollBottomBarController = ScrollController();
 
 bool isScrollingDown = false;
 bool showBottomBarOnHome = true;
 
-List<PeopleCard> peopleCards = [];
-List<PeopleCard2> morePeopleCards1 = [];
-List<PeopleCard2> morePeopleCards2 = [];
+List<PersonInfoCard1> peopleCards = [];
+List<PersonInfoCard2> morePeopleCards1 = [];
+List<PersonInfoCard2> morePeopleCards2 = [];
 List<CategoryCard> categoryCards = [];
 
 final _firestore = FirebaseFirestore.instance;
@@ -40,11 +41,9 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   }
 
   void myScroll() async {
-    print('my scroll called');
     _scrollBottomBarController.addListener(() {
       if (_scrollBottomBarController.position.userScrollDirection ==
           ScrollDirection.reverse) {
-        print('scroll direction is reverse');
         if (!isScrollingDown) {
           isScrollingDown = true;
           showBottomNavigationBar = false;
@@ -53,7 +52,6 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
       }
       if (_scrollBottomBarController.position.userScrollDirection ==
           ScrollDirection.forward) {
-        print('scroll is forward');
         if (isScrollingDown) {
           isScrollingDown = false;
           showBottomNavigationBar = true;
@@ -72,7 +70,6 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
         ));
     myScroll();
 
-    print('home screen init ___________________________________');
     super.initState();
   }
 
@@ -82,7 +79,6 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     morePeopleCards2.clear();
     morePeopleCards1.clear();
     categoryCards.clear();
-    print('__________________________________disposed home screen');
     _scrollBottomBarController.removeListener(() {});
 
     super.dispose();
@@ -217,7 +213,8 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                         }
                                         if (user.data()['profileImageURL'] !=
                                             null) {
-                                          PeopleCard peopleCard = PeopleCard(
+                                          PersonInfoCard1 peopleCard =
+                                              PersonInfoCard1(
                                             profilePageColor: profileColor,
                                             idOfProfessional: user.id,
                                             description:
@@ -227,10 +224,10 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                             email: user.data()['email'],
                                             imageURL:
                                                 user.data()['profileImageURL'],
-                                            occupation:
-                                                user.data()['occupation'],
+                                            occupation: capitalize(
+                                                user.data()['occupation']),
                                             name:
-                                                '${user.data()["firstName"]} ${user.data()["lastName"]} ',
+                                                '${capitalize(user.data()["firstName"])} ${capitalize(user.data()["lastName"])} ',
                                           );
                                           peopleCards.add(peopleCard);
                                         }
@@ -296,16 +293,18 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
 
                                       if (user.data()['profileImageURL'] !=
                                           null) {
-                                        PeopleCard2 peopleCard2 = PeopleCard2(
+                                        PersonInfoCard2 peopleCard2 =
+                                            PersonInfoCard2(
                                           profilePageColor: theProfileColor,
                                           idOfProfessional: user.id,
                                           imageURL:
                                               user.data()['profileImageURL'],
                                           starRating: user.data()['starRating'],
                                           email: user.data()['email'],
-                                          occupation: user.data()['occupation'],
+                                          occupation: capitalize(
+                                              user.data()['occupation']),
                                           name:
-                                              '${user.data()["firstName"]} ${user.data()["lastName"]} ',
+                                              '${capitalize(user.data()["firstName"])} ${capitalize(user.data()["lastName"])} ',
                                         );
 
                                         if (morePeopleCards1.length ==

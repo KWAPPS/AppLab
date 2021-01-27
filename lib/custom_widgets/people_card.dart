@@ -1,4 +1,3 @@
-import 'package:connect_app/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:connect_app/utilities/constants.dart';
 import 'package:smooth_star_rating/smooth_star_rating.dart';
@@ -10,7 +9,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 double theOverallRating1;
 double theOverallRating2;
 
-class PeopleCard extends StatefulWidget {
+class PersonInfoCard1 extends StatefulWidget {
   final String description;
   final String imageURL;
   final String name;
@@ -20,7 +19,7 @@ class PeopleCard extends StatefulWidget {
   final String email;
   Color profilePageColor;
 
-  PeopleCard(
+  PersonInfoCard1(
       {this.description,
       this.idOfProfessional,
       this.imageURL,
@@ -31,10 +30,10 @@ class PeopleCard extends StatefulWidget {
       this.occupation});
 
   @override
-  _PeopleCardState createState() => _PeopleCardState();
+  _PersonInfoCard1State createState() => _PersonInfoCard1State();
 }
 
-class _PeopleCardState extends State<PeopleCard> {
+class _PersonInfoCard1State extends State<PersonInfoCard1> {
   Future<double> getRating() async {
     double ratingCounter = 0;
     List<String> reviewers = [];
@@ -44,22 +43,12 @@ class _PeopleCardState extends State<PeopleCard> {
         .snapshots()
         .listen((data) => data.docs.forEach((doc) {
               if (doc.data()['emailOfReviewee'] == widget.email) {
-                print('emailOfReviewee was equal to widget.email____________');
                 ratingCounter =
                     ratingCounter + double.parse(doc.data()['numberOfStars']);
 
                 reviewers.add('a reviewer');
-                print(
-                    '_______rating counter is $ratingCounter and reviewers length is ${reviewers.length}');
                 overallRating = ratingCounter / reviewers.length;
-                print("___________The total ratings are $ratingCounter");
                 theOverallRating1 = overallRating;
-                print(' the average rating is $theOverallRating1');
-
-                // setState(() {
-                //   theOverallRating = overallRating;
-                //   print(' the average rating is $theOverallRating');
-                // });
               } else {
                 print('nooo emailOfReviewee != widget.email__________');
               }
@@ -198,7 +187,7 @@ class _PeopleCardState extends State<PeopleCard> {
   }
 }
 
-class PeopleCard2 extends StatefulWidget {
+class PersonInfoCard2 extends StatefulWidget {
   String imageURL;
   String name;
   String starRating;
@@ -208,7 +197,7 @@ class PeopleCard2 extends StatefulWidget {
   Color profilePageColor;
   String idOfProfessional;
 
-  PeopleCard2(
+  PersonInfoCard2(
       {this.imageURL = 'images/portfolio2.jpg',
       this.name = 'Michael Okoth',
       this.email,
@@ -219,10 +208,10 @@ class PeopleCard2 extends StatefulWidget {
       this.occupation = 'photographer'});
 
   @override
-  _PeopleCard2State createState() => _PeopleCard2State();
+  _PersonInfoCard2State createState() => _PersonInfoCard2State();
 }
 
-class _PeopleCard2State extends State<PeopleCard2> {
+class _PersonInfoCard2State extends State<PersonInfoCard2> {
   Future<double> getRating() async {
     double ratingCounter = 0;
     List<String> reviewers = [];
@@ -232,22 +221,12 @@ class _PeopleCard2State extends State<PeopleCard2> {
         .snapshots()
         .listen((data) => data.docs.forEach((doc) {
               if (doc.data()['emailOfReviewee'] == widget.email) {
-                print('emailOfReviewee was equal to widget.email____________');
                 ratingCounter =
                     ratingCounter + double.parse(doc.data()['numberOfStars']);
 
                 reviewers.add('a reviewer');
-                print(
-                    '_______rating counter is $ratingCounter and reviewers length is ${reviewers.length}');
                 overallRating = ratingCounter / reviewers.length;
-                print("___________The total ratings are $ratingCounter");
                 theOverallRating2 = overallRating;
-                print(' the average rating is $theOverallRating2');
-
-                // setState(() {
-                //   theOverallRating = overallRating;
-                //   print(' the average rating is $theOverallRating');
-                // });
               } else {
                 print('nooo emailOfReviewee != widget.email__________');
               }

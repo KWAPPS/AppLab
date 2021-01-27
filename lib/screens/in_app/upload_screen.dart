@@ -151,7 +151,7 @@ class _UploadScreenState extends State<UploadScreen> {
     }
     print('imageURLs: $imageURLs  before calling submit to firestore');
     submitToFirestore();
-    print('finished uploading_______________to storage_______________________');
+
     setState(() {
       images.clear();
       showUploadingSpinner = false;
