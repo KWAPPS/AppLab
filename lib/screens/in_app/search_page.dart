@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:connect_app/custom_widgets/people_card.dart';
+import 'package:connect_app/custom_widgets/person_info_card.dart';
 import 'package:connect_app/screens/in_app/home_screen.dart';
 import 'package:connect_app/utilities/constants.dart';
 import 'package:connect_app/utilities/data_controller.dart';

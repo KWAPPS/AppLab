@@ -6,8 +6,7 @@ import 'package:connect_app/utilities/constants.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:connect_app/custom_widgets/category_card.dart';
-import 'package:connect_app/custom_widgets/people_card.dart';
-
+import 'package:connect_app/custom_widgets/person_info_card.dart';
 import 'package:connect_app/screens/timeline.dart';
 import 'package:provider/provider.dart';
 import 'package:connect_app/main.dart';
@@ -61,6 +60,9 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     });
   }
 
+  Stream<QuerySnapshot> _peopleSuggestionsStream;
+  Stream<QuerySnapshot> _moreSuggestionsStream;
+
   @override
   void initState() {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
@@ -69,6 +71,17 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
         statusBarColor: Colors.transparent // status bar color
         ));
     myScroll();
+    _peopleSuggestionsStream = _firestore
+        .collection('userData')
+        .orderBy('timeStamp', descending: false)
+        .snapshots()
+        .take(4);
+    _moreSuggestionsStream = _firestore
+        .collection('userData')
+        .orderBy('timeStamp', descending: true)
+        .snapshots()
+        .take(4);
+    print('initialized home screen___________--------------_');
 
     super.initState();
   }
@@ -80,6 +93,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     morePeopleCards1.clear();
     categoryCards.clear();
     _scrollBottomBarController.removeListener(() {});
+    print('disposed home screen___________--------------_');
 
     super.dispose();
   }
@@ -91,6 +105,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
         // navigation bar color
         statusBarColor: Colors.transparent // status bar color
         ));
+
     return Scaffold(
       body: Container(
         color: Colors.white,
@@ -179,10 +194,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                             child: Row(
                               children: [
                                 StreamBuilder<QuerySnapshot>(
-                                  stream: _firestore
-                                      .collection('userData')
-                                      .orderBy('timeStamp', descending: false)
-                                      .snapshots(),
+                                  stream: _peopleSuggestionsStream,
                                   builder: (context, snapshot) {
                                     if (!snapshot.hasData) {
                                       print('oops');
@@ -217,10 +229,14 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                               PersonInfoCard1(
                                             profilePageColor: profileColor,
                                             idOfProfessional: user.id,
+                                            homeScreenReloadCallBack: () {
+                                              setState(() {
+                                                print(
+                                                    '__________________________reloading home screen____________');
+                                              });
+                                            },
                                             description:
                                                 user.data()['description'],
-                                            starRating:
-                                                user.data()['starRating'],
                                             email: user.data()['email'],
                                             imageURL:
                                                 user.data()['profileImageURL'],
@@ -242,7 +258,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                 )
                               ],
                             ),
-                          ),
+                          )
                         ],
                       ),
                     ),
@@ -261,10 +277,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               StreamBuilder<QuerySnapshot>(
-                                stream: _firestore
-                                    .collection('userData')
-                                    .orderBy('timeStamp', descending: true)
-                                    .snapshots(),
+                                stream: _moreSuggestionsStream,
                                 builder: (context, snapshot) {
                                   if (!snapshot.hasData) {
                                     print('oops');
@@ -299,7 +312,8 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                           idOfProfessional: user.id,
                                           imageURL:
                                               user.data()['profileImageURL'],
-                                          starRating: user.data()['starRating'],
+                                          coverImageURL:
+                                              user.data()['coverImageURL'],
                                           email: user.data()['email'],
                                           occupation: capitalize(
                                               user.data()['occupation']),

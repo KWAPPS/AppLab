@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:connect_app/utilities/constants.dart';
 import 'package:shimmer/shimmer.dart';
-
 import 'in_app/home_screen.dart';
 import 'welcome_screen.dart';
 import 'package:flutter/services.dart';
@@ -71,11 +70,11 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-      systemNavigationBarColor: Colors.white, // navigation bar color
+      systemNavigationBarColor: kDarkBlue2, // navigation bar color
       statusBarColor: Colors.transparent, // status bar color
     ));
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: kDarkBlue2,
       body: Container(
         child: Stack(
           alignment: Alignment.center,
@@ -85,8 +84,8 @@ class _SplashScreenState extends State<SplashScreen> {
               constraints: BoxConstraints.expand(),
             ),
             Shimmer.fromColors(
-              baseColor: Color(0xFF9ad3bc),
-              highlightColor: kDarkBlue2,
+              baseColor: kLightBlue2,
+              highlightColor: kLightPurple,
               child: Text(
                 'quickc.',
                 style: TextStyle(

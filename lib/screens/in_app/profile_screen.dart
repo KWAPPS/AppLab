@@ -8,11 +8,13 @@ import 'package:connect_app/custom_widgets/hire_me_button.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+//TODO after making a review, and navigating back to home, there isn't any data for the star rating widgets. Figure out how to make it refresh when you go back. You might need to add a back button so that you implement the functionality in navigator.pop
+
 var chosenProfilePageColor = kDarkBlue2;
-String ratingOfTheProfessional;
 
 class ProfileScreen extends StatefulWidget {
   Color profilePageColor;
+
   String idOfProfessional;
   String name;
   String occupation;
@@ -40,7 +42,6 @@ class _ProfileScreenState extends State<ProfileScreen>
   @override
   void initState() {
     chosenProfilePageColor = widget.profilePageColor;
-    ratingOfTheProfessional = widget.starRating;
 
     controller = TabController(length: 3, vsync: this);
 
@@ -120,22 +121,26 @@ class _ProfileScreenState extends State<ProfileScreen>
                                   fontSize: 15),
                             ),
                           ),
-                          SmoothStarRating(
-                            rating: double.parse(widget.starRating),
-                            isReadOnly: true,
-                            size: 14,
-                            borderColor: Colors.yellowAccent,
-                            filledIconData: FontAwesomeIcons.solidStar,
-                            color: Colors.yellowAccent,
-                            defaultIconData: FontAwesomeIcons.star,
-                            starCount: 5,
-                            allowHalfRating: true,
-                            spacing: 2.0,
-                            onRated: (value) {
-                              print("rating value -> $value");
-                              // print("rating value dd -> ${value.truncate()}");
-                            },
-                          ),
+                          widget.starRating == null
+                              ? SizedBox(
+                                  height: 1,
+                                )
+                              : SmoothStarRating(
+                                  rating: double.parse(widget.starRating),
+                                  isReadOnly: true,
+                                  size: 14,
+                                  borderColor: Colors.yellowAccent,
+                                  filledIconData: FontAwesomeIcons.solidStar,
+                                  color: Colors.yellowAccent,
+                                  defaultIconData: FontAwesomeIcons.star,
+                                  starCount: 5,
+                                  allowHalfRating: true,
+                                  spacing: 2.0,
+                                  onRated: (value) {
+                                    print("rating value -> $value");
+                                    // print("rating value dd -> ${value.truncate()}");
+                                  },
+                                ),
                           Container(
                             padding: EdgeInsets.only(top: 10, bottom: 5),
                             child: Text(
@@ -200,15 +205,19 @@ class _ProfileScreenState extends State<ProfileScreen>
                       children: [
                         mywork.MyWork(
                           email: widget.email,
+                          color: widget.profilePageColor,
                         ),
                         reviews.Reviews(
                           idOfProfessional: widget.idOfProfessional,
                           email: widget.email,
+                          color: widget.profilePageColor,
                           name: widget.name,
                           occupation: widget.occupation,
                           profileImageURL: widget.profileImageURL,
                         ),
-                        socials.Socials()
+                        socials.Socials(
+                          color: widget.profilePageColor,
+                        )
                       ],
                     ),
                   )

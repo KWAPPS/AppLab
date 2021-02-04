@@ -1,5 +1,4 @@
 import 'package:connect_app/screens/in_app/profile_screen.dart';
-import 'package:connect_app/utilities/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -8,6 +7,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:connect_app/utilities/review_functionality.dart';
 import 'package:smooth_star_rating/smooth_star_rating.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:connect_app/utilities/constants.dart';
 
 FirebaseFirestore _firestore = Firestore.instance;
 FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
@@ -28,13 +28,16 @@ double averageRating = 0;
 
 class Reviews extends StatefulWidget {
   String idOfProfessional;
+
   String email;
+  Color color;
   String name;
   String occupation;
   String profileImageURL;
   Reviews(
       {this.email,
       this.name,
+      this.color,
       this.idOfProfessional,
       this.occupation,
       this.profileImageURL});
@@ -48,7 +51,6 @@ class _ReviewsState extends State<Reviews> {
   void initState() {
     idOfTheProfessional = widget.idOfProfessional;
     reviewsList.clear();
-    print('${widget.idOfProfessional}  is id of professional_______________');
     super.initState();
   }
 
@@ -60,7 +62,7 @@ class _ReviewsState extends State<Reviews> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: chosenProfilePageColor,
+      backgroundColor: widget.color != null ? widget.color : kDarkBlue2,
       body: SingleChildScrollView(
         child: Container(
           margin: EdgeInsets.only(left: 10.0, top: 20.0, right: 10.0),
@@ -110,7 +112,7 @@ class _ReviewsState extends State<Reviews> {
                           context,
                           MaterialPageRoute(
                               builder: (context) => ProfileScreen(
-                                    starRating: averageRating.toString(),
+                                    starRating: null,
                                     profilePageColor: chosenProfilePageColor,
                                     name: widget.name,
                                     occupation: widget.occupation,
@@ -152,9 +154,6 @@ class _ReviewsState extends State<Reviews> {
                         if (reviewData.data()['reviewerEmail'] ==
                             _firebaseAuth.currentUser.email) {
                           userAlreadyReviewed = true;
-                          print(
-                              'current user email is ${_firebaseAuth.currentUser.email} and the '
-                              'user who reviewed is ${reviewData.data()['reviewerEmail']} ______________');
                           currentUserReviewId = reviewData.id;
                         }
 
@@ -166,9 +165,6 @@ class _ReviewsState extends State<Reviews> {
                           );
 
                           reviewsList.add(review);
-                          print(
-                              '___________current user reviewed? $userAlreadyReviewed');
-                          print('with this id $currentUserReviewId __________');
                         } catch (e) {
                           print(e);
                         }

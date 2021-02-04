@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:connect_app/utilities/constants.dart';
 import 'package:connect_app/custom_widgets/search_bar.dart';
-import 'package:connect_app/custom_widgets/people_card.dart';
+import 'package:connect_app/custom_widgets/person_info_card.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 

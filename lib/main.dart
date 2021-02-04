@@ -4,6 +4,15 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+import 'package:connect_app/screens/in_app/home_screen.dart';
+import 'package:connect_app/screens/splash_screen.dart';
+import 'package:connect_app/screens/timeline.dart';
+import 'package:connect_app/screens/in_app/profile_screen.dart';
+import 'package:connect_app/screens/register_screen.dart';
+import 'package:connect_app/screens/login_screen.dart';
+import 'package:connect_app/screens/welcome_screen.dart';
+import 'package:connect_app/screens/in_app/hire_me_screen.dart';
+import 'package:connect_app/screens/in_app/search_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -47,21 +56,18 @@ class MyApp extends StatelessWidget {
             ),
           ),
         ),
-        home: EditProfilePage(),
-        // initialRoute: SplashScreen.id,
-        // routes: {
-        //   'screen/timeline.dart': (context) => Timeline(),
-        //
-        //   'screens/in_app/profile_screen.dart': (context) => ProfileScreen(),
-        //   'screens/in_app/search_screen.dart': (context) => SearchScreen(),
-        //   WelcomeScreen.id: (context) => WelcomeScreen(),
-        //   LoginScreen.id: (context) => LoginScreen(),
-        //   RegisterScreen.id: (context) => RegisterScreen(),
-        //   HomeScreen.id: (context) => HomeScreen(),
-        //   SplashScreen.id: (context) => SplashScreen(),
-        //   // DetailsScreen.id: (context) => DetailsScreen(),
-        //   HireMeScreen.id: (context) => HireMeScreen(),
-        // },
+        initialRoute: SplashScreen.id,
+        routes: {
+          'screen/timeline.dart': (context) => Timeline(),
+          'screens/in_app/profile_screen.dart': (context) => ProfileScreen(),
+          'screens/in_app/search_screen.dart': (context) => SearchScreen(),
+          WelcomeScreen.id: (context) => WelcomeScreen(),
+          LoginScreen.id: (context) => LoginScreen(),
+          RegisterScreen.id: (context) => RegisterScreen(),
+          HomeScreen.id: (context) => HomeScreen(),
+          SplashScreen.id: (context) => SplashScreen(),
+          HireMeScreen.id: (context) => HireMeScreen(),
+        },
       ),
     );
   }

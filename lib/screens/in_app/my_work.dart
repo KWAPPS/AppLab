@@ -14,7 +14,8 @@ final _firestore = FirebaseFirestore.instance;
 
 class MyWork extends StatefulWidget {
   String email;
-  MyWork({this.email});
+  Color color;
+  MyWork({this.email, this.color});
 
   @override
   _MyWorkState createState() => _MyWorkState();
@@ -44,7 +45,7 @@ class _MyWorkState extends State<MyWork> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: chosenProfilePageColor,
+      backgroundColor: widget.color != null? widget.color : kDarkBlue2,
       body: SingleChildScrollView(
         child: Column(
           children: [

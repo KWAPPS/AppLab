@@ -19,13 +19,21 @@ class RegistrationFunctionality {
           email: email, password: password);
       await newUser.user.sendEmailVerification();
       await _auth.signOut();
+      _firestore.collection('userData').add({'email': email});
+      _firestore.collection('userData').add({
+        'profileImageURL':
+            'https://images.unsplash.com/photo-1530305408560-82d13781b33a?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1052&q=80'
+      });
+      _firestore.collection('userData').add({'profilePageColor': '1'});
+      _firestore.collection('userData').add({
+        'coverImageURL':
+            'https://images.unsplash.com/photo-1530305408560-82d13781b33a?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1052&q=80'
+      });
       return await ReturnPopup(
           context: context,
           displayText:
               'check your email and click the link to verify your address, then sign in!',
           builderCallback: (context) => SplashScreen()).triggerPopup();
-
-      registeredUser = newUser;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'email-already-in-use') {
         print('Email Already In Use');
