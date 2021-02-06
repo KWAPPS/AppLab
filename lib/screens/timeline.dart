@@ -100,6 +100,7 @@ class _TimelineState extends State<Timeline> {
           Search(),
           UploadScreen(),
           MyProfile(
+            idOfUser: widget.currentUserID,
             profilePageColor: widget.currentUserProfileColor,
             coverImageURL: widget.currentUserCoverImageURL,
             idOfProfessional: widget.currentUserID,
