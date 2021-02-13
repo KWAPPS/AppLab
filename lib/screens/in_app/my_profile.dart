@@ -18,6 +18,7 @@ import 'package:connect_app/screens/in_app/edit_profile.dart';
 String myProfileImageURL;
 String myProfileName;
 String myProfileOccupation;
+double myRating;
 
 class MyProfile extends StatefulWidget {
   Color profilePageColor;
@@ -148,12 +149,12 @@ class _MyProfileState extends State<MyProfile>
                                       fontSize: 15),
                                 ),
                               ),
-                              widget.starRating == null
+                              myRating == null
                                   ? SizedBox(
                                       height: 1,
                                     )
                                   : SmoothStarRating(
-                                      rating: double.parse(widget.starRating),
+                                      rating: myRating,
                                       isReadOnly: true,
                                       size: 14,
                                       borderColor: Colors.yellowAccent,

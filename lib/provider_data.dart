@@ -12,6 +12,11 @@ class ProviderData extends ChangeNotifier {
     notifyListeners();
   }
 
+  void updateRatingOnMyProfile(double currentUserRating) {
+    myRating = currentUserRating;
+    notifyListeners();
+  }
+
   void toggleLoadingOnEditProfile() {
     toggleSpin = !toggleSpin;
     notifyListeners();

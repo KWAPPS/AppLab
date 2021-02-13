@@ -12,8 +12,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:connect_app/utilities/constants.dart';
 import 'package:connect_app/main.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 bool showBottomNavigationBar = true;
+FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
 // TODO pass over the star rating t edit profile page
 class Timeline extends StatefulWidget {
@@ -35,8 +37,35 @@ class Timeline extends StatefulWidget {
 class _TimelineState extends State<Timeline> {
   PageController pageController;
   int pageIndex = 0;
+
+  Future<double> getRating() async {
+    double ratingCounter = 0;
+    List<String> reviewers = [];
+    double overallRating;
+    await FirebaseFirestore.instance
+        .collection('reviews')
+        .snapshots()
+        .listen((data) => data.docs.forEach((doc) {
+              if (doc.data()['emailOfReviewee'] ==
+                  _firebaseAuth.currentUser.email) {
+                ratingCounter =
+                    ratingCounter + double.parse(doc.data()['numberOfStars']);
+
+                reviewers.add('a reviewer');
+                overallRating = ratingCounter / reviewers.length;
+                print(
+                    'on timeline, overall rating is $overallRating _______________');
+                Provider.of<ProviderData>(context, listen: false)
+                    .updateRatingOnMyProfile(overallRating);
+              } else {}
+            }));
+
+    return overallRating;
+  }
+
   @override
   void initState() {
+    getRating();
     pageController = PageController();
     pageController.addListener(() {
       print('tab been switched_____________________');
