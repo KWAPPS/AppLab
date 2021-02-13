@@ -284,7 +284,7 @@ class _PersonInfoCard2State extends State<PersonInfoCard2> {
                         topRight: Radius.circular(15)),
                     image: DecorationImage(
                         image: NetworkImage(widget.coverImageURL),
-                        fit: BoxFit.fill)),
+                        fit: BoxFit.cover)),
               ),
               SizedBox(
                 height: 10,

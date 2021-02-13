@@ -65,11 +65,6 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
 
   @override
   void initState() {
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-        systemNavigationBarColor: Colors.white,
-        // navigation bar color
-        statusBarColor: Colors.transparent // status bar color
-        ));
     myScroll();
     _peopleSuggestionsStream = _firestore
         .collection('userData')
@@ -81,6 +76,11 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
         .orderBy('timeStamp', descending: true)
         .snapshots()
         .take(4);
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+        systemNavigationBarColor: Colors.white,
+        // navigation bar color
+        statusBarColor: Colors.transparent // status bar color
+        ));
     print('initialized home screen___________--------------_');
 
     super.initState();

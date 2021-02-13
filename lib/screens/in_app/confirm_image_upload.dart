@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:connect_app/screens/in_app/edit_profile.dart';
-
+import 'package:connect_app/utilities/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:connect_app/provider_data.dart';
@@ -20,14 +20,25 @@ class ConfirmImageUpload extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height * 0.6,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(15), topRight: Radius.circular(15)),
+      ),
+      height: MediaQuery.of(context).size.height * 0.8,
       child: SingleChildScrollView(
         child: Column(
           children: [
-            Image.file(image),
-            FlatButton(
-              child: Text('confirm upload'),
-              color: Colors.blue,
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.2,
+            ),
+            Container(
+                width: MediaQuery.of(context).size.width * 0.9,
+                child: Image.file(image)),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.1,
+            ),
+            RaisedButton(
               onPressed: () {
                 void pushProductDataToCollection() {
                   if (newImageURL != null) {
@@ -37,6 +48,8 @@ class ConfirmImageUpload extends StatelessWidget {
                         .update({pathToUpdate: newImageURL});
                     Provider.of<ProviderData>(context, listen: false)
                         .updateProfileImageURL(newImageURL);
+                    Provider.of<ProviderData>(context, listen: false)
+                        .updateCoverImageURL(newImageURL);
                   } else {
                     print('newImageURL was empty');
                   }
@@ -65,6 +78,15 @@ class ConfirmImageUpload extends StatelessWidget {
 
                 Navigator.pop(context);
               },
+              padding: EdgeInsets.all(5),
+              child: Text(
+                'Upload',
+                style: TextStyle(
+                    fontFamily: 'Nunito', fontWeight: FontWeight.w600),
+              ),
+              color: kLightBlue2,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(25)),
             )
           ],
         ),

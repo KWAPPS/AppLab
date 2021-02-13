@@ -20,21 +20,38 @@ String userCoverImageURL;
 bool toggleSpin = false;
 bool uploadConfirmed = false;
 
+String description;
+String phoneNumber;
+String firstName;
+String lastName;
+String occupation;
+
 String defaultProfileImageURL =
     'https://images.unsplash.com/photo-1506318137071-a8e063b4bec0?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1070&q=80';
 
 class EditProfilePage extends StatefulWidget {
   String idOfUser;
+  String name;
+  String description;
+  String phoneNumber;
+  String firstName;
+  String lastName;
+  String occupation;
   String profileImageURL;
   String coverImageURL;
 
-  EditProfilePage({this.idOfUser, this.coverImageURL});
+  EditProfilePage(
+      {this.idOfUser,
+      this.firstName,
+      this.lastName,
+      this.description,
+      this.occupation,
+      this.phoneNumber,
+      this.coverImageURL});
 
   @override
   _EditProfilePageState createState() => _EditProfilePageState();
 }
-
-//TODO add a phone number field with a num keyboard
 
 class _EditProfilePageState extends State<EditProfilePage> {
   bool showPassword = false;
@@ -55,7 +72,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
                   pathToUpdate: pathToUpdate,
                   userID: widget.idOfUser,
                   image: _image,
-                ));
+                ),
+            isScrollControlled: true);
       } else {
         print('No image selected.');
       }
@@ -76,6 +94,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
       Provider.of<ProviderData>(this.context, listen: false)
           .updateCoverImageURL(theUserCoverImageURL);
     });
+
     super.initState();
   }
 
@@ -127,37 +146,86 @@ class _EditProfilePageState extends State<EditProfilePage> {
                     )
                   ],
                 ),
+                SizedBox(
+                  height: 15,
+                ),
+                Text(
+                  'first name',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      fontFamily: 'Nunito', fontSize: 12, color: kDarkBlue2),
+                ),
                 EditProfileTextField(
-                    hintText: 'first name',
-                    onCompleted: () {
-                      print('just completed');
+                    maxLength: 14,
+                    hintText: '$firstName',
+                    onCompleted: (value) {
+                      firstName = value;
                     },
-                    onChanged: () {
-                      print('called on changed');
+                    onChanged: (value) {
+                      firstName = value;
                     }),
+                Text(
+                  'last name',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      fontFamily: 'Nunito', fontSize: 12, color: kDarkBlue2),
+                ),
                 EditProfileTextField(
-                    hintText: 'last name',
-                    onCompleted: () {
-                      print('just completed');
+                    maxLength: 14,
+                    hintText: '$lastName',
+                    onCompleted: (value) {
+                      lastName = value;
                     },
-                    onChanged: () {
-                      print('called on changed');
+                    onChanged: (value) {
+                      lastName = value;
                     }),
+                Text(
+                  'what do you do?(eg. designer, barber...)',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      fontFamily: 'Nunito', fontSize: 12, color: kDarkBlue2),
+                ),
                 EditProfileTextField(
-                    hintText: 'what do you do?(eg. designer, barber...)',
-                    onCompleted: () {
-                      print('just completed');
+                    maxLength: 20,
+                    hintText: '$occupation',
+                    onCompleted: (value) {
+                      occupation = value;
                     },
-                    onChanged: () {
-                      print('called on changed');
+                    onChanged: (value) {
+                      occupation = value;
                     }),
+                Text(
+                  'brief description (90 characters max)',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      fontFamily: 'Nunito', fontSize: 12, color: kDarkBlue2),
+                ),
                 EditProfileTextField(
-                    hintText: 'brief description',
-                    onCompleted: () {
-                      print('just completed');
+                    maxLength: 90,
+                    minLines: 1,
+                    maxLines: 3,
+                    hintText: '$description',
+                    onCompleted: (value) {
+                      description = value;
                     },
-                    onChanged: () {
-                      print('called on changed');
+                    onChanged: (value) {
+                      description = value;
+                    }),
+                Text(
+                  'phone number (eg. +256700000000)',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      fontFamily: 'Nunito', fontSize: 12, color: kDarkBlue2),
+                ),
+                EditProfileTextField(
+                    maxLength: 13,
+                    hintText: '$phoneNumber',
+                    textInputType: TextInputType.phone,
+                    onCompleted: (value) {
+                      phoneNumber = value;
+                    },
+                    onChanged: (value) {
+                      phoneNumber = value;
                     }),
                 Container(
                   padding: EdgeInsets.symmetric(vertical: 10),
@@ -171,45 +239,79 @@ class _EditProfilePageState extends State<EditProfilePage> {
                         color: Colors.blueGrey),
                   ),
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    SizedBox(
-                      width: 15,
-                    ),
-                    Container(
-                      padding: EdgeInsets.symmetric(vertical: 10),
-                      height: 90,
-                      width: 150,
-                      child: Text(
-                        '.',
-                        style: TextStyle(fontSize: 1),
-                      ),
-                      decoration: BoxDecoration(
-                          color: kLightPurple,
-                          borderRadius: BorderRadius.only(
-                              bottomLeft: Radius.circular(15),
-                              bottomRight: Radius.circular(15),
-                              topLeft: Radius.circular(15),
-                              topRight: Radius.circular(15)),
-                          image: DecorationImage(
-                              image: userCoverImageURL != null
-                                  ? NetworkImage(userCoverImageURL)
-                                  : NetworkImage(defaultProfileImageURL),
-                              fit: BoxFit.fill)),
-                    ),
-                    SizedBox(
-                      width: 8,
-                    ),
-                    Icon(
-                      Icons.edit,
-                      color: kDarkBlue2,
-                    )
-                  ],
+                SizedBox(
+                  width: 15,
+                ),
+                Container(
+                  padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                  height: MediaQuery.of(context).size.width * 0.54,
+                  width: MediaQuery.of(context).size.width * 0.9,
+                  child: Text(
+                    '.',
+                    style: TextStyle(fontSize: 1),
+                  ),
+                  decoration: BoxDecoration(
+                      color: kLightPurple,
+                      borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(15),
+                          bottomRight: Radius.circular(15),
+                          topLeft: Radius.circular(15),
+                          topRight: Radius.circular(15)),
+                      image: DecorationImage(
+                          image: userCoverImageURL != null
+                              ? NetworkImage(userCoverImageURL)
+                              : NetworkImage(defaultProfileImageURL),
+                          fit: BoxFit.cover)),
                 ),
                 SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.2,
+                  height: 15,
+                ),
+                GestureDetector(
+                  onTap: () {
+                    getImage('coverImageURL');
+                  },
+                  child: Icon(
+                    Icons.edit,
+                    size: 28,
+                    color: kDarkBlue2,
+                  ),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.05,
+                ),
+                RaisedButton(
+                  onPressed: () async {
+                    Provider.of<ProviderData>(context, listen: false)
+                        .toggleLoadingOnEditProfile();
+                    print(
+                        '${widget.idOfUser} is the id of user_____________________');
+                    await _firestore
+                        .collection('userData')
+                        .doc(widget.idOfUser)
+                        .update({
+                      'phoneNumber': phoneNumber,
+                      'firstName': firstName,
+                      'lastName': lastName,
+                      'description': description,
+                      'occupation': occupation
+                    });
+                    Provider.of<ProviderData>(context, listen: false)
+                        .updateUserData(phoneNumber, firstName, lastName,
+                            occupation, description);
+                    Navigator.pop(context);
+                  },
+                  padding: EdgeInsets.all(5),
+                  child: Text(
+                    'Done!',
+                    style: TextStyle(
+                        fontFamily: 'Nunito', fontWeight: FontWeight.w600),
+                  ),
+                  color: kLightBlue2,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(25)),
+                ),
+                SizedBox(
+                  height: 60,
                 )
               ],
             ),

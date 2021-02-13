@@ -20,9 +20,13 @@ class Timeline extends StatefulWidget {
   var currentUserID;
   var currentUserProfileColor;
   var currentUserName;
+  var currentUserFirstName;
+  var currentUserLastName;
   var currentUserOccupation;
   var currentUserProfileImageURL;
   var currentUserCoverImageURL;
+  var currentUserDescription;
+  var currentUserPhoneNumber;
 
   @override
   _TimelineState createState() => _TimelineState();
@@ -52,9 +56,14 @@ class _TimelineState extends State<Timeline> {
         widget.currentUserID = data.docs[0].id;
         widget.currentUserName =
             '${capitalize(data.docs[0]["firstName"])} ${capitalize(data.docs[0]["lastName"])} ';
+        widget.currentUserFirstName =
+            '${capitalize(data.docs[0]["firstName"])}';
+        widget.currentUserLastName = '${capitalize(data.docs[0]["lastName"])}';
         widget.currentUserOccupation = capitalize(data.docs[0]['occupation']);
         widget.currentUserProfileImageURL = data.docs[0]['profileImageURL'];
         widget.currentUserCoverImageURL = data.docs[0]['coverImageURL'];
+        widget.currentUserDescription = data.docs[0]['description'];
+        widget.currentUserPhoneNumber = data.docs[0]['phoneNumber'];
 
         if (data.docs[0]['profilePageColor'] == '1') {
           widget.currentUserProfileColor = kDarkBlue2;
@@ -100,7 +109,11 @@ class _TimelineState extends State<Timeline> {
           Search(),
           UploadScreen(),
           MyProfile(
+            firstName: widget.currentUserFirstName,
+            lastName: widget.currentUserLastName,
+            phoneNumber: widget.currentUserPhoneNumber,
             idOfUser: widget.currentUserID,
+            description: widget.currentUserDescription,
             profilePageColor: widget.currentUserProfileColor,
             coverImageURL: widget.currentUserCoverImageURL,
             idOfProfessional: widget.currentUserID,

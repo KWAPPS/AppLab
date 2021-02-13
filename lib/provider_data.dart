@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
 import 'package:connect_app/screens/timeline.dart';
 import 'package:connect_app/custom_widgets/person_info_card.dart';
+import 'package:connect_app/main.dart';
 
 class ProviderData extends ChangeNotifier {
   void showBottomNavigation() {
@@ -23,8 +24,24 @@ class ProviderData extends ChangeNotifier {
     notifyListeners();
   }
 
+  void updateUserData(String userPhoneNumber, String userFirstName,
+      String userLastName, String userOccupation, String userDescription) {
+    phoneNumber = userPhoneNumber;
+    firstName = userFirstName;
+    lastName = userLastName;
+    occupation = userOccupation;
+    description = userDescription;
+    myProfileName = '${capitalize(userFirstName)} ${capitalize(userLastName)}';
+    myProfileOccupation = userOccupation;
+    toggleSpin = false;
+    print('updated user data');
+    print('new name is $userFirstName');
+    notifyListeners();
+  }
+
   void updateCoverImageURL(var coverImageURL) {
     userCoverImageURL = coverImageURL;
+    toggleSpin = false;
     notifyListeners();
   }
 

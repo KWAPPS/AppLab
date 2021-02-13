@@ -16,22 +16,32 @@ import 'package:connect_app/screens/in_app/edit_profile.dart';
 //TODO protect against null data when user hasn't completed setting up their profile
 
 String myProfileImageURL;
+String myProfileName;
+String myProfileOccupation;
 
 class MyProfile extends StatefulWidget {
   Color profilePageColor;
   String idOfUser;
+  String firstName;
+  String lastName;
   String idOfProfessional;
   String name;
+  String phoneNumber;
   String occupation;
   String email;
   String starRating;
   String profileImageURL;
   String coverImageURL;
+  String description;
 
   MyProfile(
       {this.name,
       this.idOfUser,
+      this.phoneNumber,
       this.coverImageURL,
+      this.firstName,
+      this.lastName,
+      this.description,
       this.occupation,
       this.starRating,
       this.idOfProfessional,
@@ -48,6 +58,17 @@ class _MyProfileState extends State<MyProfile>
   @override
   void initState() {
     myProfileImageURL = widget.profileImageURL;
+    myProfileName = widget.name;
+    myProfileOccupation = widget.occupation;
+
+    phoneNumber = widget.phoneNumber;
+    firstName = widget.firstName;
+    lastName = widget.lastName;
+    description = widget.description;
+    occupation = widget.occupation;
+
+    print(
+        '$phoneNumber $lastName phone number and last name __________________________________');
 
     controller = TabController(length: 3, vsync: this);
 
@@ -118,7 +139,7 @@ class _MyProfileState extends State<MyProfile>
                                 padding: EdgeInsets.only(bottom: 5, top: 15),
                                 width: MediaQuery.of(context).size.width * 0.5,
                                 child: Text(
-                                  widget.name,
+                                  myProfileName,
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
                                       fontFamily: 'Nunito',
@@ -151,7 +172,7 @@ class _MyProfileState extends State<MyProfile>
                               Container(
                                 padding: EdgeInsets.only(top: 10, bottom: 5),
                                 child: Text(
-                                  widget.occupation,
+                                  myProfileOccupation,
                                   style: TextStyle(
                                       fontWeight: FontWeight.w600,
                                       fontFamily: 'Nunito',

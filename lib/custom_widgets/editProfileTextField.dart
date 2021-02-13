@@ -4,10 +4,19 @@ import 'package:connect_app/utilities/constants.dart';
 class EditProfileTextField extends StatefulWidget {
   String hintText;
   Function onCompleted;
+
+  int maxLength;
+  int minLines;
+  int maxLines;
   Function onChanged;
+  TextInputType textInputType;
 
   EditProfileTextField(
       {@required this.hintText,
+      this.textInputType,
+      this.minLines,
+      this.maxLength,
+      this.maxLines,
       @required this.onCompleted,
       @required this.onChanged});
 
@@ -22,15 +31,18 @@ class _EditProfileTextFieldState extends State<EditProfileTextField> {
       padding: EdgeInsets.symmetric(vertical: 10),
       width: MediaQuery.of(context).size.width * 0.9,
       child: TextField(
+        maxLength: widget.maxLength,
+        maxLengthEnforced: true,
+        minLines: widget.minLines,
+        maxLines: widget.maxLines,
+        keyboardType: widget.textInputType,
         textAlign: TextAlign.center,
-        style: TextStyle(color: Colors.white, fontFamily: 'Nunito'),
+        style: TextStyle(color: kDarkBlue2, fontFamily: 'Nunito'),
         onEditingComplete: () {
-          print('editing complete');
           widget.onCompleted();
         },
         onChanged: (value) {
-          print(value);
-          widget.onChanged();
+          widget.onChanged(value);
         },
         decoration: InputDecoration(
           enabledBorder: UnderlineInputBorder(
