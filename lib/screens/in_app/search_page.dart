@@ -42,17 +42,10 @@ class _SearchState extends State<Search> {
 
   @override
   Widget build(BuildContext context) {
-    Widget searchedData() {
-      return ListView.builder(
-          itemCount: snapshotData.docs.length,
-          itemBuilder: (BuildContext context, int index) {
-            return Container(
-              color: Colors.blue,
-              height: 400,
-              width: 300,
-            );
-          });
-    }
+    return Container(
+      height: MediaQuery.of(context).size.height,
+      color: Colors.blueAccent,
+    );
   }
 }
 // Container(
