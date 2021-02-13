@@ -85,7 +85,7 @@ class _SplashScreenState extends State<SplashScreen> {
             ),
             Shimmer.fromColors(
               baseColor: kLightBlue2,
-              highlightColor: kLightPurple,
+              highlightColor: kDarkPurple,
               child: Text(
                 'quickc.',
                 style: TextStyle(

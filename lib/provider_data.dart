@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:connect_app/screens/timeline.dart';
 import 'package:connect_app/custom_widgets/person_info_card.dart';
 import 'package:connect_app/main.dart';
+import 'package:connect_app/custom_widgets/color_selctor.dart';
 
 class ProviderData extends ChangeNotifier {
   void showBottomNavigation() {
@@ -19,6 +20,11 @@ class ProviderData extends ChangeNotifier {
 
   void toggleLoadingOnEditProfile() {
     toggleSpin = !toggleSpin;
+    notifyListeners();
+  }
+
+  void updateMyProfileColor(Color myNewProfilecolor) {
+    myProfileColor = myNewProfilecolor;
     notifyListeners();
   }
 

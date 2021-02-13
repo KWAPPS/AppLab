@@ -147,7 +147,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                         print('oops');
                                         return Center(
                                           child: CircularProgressIndicator(
-                                            backgroundColor: kLightPurple,
+                                            backgroundColor: kDarkPurple,
                                           ),
                                         );
                                       }
@@ -200,7 +200,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                       print('oops');
                                       return Center(
                                         child: CircularProgressIndicator(
-                                          backgroundColor: kLightPurple,
+                                          backgroundColor: kDarkPurple,
                                         ),
                                       );
                                     }
@@ -220,6 +220,38 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                           profileColor = kPurple;
                                         }
                                         if (user.data()['profilePageColor'] ==
+                                            '4') {
+                                          profileColor = kLightBlue;
+                                        }
+                                        if (user.data()['profilePageColor'] ==
+                                            '5') {
+                                          profileColor = kEarthGreen;
+                                        }
+                                        if (user.data()['profilePageColor'] ==
+                                            '6') {
+                                          profileColor = kOrange;
+                                        }
+                                        if (user.data()['profilePageColor'] ==
+                                            '7') {
+                                          profileColor = kDarkPurple;
+                                        }
+                                        if (user.data()['profilePageColor'] ==
+                                            '8') {
+                                          profileColor = kBlack;
+                                        }
+                                        if (user.data()['profilePageColor'] ==
+                                            '9') {
+                                          profileColor = kPink;
+                                        }
+                                        if (user.data()['profilePageColor'] ==
+                                            '10') {
+                                          profileColor = kDarkBrown;
+                                        }
+                                        if (user.data()['profilePageColor'] ==
+                                            '11') {
+                                          profileColor = kDarkerBrown;
+                                        }
+                                        if (user.data()['profilePageColor'] ==
                                             '3') {
                                           profileColor = kDarkGreen;
                                         }
@@ -230,10 +262,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                             profilePageColor: profileColor,
                                             idOfProfessional: user.id,
                                             homeScreenReloadCallBack: () {
-                                              setState(() {
-                                                print(
-                                                    '__________________________reloading home screen____________');
-                                              });
+                                              setState(() {});
                                             },
                                             description:
                                                 user.data()['description'],
@@ -283,7 +312,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                     print('oops');
                                     return Center(
                                         child: CircularProgressIndicator(
-                                            backgroundColor: kLightPurple));
+                                            backgroundColor: kDarkPurple));
                                   }
 
                                   final users = snapshot.data.docs;

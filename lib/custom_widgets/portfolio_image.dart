@@ -13,7 +13,7 @@ class PortfolioImage extends StatelessWidget {
       padding: EdgeInsets.all(5),
       child: Container(
         decoration: BoxDecoration(
-            color: kLightPurple,
+            color: kLightBlue2,
             borderRadius: BorderRadius.all(Radius.circular(8))),
         width: MediaQuery.of(context).size.width * 0.43,
         child: ClipRRect(

@@ -71,7 +71,7 @@ class _SearchScreenState extends State<SearchScreen>
     });
 
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-      systemNavigationBarColor: kLightPurple, // navigation bar color
+      systemNavigationBarColor: kDarkPurple, // navigation bar color
       statusBarColor: Colors.transparent, // status bar color
     ));
     super.initState();
@@ -88,7 +88,7 @@ class _SearchScreenState extends State<SearchScreen>
     return Scaffold(
       body: Container(
           height: MediaQuery.of(context).size.height,
-          color: kLightPurple,
+          color: kDarkPurple,
           child: Stack(
             children: [
               SingleChildScrollView(

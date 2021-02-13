@@ -29,7 +29,7 @@ class _EditProfileTextFieldState extends State<EditProfileTextField> {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 10),
-      width: MediaQuery.of(context).size.width * 0.9,
+      width: MediaQuery.of(context).size.width * 0.8,
       child: TextField(
         maxLength: widget.maxLength,
         maxLengthEnforced: true,

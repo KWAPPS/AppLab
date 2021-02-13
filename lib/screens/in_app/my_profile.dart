@@ -18,6 +18,7 @@ import 'package:connect_app/screens/in_app/edit_profile.dart';
 String myProfileImageURL;
 String myProfileName;
 String myProfileOccupation;
+Color myProfileColor;
 double myRating;
 
 class MyProfile extends StatefulWidget {
@@ -61,7 +62,7 @@ class _MyProfileState extends State<MyProfile>
     myProfileImageURL = widget.profileImageURL;
     myProfileName = widget.name;
     myProfileOccupation = widget.occupation;
-
+    myProfileColor = widget.profilePageColor;
     phoneNumber = widget.phoneNumber;
     firstName = widget.firstName;
     lastName = widget.lastName;
@@ -104,7 +105,7 @@ class _MyProfileState extends State<MyProfile>
 
     return Consumer<ProviderData>(builder: (context, AppBarData, child) {
       return Scaffold(
-        backgroundColor: widget.profilePageColor,
+        backgroundColor: myProfileColor,
         resizeToAvoidBottomInset: false,
         extendBodyBehindAppBar: true,
         body: SafeArea(
@@ -113,7 +114,7 @@ class _MyProfileState extends State<MyProfile>
               children: [
                 Container(
                   height: MediaQuery.of(context).size.height * 0.25,
-                  color: widget.profilePageColor,
+                  color: myProfileColor,
 //                margin: EdgeInsets.only(left: 20.0, top: 20.0),
                   child: Column(
                     children: [
@@ -125,7 +126,7 @@ class _MyProfileState extends State<MyProfile>
                             padding:
                                 const EdgeInsets.only(top: 20.0, bottom: 20),
                             child: CircleAvatar(
-                              backgroundColor: kLightPurple,
+                              backgroundColor: kLightBlue2,
                               radius: 50,
                               backgroundImage: NetworkImage(myProfileImageURL),
                             ),
@@ -177,7 +178,7 @@ class _MyProfileState extends State<MyProfile>
                                   style: TextStyle(
                                       fontWeight: FontWeight.w600,
                                       fontFamily: 'Nunito',
-                                      color: kLightPurple),
+                                      color: kVeryLightBlue),
                                 ),
                               ),
                               Container(
@@ -212,12 +213,12 @@ class _MyProfileState extends State<MyProfile>
                   ),
                 ),
                 Container(
-                  color: widget.profilePageColor,
+                  color: myProfileColor,
                   height: MediaQuery.of(context).size.height * 0.69,
                   child: Column(
                     children: [
                       TabBar(
-                        indicatorColor: Color(0xffcc0e74),
+                        indicatorColor: kVeryLightBlue,
                         controller: controller,
                         tabs: [
                           Tab(
@@ -241,7 +242,7 @@ class _MyProfileState extends State<MyProfile>
                         ],
                       ),
                       Container(
-                        color: kDarkBlue2,
+                        color: myProfileColor,
                         width: MediaQuery.of(context).size.width,
                         height: MediaQuery.of(context).size.height * 0.62,
                         child: TabBarView(
@@ -249,17 +250,17 @@ class _MyProfileState extends State<MyProfile>
                           children: [
                             mywork.MyWork(
                               email: widget.email,
-                              color: widget.profilePageColor,
+                              color: myProfileColor,
                             ),
                             reviews.Reviews(
                               idOfProfessional: widget.idOfProfessional,
                               email: widget.email,
-                              color: widget.profilePageColor,
+                              color: myProfileColor,
                               name: widget.name,
                               occupation: widget.occupation,
                               profileImageURL: widget.profileImageURL,
                             ),
-                            socials.Socials(color: widget.profilePageColor)
+                            socials.Socials(color: myProfileColor)
                           ],
                         ),
                       )

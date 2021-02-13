@@ -41,7 +41,7 @@ class SearchBar extends StatelessWidget {
                 borderSide: BorderSide(width: 1, color: Colors.white)),
             focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.all(Radius.circular(30)),
-                borderSide: BorderSide(width: 1, color: kLightPurple)),
+                borderSide: BorderSide(width: 1, color: kDarkPurple)),
             contentPadding: EdgeInsets.symmetric(horizontal: 30, vertical: 2),
             prefixIconConstraints: BoxConstraints.tightFor(),
             prefixIcon: Padding(

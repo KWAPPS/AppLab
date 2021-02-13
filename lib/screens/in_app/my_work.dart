@@ -45,12 +45,13 @@ class _MyWorkState extends State<MyWork> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: widget.color != null? widget.color : kDarkBlue2,
+      backgroundColor: widget.color != null ? widget.color : kDarkBlue2,
       body: SingleChildScrollView(
         child: Column(
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 StreamBuilder<QuerySnapshot>(
                   stream: _firestore.collection('posts').snapshots(),
@@ -59,7 +60,7 @@ class _MyWorkState extends State<MyWork> {
                       print('oops');
                       return Center(
                           child: CircularProgressIndicator(
-                              backgroundColor: kLightPurple));
+                              backgroundColor: kDarkPurple));
                     }
                     if (snapshot.connectionState == ConnectionState.waiting) {
                       return CircularProgressIndicator(

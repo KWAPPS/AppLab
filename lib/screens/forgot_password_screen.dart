@@ -39,7 +39,7 @@ class ForgotPasswordScreen extends StatelessWidget {
             Container(
               width: MediaQuery.of(context).size.width * 0.8,
               child: CredentialsTextField(
-                fillColor: kLightPurple,
+                fillColor: kDarkPurple,
                 barText: 'email',
                 onChanged: (value) {
                   emailForReset = value;

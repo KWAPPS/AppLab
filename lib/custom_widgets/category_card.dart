@@ -16,7 +16,7 @@ class CategoryCard extends StatelessWidget {
           style: TextStyle(
               fontSize: 17,
               fontFamily: 'Nunito',
-              color: kLightPurple,
+              color: kVeryLightBlue,
               fontWeight: FontWeight.w800),
         )),
         borderRadius: BorderRadius.all(Radius.circular(15)),

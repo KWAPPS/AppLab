@@ -107,7 +107,7 @@ class _PersonInfoCard1State extends State<PersonInfoCard1> {
                     Row(
                       children: [
                         CircleAvatar(
-                          backgroundColor: kLightPurple,
+                          backgroundColor: kLightBlue2,
                           radius: 40,
                           backgroundImage: NetworkImage(widget.imageURL),
                         ),
@@ -151,7 +151,7 @@ class _PersonInfoCard1State extends State<PersonInfoCard1> {
                               style: TextStyle(
                                   fontFamily: 'Nunito',
                                   fontWeight: FontWeight.w600,
-                                  color: kLightPurple),
+                                  color: kVeryLightBlue),
                             ),
                           ],
                         )
@@ -160,7 +160,7 @@ class _PersonInfoCard1State extends State<PersonInfoCard1> {
                     Padding(
                       padding: EdgeInsets.symmetric(vertical: 10),
                       child: Container(
-                        color: kLightPurple,
+                        color: kVeryLightBlue,
                         height: 1,
                         width: 200,
                       ),
@@ -278,7 +278,7 @@ class _PersonInfoCard2State extends State<PersonInfoCard2> {
                   style: TextStyle(fontSize: 1),
                 ),
                 decoration: BoxDecoration(
-                    color: kLightPurple,
+                    color: kLightBlue2,
                     borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(15),
                         topRight: Radius.circular(15)),
@@ -308,7 +308,7 @@ class _PersonInfoCard2State extends State<PersonInfoCard2> {
                 widget.occupation,
                 style: TextStyle(
                     fontFamily: 'Nunito',
-                    color: kLightPurple,
+                    color: kVeryLightBlue,
                     fontWeight: FontWeight.w600),
               ),
               widget.numberOfStarsInWidget == null

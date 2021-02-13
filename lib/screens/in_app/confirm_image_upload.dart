@@ -30,10 +30,10 @@ class ConfirmImageUpload extends StatelessWidget {
         child: Column(
           children: [
             SizedBox(
-              height: MediaQuery.of(context).size.height * 0.2,
+              height: MediaQuery.of(context).size.height * 0.1,
             ),
             Container(
-                width: MediaQuery.of(context).size.width * 0.9,
+                width: MediaQuery.of(context).size.width * 0.8,
                 child: Image.file(image)),
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.1,

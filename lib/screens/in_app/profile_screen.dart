@@ -97,7 +97,7 @@ class _ProfileScreenState extends State<ProfileScreen>
                       Padding(
                         padding: const EdgeInsets.only(top: 20.0, bottom: 20),
                         child: CircleAvatar(
-                          backgroundColor: kLightPurple,
+                          backgroundColor: kLightBlue2,
                           radius: 50,
                           backgroundImage: NetworkImage(widget.profileImageURL),
                         ),
@@ -148,7 +148,7 @@ class _ProfileScreenState extends State<ProfileScreen>
                               style: TextStyle(
                                   fontWeight: FontWeight.w600,
                                   fontFamily: 'Nunito',
-                                  color: kLightPurple),
+                                  color: kVeryLightBlue),
                             ),
                           ),
                           Container(
@@ -173,7 +173,7 @@ class _ProfileScreenState extends State<ProfileScreen>
               child: Column(
                 children: [
                   TabBar(
-                    indicatorColor: Color(0xffcc0e74),
+                    indicatorColor: kVeryLightBlue,
                     controller: controller,
                     tabs: [
                       Tab(

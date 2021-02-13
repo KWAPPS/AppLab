@@ -32,7 +32,7 @@ class Review extends StatelessWidget {
                       fontFamily: 'Nunito',
                       fontSize: 15,
                       fontWeight: FontWeight.w600,
-                      color: kLightPurple),
+                      color: kDarkPurple),
                 ),
                 SmoothStarRating(
                   rating: double.parse(starRating),

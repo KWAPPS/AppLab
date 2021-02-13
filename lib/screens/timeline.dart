@@ -97,6 +97,30 @@ class _TimelineState extends State<Timeline> {
         if (data.docs[0]['profilePageColor'] == '1') {
           widget.currentUserProfileColor = kDarkBlue2;
         }
+        if (data.docs[0]['profilePageColor'] == '4') {
+          widget.currentUserProfileColor = kLightBlue;
+        }
+        if (data.docs[0]['profilePageColor'] == '5') {
+          widget.currentUserProfileColor = kEarthGreen;
+        }
+        if (data.docs[0]['profilePageColor'] == '6') {
+          widget.currentUserProfileColor = kOrange;
+        }
+        if (data.docs[0]['profilePageColor'] == '7') {
+          widget.currentUserProfileColor = kDarkPurple;
+        }
+        if (data.docs[0]['profilePageColor'] == '8') {
+          widget.currentUserProfileColor = kBlack;
+        }
+        if (data.docs[0]['profilePageColor'] == '9') {
+          widget.currentUserProfileColor = kPink;
+        }
+        if (data.docs[0]['profilePageColor'] == '10') {
+          widget.currentUserProfileColor = kDarkBrown;
+        }
+        if (data.docs[0]['profilePageColor'] == '11') {
+          widget.currentUserProfileColor = kDarkerBrown;
+        }
         if (data.docs[0]['profilePageColor'] == '2') {
           widget.currentUserProfileColor = kPurple;
         }

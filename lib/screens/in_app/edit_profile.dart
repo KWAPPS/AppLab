@@ -1,16 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:connect_app/screens/in_app/confirm_image_upload.dart';
-import 'package:connect_app/screens/in_app/settings.dart';
 import 'package:connect_app/utilities/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:connect_app/custom_widgets/editProfileTextField.dart';
 import 'package:connect_app/provider_data.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:provider/provider.dart';
-
+import 'package:connect_app/custom_widgets/color_selctor.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:path/path.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'dart:io';
 
 FirebaseFirestore _firestore = FirebaseFirestore.instance;
@@ -130,7 +127,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     CircleAvatar(
-                        backgroundColor: kLightPurple,
+                        backgroundColor: kVeryLightBlue,
                         radius: 55,
                         backgroundImage: userProfileImageURL != null
                             ? NetworkImage(userProfileImageURL)
@@ -227,6 +224,81 @@ class _EditProfilePageState extends State<EditProfilePage> {
                     onChanged: (value) {
                       phoneNumber = value;
                     }),
+                Text(
+                  'portfolio background color >',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      fontFamily: 'Nunito',
+                      fontSize: 15,
+                      color: Colors.blueGrey),
+                ),
+                Container(
+                  height: MediaQuery.of(context).size.height * 0.15,
+                  width: MediaQuery.of(context).size.width * 0.9,
+                  child: SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        ColorSelector(
+                          color: kDarkBlue2,
+                          colorNumber: '1',
+                          idOfUser: widget.idOfUser,
+                        ),
+                        ColorSelector(
+                          color: kPurple,
+                          colorNumber: '2',
+                          idOfUser: widget.idOfUser,
+                        ),
+                        ColorSelector(
+                          color: kDarkGreen,
+                          colorNumber: '3',
+                          idOfUser: widget.idOfUser,
+                        ),
+                        ColorSelector(
+                          color: kLightBlue,
+                          colorNumber: '4',
+                          idOfUser: widget.idOfUser,
+                        ),
+                        ColorSelector(
+                          color: kEarthGreen,
+                          colorNumber: '5',
+                          idOfUser: widget.idOfUser,
+                        ),
+                        ColorSelector(
+                          color: kOrange,
+                          colorNumber: '6',
+                          idOfUser: widget.idOfUser,
+                        ),
+                        ColorSelector(
+                          color: kDarkPurple,
+                          colorNumber: '7',
+                          idOfUser: widget.idOfUser,
+                        ),
+                        ColorSelector(
+                          color: kBlack,
+                          colorNumber: '8',
+                          idOfUser: widget.idOfUser,
+                        ),
+                        ColorSelector(
+                          color: kPink,
+                          colorNumber: '9',
+                          idOfUser: widget.idOfUser,
+                        ),
+                        ColorSelector(
+                          color: kDarkBrown,
+                          colorNumber: '10',
+                          idOfUser: widget.idOfUser,
+                        ),
+                        ColorSelector(
+                          color: kDarkerBrown,
+                          colorNumber: '11',
+                          idOfUser: widget.idOfUser,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
                 Container(
                   padding: EdgeInsets.symmetric(vertical: 10),
                   width: MediaQuery.of(context).size.width * 0.9,
@@ -251,7 +323,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                     style: TextStyle(fontSize: 1),
                   ),
                   decoration: BoxDecoration(
-                      color: kLightPurple,
+                      color: kDarkPurple,
                       borderRadius: BorderRadius.only(
                           bottomLeft: Radius.circular(15),
                           bottomRight: Radius.circular(15),

@@ -1,13 +1,20 @@
 import 'package:flutter/material.dart';
 
 const kLightBlue = Color(0xFF2B95FF);
+const kEarthGreen = Color(0xFF6B7B66);
+const kOrange = Color(0xFFFB9925);
+const kDarkPurple = Color(0xFF341D80);
+const kBlack = Color(0xFF03030F);
+const kPink = Color(0xFFE93381);
+const kDarkBrown = Color(0xFFAD5C3F);
+const kDarkerBrown = Color(0xFF3C3431);
 const kPurple = Color(0xFF3F48CC);
-const kVeryLightCream = Color(0xFFFEFDF8);
 const kDarkBlue2 = Color(0xFF083961);
 const kLightBlue2 = Color(0xFF4E84B3);
+const kVeryLightBlue = Color(0xFFF0F2FE);
 const kLightCream = Color(0xFFD6D6CA);
-const kLightPurple = Color(0xFFD3D7E5);
-const kDarkGreen = Color(0xFF105157);
+
+const kDarkGreen = Color(0xFF265340);
 const kLoginTextStyle = TextStyle(
   fontSize: 50.0,
   fontWeight: FontWeight.w500,

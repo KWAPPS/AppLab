@@ -93,7 +93,7 @@ class _UploadScreenState extends State<UploadScreen> {
         ],
       );
     } else
-      return Container(height: 300, color: kLightPurple);
+      return Container(height: 300, color: kDarkPurple);
   }
 
   Future<void> loadAssets() async {
