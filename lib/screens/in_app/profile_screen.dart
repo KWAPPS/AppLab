@@ -95,10 +95,14 @@ class _ProfileScreenState extends State<ProfileScreen>
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Padding(
-                        padding: const EdgeInsets.only(top: 20.0, bottom: 20),
+                        padding: EdgeInsets.only(
+                          top: 20.0,
+                          bottom: 20,
+                          left: MediaQuery.of(context).size.width * 0.1,
+                        ),
                         child: CircleAvatar(
                           backgroundColor: kLightBlue2,
-                          radius: 50,
+                          radius: 60,
                           backgroundImage: NetworkImage(widget.profileImageURL),
                         ),
                       ),

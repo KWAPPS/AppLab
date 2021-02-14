@@ -146,11 +146,16 @@ class _EditProfilePageState extends State<EditProfilePage> {
                 SizedBox(
                   height: 15,
                 ),
-                Text(
-                  'first name',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                      fontFamily: 'Nunito', fontSize: 12, color: kDarkBlue2),
+                Container(
+                  width: MediaQuery.of(context).size.width * 0.8,
+                  child: Text(
+                    'first name',
+                    textAlign: TextAlign.left,
+                    style: TextStyle(
+                        fontFamily: 'Nunito',
+                        fontSize: 13.5,
+                        color: kDarkBlue2),
+                  ),
                 ),
                 EditProfileTextField(
                     maxLength: 14,
@@ -161,11 +166,16 @@ class _EditProfilePageState extends State<EditProfilePage> {
                     onChanged: (value) {
                       firstName = value;
                     }),
-                Text(
-                  'last name',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                      fontFamily: 'Nunito', fontSize: 12, color: kDarkBlue2),
+                Container(
+                  width: MediaQuery.of(context).size.width * 0.8,
+                  child: Text(
+                    'last name',
+                    textAlign: TextAlign.left,
+                    style: TextStyle(
+                        fontFamily: 'Nunito',
+                        fontSize: 13.5,
+                        color: kDarkBlue2),
+                  ),
                 ),
                 EditProfileTextField(
                     maxLength: 14,
@@ -176,11 +186,16 @@ class _EditProfilePageState extends State<EditProfilePage> {
                     onChanged: (value) {
                       lastName = value;
                     }),
-                Text(
-                  'what do you do?(eg. designer, barber...)',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                      fontFamily: 'Nunito', fontSize: 12, color: kDarkBlue2),
+                Container(
+                  width: MediaQuery.of(context).size.width * 0.8,
+                  child: Text(
+                    'what do you do?(eg. designer, barber...)',
+                    textAlign: TextAlign.left,
+                    style: TextStyle(
+                        fontFamily: 'Nunito',
+                        fontSize: 13.5,
+                        color: kDarkBlue2),
+                  ),
                 ),
                 EditProfileTextField(
                     maxLength: 20,
@@ -191,11 +206,16 @@ class _EditProfilePageState extends State<EditProfilePage> {
                     onChanged: (value) {
                       occupation = value;
                     }),
-                Text(
-                  'brief description (90 characters max)',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                      fontFamily: 'Nunito', fontSize: 12, color: kDarkBlue2),
+                Container(
+                  width: MediaQuery.of(context).size.width * 0.8,
+                  child: Text(
+                    'brief description (90 characters max)',
+                    textAlign: TextAlign.left,
+                    style: TextStyle(
+                        fontFamily: 'Nunito',
+                        fontSize: 13.5,
+                        color: kDarkBlue2),
+                  ),
                 ),
                 EditProfileTextField(
                     maxLength: 90,
@@ -208,11 +228,16 @@ class _EditProfilePageState extends State<EditProfilePage> {
                     onChanged: (value) {
                       description = value;
                     }),
-                Text(
-                  'phone number (eg. +256700000000)',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                      fontFamily: 'Nunito', fontSize: 12, color: kDarkBlue2),
+                Container(
+                  width: MediaQuery.of(context).size.width * 0.8,
+                  child: Text(
+                    'phone number (eg. +256700000000)',
+                    textAlign: TextAlign.left,
+                    style: TextStyle(
+                        fontFamily: 'Nunito',
+                        fontSize: 13.5,
+                        color: kDarkBlue2),
+                  ),
                 ),
                 EditProfileTextField(
                     maxLength: 13,
@@ -224,13 +249,16 @@ class _EditProfilePageState extends State<EditProfilePage> {
                     onChanged: (value) {
                       phoneNumber = value;
                     }),
-                Text(
-                  'portfolio background color >',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                      fontFamily: 'Nunito',
-                      fontSize: 15,
-                      color: Colors.blueGrey),
+                Container(
+                  width: MediaQuery.of(context).size.width * 0.8,
+                  child: Text(
+                    'portfolio background color >',
+                    textAlign: TextAlign.left,
+                    style: TextStyle(
+                        fontFamily: 'Nunito',
+                        fontSize: 15,
+                        color: Colors.blueGrey),
+                  ),
                 ),
                 Container(
                   height: MediaQuery.of(context).size.height * 0.15,
@@ -301,10 +329,10 @@ class _EditProfilePageState extends State<EditProfilePage> {
                 ),
                 Container(
                   padding: EdgeInsets.symmetric(vertical: 10),
-                  width: MediaQuery.of(context).size.width * 0.9,
+                  width: MediaQuery.of(context).size.width * 0.8,
                   child: Text(
-                    'choose a flattering cover image that will appear in search, and home screen',
-                    textAlign: TextAlign.center,
+                    'choose a cover image to appear in search, and on the home screen',
+                    textAlign: TextAlign.start,
                     style: TextStyle(
                         fontSize: 15,
                         fontFamily: 'Nunito',
@@ -316,8 +344,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
                 ),
                 Container(
                   padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-                  height: MediaQuery.of(context).size.width * 0.54,
-                  width: MediaQuery.of(context).size.width * 0.9,
+                  height: MediaQuery.of(context).size.width * 0.48,
+                  width: MediaQuery.of(context).size.width * 0.8,
                   child: Text(
                     '.',
                     style: TextStyle(fontSize: 1),

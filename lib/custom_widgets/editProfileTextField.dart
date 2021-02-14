@@ -36,7 +36,7 @@ class _EditProfileTextFieldState extends State<EditProfileTextField> {
         minLines: widget.minLines,
         maxLines: widget.maxLines,
         keyboardType: widget.textInputType,
-        textAlign: TextAlign.center,
+        textAlign: TextAlign.left,
         style: TextStyle(color: kDarkBlue2, fontFamily: 'Nunito'),
         onEditingComplete: () {
           widget.onCompleted();
