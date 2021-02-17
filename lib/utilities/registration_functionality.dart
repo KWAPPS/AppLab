@@ -4,7 +4,6 @@ import 'package:connect_app/screens/register_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-
 //TODO think about if it is really necessary to initialize all the fields for a new user, considering they might never be interested in creating a porfolio.
 
 FirebaseAuth _auth = FirebaseAuth.instance;
@@ -17,19 +16,23 @@ class RegistrationFunctionality {
           email: email, password: password);
       await newUser.user.sendEmailVerification();
       await _auth.signOut();
+      String newUserDataID;
 
       _firestore.collection('userData').add({
         'email': email,
-        'profileImageURL':
-            'https://images.unsplash.com/photo-1530305408560-82d13781b33a?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1052&q=80',
-        'profilePageColor': '1',
-        'coverImageURL':
-            'https://images.unsplash.com/photo-1530305408560-82d13781b33a?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1052&q=80',
-        'phoneNumber': '+256',
-        'description': 'your description',
-        'lastName': 'your last name',
-        'firstName': 'your first name',
-        'occupation': 'what you do'
+      }).then((value) {
+        _firestore.collection('userData').doc(value.id).update({
+          'profileImageURL':
+              'https://images.unsplash.com/photo-1530305408560-82d13781b33a?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1052&q=80',
+          'profilePageColor': '1',
+          'coverImageURL':
+              'https://images.unsplash.com/photo-1530305408560-82d13781b33a?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1052&q=80',
+          'phoneNumber': '+256',
+          'description': 'your description',
+          'lastName': 'your last name',
+          'firstName': 'your first name',
+          'occupation': 'what you do'
+        });
       });
 
       return await ReturnPopup(
