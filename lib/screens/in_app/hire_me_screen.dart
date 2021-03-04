@@ -4,13 +4,23 @@ import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:connect_app/custom_widgets/action_prompt.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
+import 'package:url_launcher/url_launcher.dart';
+
+_launchURL(String url) async {
+  if (await canLaunch(url)) {
+    await launch(url);
+  } else {
+    throw 'Could not launch $url';
+  }
+}
 
 class HireMeScreen extends StatefulWidget {
   String name;
   String email;
   String occupation;
+  String phone;
 
-  HireMeScreen({this.name, this.email, this.occupation});
+  HireMeScreen({this.name, this.email, this.phone, this.occupation});
 
   static const String id = 'hire_me_screen';
   @override
@@ -66,14 +76,25 @@ class _HireMeScreenState extends State<HireMeScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               ActionPrompt(
+                onPressed: () {
+                  _launchURL('tel:${widget.phone}');
+                },
                 iconName: LineAwesomeIcons.phone,
                 promptText: 'Call',
               ),
               ActionPrompt(
+                onPressed: () {
+                  _launchURL(
+                      "https://wa.me/${widget.phone}?text=Hello,%20I%20found%20you%20on%20quickc!%20");
+                },
                 iconName: LineAwesomeIcons.what_s_app,
                 promptText: 'WhatsApp',
               ),
               ActionPrompt(
+                onPressed: () {
+                  _launchURL(
+                      'mailto:${widget.email}?subject=INTERESTED IN YOUR SERVICES &body=Hello%20');
+                },
                 iconName: LineAwesomeIcons.envelope,
                 promptText: 'Email',
               ),

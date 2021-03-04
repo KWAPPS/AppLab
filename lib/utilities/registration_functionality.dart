@@ -4,19 +4,23 @@ import 'package:connect_app/screens/register_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-//TODO think about if it is really necessary to initialize all the fields for a new user, considering they might never be interested in creating a porfolio.
-
 FirebaseAuth _auth = FirebaseAuth.instance;
 final _firestore = FirebaseFirestore.instance;
 
 class RegistrationFunctionality {
   void registerUser(context, Function setState) async {
     try {
-      final newUser = await _auth.createUserWithEmailAndPassword(
+      UserCredential newUser;
+      newUser = await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
-      await newUser.user.sendEmailVerification();
+      if (newUser != null) {
+        await newUser.user.sendEmailVerification();
+        print('email verification to ${newUser.user.email}___________________');
+      } else {
+        print('new user was null_____________________________');
+      }
+
       await _auth.signOut();
-      String newUserDataID;
 
       _firestore.collection('userData').add({
         'email': email,
@@ -27,18 +31,17 @@ class RegistrationFunctionality {
           'profilePageColor': '1',
           'coverImageURL':
               'https://images.unsplash.com/photo-1530305408560-82d13781b33a?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1052&q=80',
-          'phoneNumber': '+256',
+          'phoneNumber': '256',
           'description': 'your description',
-          'lastName': 'your last name',
-          'firstName': 'your first name',
+          'lastName': 'last',
+          'firstName': 'first',
           'occupation': 'what you do'
         });
       });
 
       return await ReturnPopup(
           context: context,
-          displayText:
-              'check your email and click the link to verify your address, then sign in!',
+          displayText: 'check your email to verify your account, then sign in!',
           builderCallback: (context) => SplashScreen()).triggerPopup();
     } on FirebaseAuthException catch (e) {
       if (e.code == 'email-already-in-use') {
@@ -59,7 +62,7 @@ class RegistrationFunctionality {
       } else {
         ReturnPopup(
             context: context,
-            displayText: 'something went wrong',
+            displayText: 'oops! something went wrong',
             builderCallback: (context) => RegisterScreen()).triggerPopup();
       }
     } catch (e) {

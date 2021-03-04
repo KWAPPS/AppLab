@@ -22,9 +22,14 @@ String phoneNumber;
 String firstName;
 String lastName;
 String occupation;
+String instagramURL;
+String snapchatURL;
+String twitterURL;
 
 String defaultProfileImageURL =
     'https://images.unsplash.com/photo-1506318137071-a8e063b4bec0?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1070&q=80';
+
+ScrollController _scrollController = ScrollController();
 
 class EditProfilePage extends StatefulWidget {
   String idOfUser;
@@ -231,7 +236,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                 Container(
                   width: MediaQuery.of(context).size.width * 0.8,
                   child: Text(
-                    'phone number (eg. +256700000000)',
+                    'phone number (eg. 256700000000)',
                     textAlign: TextAlign.left,
                     style: TextStyle(
                         fontFamily: 'Nunito',
@@ -240,7 +245,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                   ),
                 ),
                 EditProfileTextField(
-                    maxLength: 13,
+                    maxLength: 12,
                     hintText: '$phoneNumber',
                     textInputType: TextInputType.phone,
                     onCompleted: (value) {
@@ -252,7 +257,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                 Container(
                   width: MediaQuery.of(context).size.width * 0.8,
                   child: Text(
-                    'portfolio background color >',
+                    'portfolio background color       >',
                     textAlign: TextAlign.left,
                     style: TextStyle(
                         fontFamily: 'Nunito',
@@ -263,70 +268,138 @@ class _EditProfilePageState extends State<EditProfilePage> {
                 Container(
                   height: MediaQuery.of(context).size.height * 0.15,
                   width: MediaQuery.of(context).size.width * 0.9,
-                  child: SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        ColorSelector(
-                          color: kDarkBlue2,
-                          colorNumber: '1',
-                          idOfUser: widget.idOfUser,
-                        ),
-                        ColorSelector(
-                          color: kPurple,
-                          colorNumber: '2',
-                          idOfUser: widget.idOfUser,
-                        ),
-                        ColorSelector(
-                          color: kDarkGreen,
-                          colorNumber: '3',
-                          idOfUser: widget.idOfUser,
-                        ),
-                        ColorSelector(
-                          color: kLightBlue,
-                          colorNumber: '4',
-                          idOfUser: widget.idOfUser,
-                        ),
-                        ColorSelector(
-                          color: kEarthGreen,
-                          colorNumber: '5',
-                          idOfUser: widget.idOfUser,
-                        ),
-                        ColorSelector(
-                          color: kOrange,
-                          colorNumber: '6',
-                          idOfUser: widget.idOfUser,
-                        ),
-                        ColorSelector(
-                          color: kDarkPurple,
-                          colorNumber: '7',
-                          idOfUser: widget.idOfUser,
-                        ),
-                        ColorSelector(
-                          color: kBlack,
-                          colorNumber: '8',
-                          idOfUser: widget.idOfUser,
-                        ),
-                        ColorSelector(
-                          color: kPink,
-                          colorNumber: '9',
-                          idOfUser: widget.idOfUser,
-                        ),
-                        ColorSelector(
-                          color: kDarkBrown,
-                          colorNumber: '10',
-                          idOfUser: widget.idOfUser,
-                        ),
-                        ColorSelector(
-                          color: kDarkerBrown,
-                          colorNumber: '11',
-                          idOfUser: widget.idOfUser,
-                        ),
-                      ],
+                  child: Scrollbar(
+                    controller: _scrollController,
+                    isAlwaysShown: true,
+                    thickness: 4,
+                    radius: Radius.circular(10),
+                    child: SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          ColorSelector(
+                            color: kDarkBlue2,
+                            colorNumber: '1',
+                            idOfUser: widget.idOfUser,
+                          ),
+                          ColorSelector(
+                            color: kPurple,
+                            colorNumber: '2',
+                            idOfUser: widget.idOfUser,
+                          ),
+                          ColorSelector(
+                            color: kDarkGreen,
+                            colorNumber: '3',
+                            idOfUser: widget.idOfUser,
+                          ),
+                          ColorSelector(
+                            color: kLightBlue,
+                            colorNumber: '4',
+                            idOfUser: widget.idOfUser,
+                          ),
+                          ColorSelector(
+                            color: kEarthGreen,
+                            colorNumber: '5',
+                            idOfUser: widget.idOfUser,
+                          ),
+                          ColorSelector(
+                            color: kOrange,
+                            colorNumber: '6',
+                            idOfUser: widget.idOfUser,
+                          ),
+                          ColorSelector(
+                            color: kDarkPurple,
+                            colorNumber: '7',
+                            idOfUser: widget.idOfUser,
+                          ),
+                          ColorSelector(
+                            color: kBlack,
+                            colorNumber: '8',
+                            idOfUser: widget.idOfUser,
+                          ),
+                          ColorSelector(
+                            color: kPink,
+                            colorNumber: '9',
+                            idOfUser: widget.idOfUser,
+                          ),
+                          ColorSelector(
+                            color: kDarkBrown,
+                            colorNumber: '10',
+                            idOfUser: widget.idOfUser,
+                          ),
+                          ColorSelector(
+                            color: kDarkerBrown,
+                            colorNumber: '11',
+                            idOfUser: widget.idOfUser,
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
+                Container(
+                  width: MediaQuery.of(context).size.width * 0.8,
+                  child: Text(
+                    'instagram profile link',
+                    textAlign: TextAlign.left,
+                    style: TextStyle(
+                        fontFamily: 'Nunito',
+                        fontSize: 13.5,
+                        color: kDarkBlue2),
+                  ),
+                ),
+                EditProfileTextField(
+                    maxLength: 1000,
+                    hintText:
+                        instagramURL != null ? '$instagramURL' : 'paste URL',
+                    onCompleted: (value) {
+                      instagramURL = value;
+                    },
+                    onChanged: (value) {
+                      instagramURL = value;
+                    }),
+                Container(
+                  width: MediaQuery.of(context).size.width * 0.8,
+                  child: Text(
+                    'snapchat link',
+                    textAlign: TextAlign.left,
+                    style: TextStyle(
+                        fontFamily: 'Nunito',
+                        fontSize: 13.5,
+                        color: kDarkBlue2),
+                  ),
+                ),
+                EditProfileTextField(
+                    maxLength: 1000,
+                    hintText:
+                        snapchatURL != null ? '$snapchatURL' : 'paste URL',
+                    onCompleted: (value) {
+                      snapchatURL = value;
+                    },
+                    onChanged: (value) {
+                      snapchatURL = value;
+                    }),
+                Container(
+                  width: MediaQuery.of(context).size.width * 0.8,
+                  child: Text(
+                    'twitter profile link',
+                    textAlign: TextAlign.left,
+                    style: TextStyle(
+                        fontFamily: 'Nunito',
+                        fontSize: 13.5,
+                        color: kDarkBlue2),
+                  ),
+                ),
+                EditProfileTextField(
+                    maxLength: 1000,
+                    hintText: twitterURL != null ? '$twitterURL' : 'paste URL',
+                    onCompleted: (value) {
+                      twitterURL = value;
+                    },
+                    onChanged: (value) {
+                      twitterURL = value;
+                    }),
                 Container(
                   padding: EdgeInsets.symmetric(vertical: 10),
                   width: MediaQuery.of(context).size.width * 0.8,
@@ -393,7 +466,10 @@ class _EditProfilePageState extends State<EditProfilePage> {
                       'firstName': firstName,
                       'lastName': lastName,
                       'description': description,
-                      'occupation': occupation
+                      'occupation': occupation,
+                      'instagramURL': instagramURL,
+                      'snapchatURL': snapchatURL,
+                      'twitterURL': twitterURL
                     });
                     Provider.of<ProviderData>(context, listen: false)
                         .updateUserData(phoneNumber, firstName, lastName,

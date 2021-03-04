@@ -8,24 +8,29 @@ import 'package:connect_app/custom_widgets/hire_me_button.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-//TODO after making a review, and navigating back to home, there isn't any data for the star rating widgets. Figure out how to make it refresh when you go back. You might need to add a back button so that you implement the functionality in navigator.pop
-
 var chosenProfilePageColor = kDarkBlue2;
 
 class ProfileScreen extends StatefulWidget {
   Color profilePageColor;
-
   String idOfProfessional;
   String name;
   String occupation;
   String email;
   String starRating;
   String profileImageURL;
+  String phone;
+  String instagramURL;
+  String snapchatURL;
+  String twitterURL;
 
   ProfileScreen(
       {this.name,
       this.occupation,
       this.starRating,
+      this.instagramURL,
+      this.twitterURL,
+      this.snapchatURL,
+      this.phone,
       this.idOfProfessional,
       this.profilePageColor,
       this.profileImageURL,
@@ -158,6 +163,7 @@ class _ProfileScreenState extends State<ProfileScreen>
                           Container(
                             padding: EdgeInsets.symmetric(vertical: 4),
                             child: HireMeButton(
+                              phone: widget.phone,
                               name: widget.name,
                               occupation: widget.occupation,
                               email: widget.email,

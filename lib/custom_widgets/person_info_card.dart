@@ -21,6 +21,10 @@ class PersonInfoCard1 extends StatefulWidget {
   final String email;
   Color profilePageColor;
   double numberOfStarsInTheWidget;
+  String phone;
+  String instagramURL;
+  String snapchatURL;
+  String twitterURL;
 
   PersonInfoCard1(
       {this.description,
@@ -29,6 +33,10 @@ class PersonInfoCard1 extends StatefulWidget {
       this.idOfProfessional,
       this.imageURL,
       this.profilePageColor,
+      this.instagramURL,
+      this.twitterURL,
+      this.snapchatURL,
+      this.phone,
       this.name,
       this.email,
       this.occupation});
@@ -84,6 +92,10 @@ class _PersonInfoCard1State extends State<PersonInfoCard1> {
                               ? widget.numberOfStarsInTheWidget.toString()
                               : null,
                           idOfProfessional: widget.idOfProfessional,
+                          phone: widget.phone,
+                          instagramURL: widget.instagramURL,
+                          snapchatURL: widget.snapchatURL,
+                          twitterURL: widget.twitterURL,
                           profilePageColor: widget.profilePageColor,
                           name: widget.name,
                           occupation: widget.occupation,
@@ -177,6 +189,7 @@ class _PersonInfoCard1State extends State<PersonInfoCard1> {
                       ),
                     ),
                     HireMeButton(
+                      phone: widget.phone,
                       occupation: widget.occupation,
                       buttonColor: kLightBlue2,
                       name: widget.name,
@@ -203,6 +216,10 @@ class PersonInfoCard2 extends StatefulWidget {
   Color profilePageColor;
   String idOfProfessional;
   double numberOfStarsInWidget;
+  String instagramURL;
+  String snapchatURL;
+  String twitterURL;
+  String phone;
 
   PersonInfoCard2(
       {this.imageURL = 'images/portfolio2.jpg',
@@ -213,6 +230,10 @@ class PersonInfoCard2 extends StatefulWidget {
       this.idOfProfessional,
       this.profilePageColor,
       this.description,
+      this.phone,
+      this.instagramURL,
+      this.twitterURL,
+      this.snapchatURL,
       this.occupation = 'photographer'});
 
   @override
@@ -262,8 +283,12 @@ class _PersonInfoCard2State extends State<PersonInfoCard2> {
                           ? widget.numberOfStarsInWidget.toString()
                           : null,
                       profilePageColor: widget.profilePageColor,
+                      phone: widget.phone,
                       name: widget.name,
                       occupation: widget.occupation,
+                      instagramURL: widget.instagramURL,
+                      snapchatURL: widget.snapchatURL,
+                      twitterURL: widget.twitterURL,
                       email: widget.email,
                       profileImageURL: widget.imageURL)));
         },

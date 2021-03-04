@@ -6,6 +6,7 @@ const kOrange = Color(0xFFFB9925);
 const kDarkPurple = Color(0xFF341D80);
 const kBlack = Color(0xFF03030F);
 const kPink = Color(0xFFE93381);
+const kPastelPink = Color(0xFF000000);
 const kDarkBrown = Color(0xFFAD5C3F);
 const kDarkerBrown = Color(0xFF3C3431);
 const kPurple = Color(0xFF3F48CC);

@@ -29,6 +29,9 @@ class Timeline extends StatefulWidget {
   var currentUserCoverImageURL;
   var currentUserDescription;
   var currentUserPhoneNumber;
+  var instagramURL;
+  var snapchatURL;
+  var twitterURL;
 
   @override
   _TimelineState createState() => _TimelineState();
@@ -127,6 +130,9 @@ class _TimelineState extends State<Timeline> {
         if (data.docs[0]['profilePageColor'] == '3') {
           widget.currentUserProfileColor = kDarkGreen;
         }
+        widget.snapchatURL = data.docs[0]['snapchatURL'];
+        widget.instagramURL = data.docs[0]['instagramURL'];
+        widget.twitterURL = data.docs[0]['twitterURL'];
       } catch (e) {
         print(e);
       }
@@ -172,6 +178,9 @@ class _TimelineState extends State<Timeline> {
             idOfProfessional: widget.currentUserID,
             occupation: widget.currentUserOccupation,
             name: widget.currentUserName,
+            instagramURL: widget.instagramURL,
+            snapchatURL: widget.snapchatURL,
+            twitterURL: widget.twitterURL,
             profileImageURL: widget.currentUserProfileImageURL,
             starRating: '4',
             email: FirebaseAuth.instance.currentUser.email,

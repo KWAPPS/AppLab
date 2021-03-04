@@ -7,9 +7,14 @@ class HireMeButton extends StatelessWidget {
   String name;
   String email;
   String occupation;
+  String phone;
 
   HireMeButton(
-      {this.buttonColor = kLightBlue2, this.occupation, this.name, this.email});
+      {this.buttonColor = kLightBlue2,
+      this.phone,
+      this.occupation,
+      this.name,
+      this.email});
 
   @override
   Widget build(BuildContext context) {
@@ -18,6 +23,7 @@ class HireMeButton extends StatelessWidget {
         showModalBottomSheet(
             context: context,
             builder: (context) => HireMeScreen(
+                  phone: phone,
                   occupation: occupation,
                   name: name,
                   email: email,

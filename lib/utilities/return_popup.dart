@@ -35,7 +35,7 @@ class ReturnPopup {
               displayText,
               textAlign: TextAlign.center,
               style: TextStyle(
-                  fontSize: 30, color: kDarkBlue2, fontFamily: 'Nunito'),
+                  fontSize: 16, color: kDarkBlue2, fontFamily: 'Nunito'),
             ),
             SizedBox(
               height: 20,

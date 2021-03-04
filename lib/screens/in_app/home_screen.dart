@@ -11,6 +11,9 @@ import 'package:connect_app/screens/timeline.dart';
 import 'package:provider/provider.dart';
 import 'package:connect_app/main.dart';
 
+String placeHolderProfileImage =
+    'https://images.unsplash.com/photo-1530305408560-82d13781b33a?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1052&q=80';
+
 ScrollController _scrollBottomBarController = ScrollController();
 
 bool isScrollingDown = false;
@@ -256,7 +259,11 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                           profileColor = kDarkGreen;
                                         }
                                         if (user.data()['profileImageURL'] !=
-                                            null) {
+                                                null &&
+                                            user.data()['coverImageURL'] !=
+                                                placeHolderProfileImage &&
+                                            user.data()['profileImageURL'] !=
+                                                'occupation') {
                                           PersonInfoCard1 peopleCard =
                                               PersonInfoCard1(
                                             profilePageColor: profileColor,
@@ -267,12 +274,19 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                             description:
                                                 user.data()['description'],
                                             email: user.data()['email'],
+                                            phone: user.data()['phoneNumber'],
                                             imageURL:
                                                 user.data()['profileImageURL'],
                                             occupation: capitalize(
                                                 user.data()['occupation']),
                                             name:
                                                 '${capitalize(user.data()["firstName"])} ${capitalize(user.data()["lastName"])} ',
+                                            instagramURL:
+                                                user.data()['instagramURL'],
+                                            snapchatURL:
+                                                user.data()['snapchatURL'],
+                                            twitterURL:
+                                                user.data()['twitterURL'],
                                           );
                                           peopleCards.add(peopleCard);
                                         }
@@ -334,7 +348,11 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                       }
 
                                       if (user.data()['profileImageURL'] !=
-                                          null) {
+                                              null &&
+                                          user.data()['coverImageURL'] !=
+                                              placeHolderProfileImage &&
+                                          user.data()['profileImageURL'] !=
+                                              'occupation') {
                                         PersonInfoCard2 peopleCard2 =
                                             PersonInfoCard2(
                                           profilePageColor: theProfileColor,
@@ -348,6 +366,11 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                               user.data()['occupation']),
                                           name:
                                               '${capitalize(user.data()["firstName"])} ${capitalize(user.data()["lastName"])} ',
+                                          instagramURL:
+                                              user.data()['instagramURL'],
+                                          snapchatURL:
+                                              user.data()['snapchatURL'],
+                                          twitterURL: user.data()['twitterURL'],
                                         );
 
                                         if (morePeopleCards1.length ==

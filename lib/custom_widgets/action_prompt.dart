@@ -5,8 +5,10 @@ import 'package:connect_app/utilities/constants.dart';
 class ActionPrompt extends StatelessWidget {
   final IconData iconName;
   final String promptText;
+  Function onPressed;
 
-  ActionPrompt({@required this.iconName, @required this.promptText});
+  ActionPrompt(
+      {@required this.iconName, this.onPressed, @required this.promptText});
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +24,7 @@ class ActionPrompt extends StatelessWidget {
               shape: CircleBorder(side: BorderSide.none),
               elevation: 5,
               onPressed: () {
-                print('been pressed');
+                onPressed();
               },
               color: kDarkBlue2,
               child: FaIcon(

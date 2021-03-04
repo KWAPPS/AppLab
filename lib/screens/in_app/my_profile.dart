@@ -35,6 +35,9 @@ class MyProfile extends StatefulWidget {
   String profileImageURL;
   String coverImageURL;
   String description;
+  String instagramURL;
+  String snapchatURL;
+  String twitterURL;
 
   MyProfile(
       {this.name,
@@ -49,6 +52,9 @@ class MyProfile extends StatefulWidget {
       this.idOfProfessional,
       this.profilePageColor,
       this.profileImageURL,
+      this.instagramURL,
+      this.snapchatURL,
+      this.twitterURL,
       this.email});
   @override
   _MyProfileState createState() => _MyProfileState();
@@ -68,9 +74,9 @@ class _MyProfileState extends State<MyProfile>
     lastName = widget.lastName;
     description = widget.description;
     occupation = widget.occupation;
-
-    print(
-        '$phoneNumber $lastName phone number and last name __________________________________');
+    instagramURL = widget.instagramURL;
+    snapchatURL = widget.snapchatURL;
+    twitterURL = widget.twitterURL;
 
     controller = TabController(length: 3, vsync: this);
 
@@ -263,7 +269,12 @@ class _MyProfileState extends State<MyProfile>
                               occupation: widget.occupation,
                               profileImageURL: widget.profileImageURL,
                             ),
-                            socials.Socials(color: myProfileColor)
+                            socials.Socials(
+                              color: myProfileColor,
+                              instagramURL: widget.instagramURL,
+                              snapchatURL: widget.snapchatURL,
+                              twitterURL: widget.twitterURL,
+                            )
                           ],
                         ),
                       )
