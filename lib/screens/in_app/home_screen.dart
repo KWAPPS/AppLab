@@ -10,6 +10,7 @@ import 'package:connect_app/custom_widgets/person_info_card.dart';
 import 'package:connect_app/screens/timeline.dart';
 import 'package:provider/provider.dart';
 import 'package:connect_app/main.dart';
+import 'package:connect_app/push_notifications.dart';
 
 String placeHolderProfileImage =
     'https://images.unsplash.com/photo-1530305408560-82d13781b33a?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1052&q=80';
@@ -28,6 +29,9 @@ final _firestore = FirebaseFirestore.instance;
 
 class HomeScreen extends StatefulWidget {
   static const String id = 'home_screen';
+  String userID;
+
+  HomeScreen({this.userID});
 
   @override
   _HomeScreenState createState() => _HomeScreenState();
@@ -79,12 +83,17 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
         .orderBy('timeStamp', descending: true)
         .snapshots()
         .take(4);
+
+    //initializing the push notifications manager...
+    PushNotificationsManager pushNotificationsManager =
+        PushNotificationsManager();
+    pushNotificationsManager.init(widget.userID);
+
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
         systemNavigationBarColor: Colors.white,
         // navigation bar color
         statusBarColor: Colors.transparent // status bar color
         ));
-    print('initialized home screen___________--------------_');
 
     super.initState();
   }
@@ -96,7 +105,6 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     morePeopleCards1.clear();
     categoryCards.clear();
     _scrollBottomBarController.removeListener(() {});
-    print('disposed home screen___________--------------_');
 
     super.dispose();
   }

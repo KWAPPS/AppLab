@@ -12,7 +12,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:connect_app/utilities/constants.dart';
 import 'package:connect_app/main.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:connect_app/push_notifications.dart';
 
 bool showBottomNavigationBar = true;
 FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
@@ -164,7 +164,7 @@ class _TimelineState extends State<Timeline> {
     return Scaffold(
       body: PageView(
         children: [
-          HomeScreen(),
+          HomeScreen(userID: widget.currentUserID),
           Search(),
           UploadScreen(),
           MyProfile(

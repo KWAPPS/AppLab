@@ -13,10 +13,12 @@ import 'package:connect_app/screens/login_screen.dart';
 import 'package:connect_app/screens/welcome_screen.dart';
 import 'package:connect_app/screens/in_app/hire_me_screen.dart';
 import 'package:connect_app/screens/in_app/search_screen.dart';
+import 'package:connect_app/push_notifications.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+
   runApp(MyApp());
 }
 
